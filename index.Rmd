@@ -1,0 +1,26 @@
+---
+title: "Advice to the Graduate"
+author: "Michael Clark"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: 
+    # highlight: pygments
+    toc: true
+    # toc_float: yes
+    toc_depth: 1
+---
+
+# Preface
+
+I see you. I see a lot of you. You want to do quality research using sound statistical and other practices, but your statistical training is minimal, and it might have even been a couple years ago.  And while you want to do good analysis, any decent statistical effort will require a notable amount of programming, and you may have little to no programming experience. Furthermore, you may have been taught by people with no formal statical, programming, data or other relevant training, which only compounds the problem.  So you don't know what you're doing, but you don't want anyone to notice.  In fact, you'd like to bluff your way to the point of giving presentations, publishing papers etc., all with the polish of a master.  It's okay, most of the other people are in the same boat.
+
+These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient. The suggestions will have a strong eye toward balance.  I realize that if you wanted to be a statistician or computer programmer, you wouldn't be getting a degree in sociology, chemistry, ecology etc.
+
+
+
+# Sleep on your back
+# Ash in your shoes
+# Always use the old sense of the words
+# Your third drink will lead you astray
+# On the last day of your life, don't forget to die
+# Don't believe in people who say it's all been done
