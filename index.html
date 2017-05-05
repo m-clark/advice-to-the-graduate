@@ -47,6 +47,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="TOC">
 <ul>
+<li><a href="#preface">Preface</a></li>
 <li><a href="#sleep-on-your-back">Sleep on your back</a></li>
 <li><a href="#ash-in-your-shoes">Ash in your shoes</a></li>
 <li><a href="#always-use-the-old-sense-of-the-words">Always use the old sense of the words</a></li>
@@ -56,8 +57,19 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ul>
 </div>
 
+<div id="preface" class="section level1">
+<h1>Preface</h1>
+<p>I see you. I see a lot of you. Almost every day. You want to do quality research using sound statistical and other practices, but your training is minimal, and it might have even been a couple years since you last did anything substantial. And while you want to do good analysis, any decent statistical effort will require a notable amount of programming, and you may have little to no programming experience. Furthermore, you may have been taught by people with no formal statistical, programming, data or other relevant training, which only compounds the problem. So you don’t know what you’re doing, but you don’t want anyone to notice. In fact, you’d like to bluff your way to the point of giving presentations, publishing papers etc., all with the polish of a master. It’s okay, most of the other people are in the same boat.</p>
+<p>These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient. The suggestions will have a strong eye toward balance. I realize that if you wanted to be a statistician or computer programmer, you wouldn’t be getting a degree in sociology, chemistry, ecology or whatever.</p>
+</div>
 <div id="sleep-on-your-back" class="section level1">
 <h1>Sleep on your back</h1>
+<p>Some background. I was trained as an experimental psychologist. Statistically speaking, that meant a lot of ANOVA, but not even complicated ANOVA like fractional designs. Just some standard factorial mixed design. Nary a word mentioned that it was a special case of regression, or mixed models, I had to learn that later. My cohorts and I were taught using SPSS. Not even syntax, just menu-clicking. … I know. The time spent on just t-tests… just ridiculous.</p>
+<p>But I could do arithmetic damn it! And I could regurgitate the language I saw in journal articles. There were red books… Winer, Kirk … it was like instructors had ignored all that had gone on around them and figured everything had statistically been settled around 1984. 1984 wasn’t all bad. Sure there was some of the best entertainment humanity would ever offer, like Buckaroo Bonzai, Red Dawn, Knight Rider, Danger Mouse, A-team, and Battle of the Planets; one could argue it was the heyday of fashion; the cars… Deloreans and Countaches and Testerossas oh my! But statistically, computationally, algorithmically, things were only just beginning. And it is weird to me that people were writing books on statistics as if none of it was even happening.</p>
+<ul>
+<li>Classification and regression trees. L Breiman, J Friedman, CJ Stone, RA Olshen - 1984</li>
+<li>Literate programming. DE Knuth - The Computer Journal, 1984</li>
+</ul>
 </div>
 <div id="ash-in-your-shoes" class="section level1">
 <h1>Ash in your shoes</h1>
@@ -82,7 +94,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
