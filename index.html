@@ -12,7 +12,7 @@
 
 <meta name="author" content="Michael Clark" />
 
-<meta name="date" content="2017-05-02" />
+<meta name="date" content="2017-05-04" />
 
 <title>Advice to the Graduate</title>
 
@@ -42,49 +42,93 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <h1 class="title toc-ignore">Advice to the Graduate</h1>
 <h4 class="author"><em>Michael Clark</em></h4>
-<h4 class="date"><em>2017-05-02</em></h4>
+<h4 class="date"><em>2017-05-04</em></h4>
 
 
 <div id="TOC">
 <ul>
 <li><a href="#preface">Preface</a></li>
-<li><a href="#sleep-on-your-back">Sleep on your back</a></li>
-<li><a href="#ash-in-your-shoes">Ash in your shoes</a></li>
-<li><a href="#always-use-the-old-sense-of-the-words">Always use the old sense of the words</a></li>
-<li><a href="#your-third-drink-will-lead-you-astray">Your third drink will lead you astray</a></li>
-<li><a href="#on-the-last-day-of-your-life-dont-forget-to-die">On the last day of your life, don’t forget to die</a></li>
-<li><a href="#dont-believe-in-people-who-say-its-all-been-done">Don’t believe in people who say it’s all been done</a></li>
+<li><a href="#part-i-well-get-back-to-you">Part I: We’ll get back to you</a></li>
+<li><a href="#part-ii-trains-across-the-sea">Part II: Trains Across the Sea</a></li>
 </ul>
 </div>
 
 <div id="preface" class="section level1">
 <h1>Preface</h1>
-<p>I see you. I see a lot of you. Almost every day. You want to do quality research using sound statistical and other practices, but your training is minimal, and it might have even been a couple years since you last did anything substantial. And while you want to do good analysis, any decent statistical effort will require a notable amount of programming, and you may have little to no programming experience. Furthermore, you may have been taught by people with no formal statistical, programming, data or other relevant training, which only compounds the problem. So you don’t know what you’re doing, but you don’t want anyone to notice. In fact, you’d like to bluff your way to the point of giving presentations, publishing papers etc., all with the polish of a master. It’s okay, most of the other people are in the same boat.</p>
+<p>I see you. I see a lot of you. Almost every day. You want to do quality research using sound statistical and other practices, but your training is minimal, and it might have even been a couple years since you last did anything substantial. And while you want to do good analysis, any decent statistical effort will require a notable amount of programming, and you may have little to no programming experience. Furthermore, you may have been taught by people with no formal statistical, programming, data or other relevant training, which only compounds the problem. So you don’t know what you’re doing, but you don’t want anyone to notice. In fact, you’d like to bluff your way to the point of giving presentations, publishing papers etc., all with the polish of a master.</p>
+<p>It’s okay. Most of the others are in the same boat.</p>
 <p>These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient. The suggestions will have a strong eye toward balance. I realize that if you wanted to be a statistician or computer programmer, you wouldn’t be getting a degree in sociology, chemistry, ecology or whatever.</p>
 </div>
-<div id="sleep-on-your-back" class="section level1">
-<h1>Sleep on your back</h1>
-<p>Some background. I was trained as an experimental psychologist. Statistically speaking, that meant a lot of ANOVA, but not even complicated ANOVA like fractional designs. Just some standard factorial mixed design. Nary a word mentioned that it was a special case of regression, or mixed models, I had to learn that later. My cohorts and I were taught using SPSS. Not even syntax, just menu-clicking. … I know. The time spent on just t-tests… just ridiculous.</p>
-<p>But I could do arithmetic damn it! And I could regurgitate the language I saw in journal articles. There were red books… Winer, Kirk … it was like instructors had ignored all that had gone on around them and figured everything had statistically been settled around 1984. 1984 wasn’t all bad. Sure there was some of the best entertainment humanity would ever offer, like Buckaroo Bonzai, Red Dawn, Knight Rider, Danger Mouse, A-team, and Battle of the Planets; one could argue it was the heyday of fashion; the cars… Deloreans and Countaches and Testerossas oh my! But statistically, computationally, algorithmically, things were only just beginning. And it is weird to me that people were writing books on statistics as if none of it was even happening.</p>
+<div id="part-i-well-get-back-to-you" class="section level1">
+<h1>Part I: We’ll get back to you</h1>
+<div id="sleep-on-your-back" class="section level2">
+<h2>Sleep on your back</h2>
+<p>Some background. I was trained as an experimental psychologist. Statistically speaking, that meant a lot of ANOVA, but not even complicated ANOVA, just some standard factorial mixed design. Nary a word mentioned that it was a special case of more common and flexible models, I had to learn that later. Continuous data? Discretize it and run ANOVA. Not doing an experiment? ANOVA anyway! The time spent on just t-tests and other overly simple bivariate relationships… just ridiculous. I also had to take multivariate and psychometric techniques, which were among some of the lesser used methods in experimental psychology, but at least they started to get into something more interesting than ANOVA… like MANOVA!<label for="tufte-sn-1" class="margin-toggle sidenote-number">1</label><input type="checkbox" id="tufte-sn-1" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">1</span> I’m still trying to figure out why MANOVA is being taught for any reason in 2017, but I know that it is.</span></p>
+<p>Programatically my training was actually worse- SPSS, and not even really programming<label for="tufte-sn-2" class="margin-toggle sidenote-number">2</label><input type="checkbox" id="tufte-sn-2" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">2</span> Not that learning SPSS syntax would have been a good way to spend one’s time.</span>, just using the menus and punch-card-based syntax<label for="tufte-sn-3" class="margin-toggle sidenote-number">3</label><input type="checkbox" id="tufte-sn-3" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">3</span> I’m not kidding. SPSS syntax was developed during the punch card mainframe era of the 1970s. The first release was actually 1968. It has slightly more functionality now, though the graphics are about the same.</span> to run the available procedures. No one, absolutely no one was taught basic programming principles, that would have made so many things much simpler. You pick some up along the way, but it was never incorprated into the actual training.</p>
+<p>There were red books often referenced (Winer, Kirk), ‘modern’ updates to those that still were 90% ANOVA methods… it was like some instructors had ignored all that had gone on around them and figured everything had statistically been settled around 1984. 1984 wasn’t all bad. In fact it was a most excellent time in some ways<label for="tufte-sn-4" class="margin-toggle sidenote-number">4</label><input type="checkbox" id="tufte-sn-4" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">4</span> As long as you weren’t a minority, ignored the economy, and didn’t mind being taught to hide under your desk in case a nuclear bomb was dropped on your head. I admit that this is a U.S. centric recollection. I’m sure the Canadians were fine for example, though they didn’t learn to flip their collars for a couple more years.</span>. Sure there was some of the best entertainment humanity would ever offer, like Buckaroo Bonzai, Red Dawn, Knight Rider, Automan, Danger Mouse, A-team, and Battle of the Planets; one could argue it was the heyday of fashion; the cars… MR2, 300ZX, Delorean<label for="tufte-sn-5" class="margin-toggle sidenote-number">5</label><input type="checkbox" id="tufte-sn-5" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">5</span> Deloreans actually ceased production in 1983, but that was mostly because almost every household that could had purchased at least one and the market was exhausted. The streets were literally cluttered with them, and many people would even leave them in parking lots with wings open, hoping someone would steal it.</span>, Countache, 288 GTO<label for="tufte-sn-6" class="margin-toggle sidenote-number">6</label><input type="checkbox" id="tufte-sn-6" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">6</span> Insert Lazerhawk and/or Kavinsky here.</span>! But statistically, computationally, algorithmically, things were only just beginning, as computers were becoming more and more commonplace. And it is weird to me that people were writing applied books on statistics as if none of it was even happening. Here’s a smattering of articles and books from at least 20 years ago and well beyond<label for="tufte-sn-7" class="margin-toggle sidenote-number">7</label><input type="checkbox" id="tufte-sn-7" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">7</span> <em>Computers and the theory of statistics: thinking the unthinkable</em> B Efron <strong>1979</strong>. Here is the abstract: This is a survey article concerning recent advances in certain areas of statistical theory, written for a mathematical audience with no background in statistics. The topics are chosen to illustrate a special point: how the advent of the high-speed computer has affected the development of statistical theory. The topics discussed include nonparametric methods, the jackknife, the bootstrap, cross-validation, error-rate estimation in discriminant analysis, robust estimation, the influence function, censored data, the EM algorithm, and Cox’s likelihood function. The exposition is mainly by example, with only a little offered in the way of theoretical development. <br><br> I’d be willing to bet one could change nothing but the date, give this at a conference for some applied disciplines, and no one would notice.</span>.</p>
 <ul>
-<li>Classification and regression trees. L Breiman, J Friedman, CJ Stone, RA Olshen - 1984</li>
-<li>Literate programming. DE Knuth - The Computer Journal, 1984</li>
+<li><em>Classification and regression trees</em>. L Breiman J Friedman CJ Stone RA Olshen <strong>1984</strong></li>
+<li><em>Induction of decision trees</em> J R Quinlan <strong>1986</strong></li>
+<li><em>Bagging predictors</em> L Breiman <strong>1996</strong></li>
+<li><em>Literate programming</em> DE Knuth <strong>1984</strong></li>
+<li><em>The jackknife, the bootstrap and other resampling plans</em> B Efron <strong>1982</strong></li>
+<li><em>A tutorial on hidden Markov models and selected applications in speech recognition</em> L R Rabiner <strong>1989</strong></li>
+<li><em>Convolutional networks for images, speech, and time series</em> Y LeCun Y Bengio <strong>1995</strong></li>
+<li><em>Support-vector networks</em> C Cortes V Vapnik <strong>1995</strong></li>
+<li><em>A simple neural network generating an interactive memory</em> JA Anderson <strong>1972</strong></li>
+<li><em>Generalized additive models</em> TJ Hastie RJ Tibshirani <strong>1990</strong></li>
+<li><em>A desicion-theoretic generalization of on-line learning and an application to boosting</em> Y Freund RE Schapire <strong>1995</strong></li>
+<li><em>Probabilistic reasoning in intelligent systems: Networks of plausible inference</em> J Pearl <strong>1995</strong></li>
+<li><em>Maximum likelihood from incomplete data via the EM algorithm</em> AP Dempster NM Laird DB Rubin <strong>1977</strong></li>
+<li><em>Bayesian data analysis</em> A Gelman JB Carlin HS Stern DB Rubin <strong>1995</strong></li>
+<li><em>An Essay towards solving a Problem in the Doctrine of Chances</em> T Bayes <strong>1763</strong></li>
 </ul>
+<p>Random forests, deep learning, the ideas for modern tools like Jupyter notebook and Rmarkdown, the Bayesian approach… some of it was old hat a long time ago. Despite that, one can regularly find today, and in many disciplines and at top institutions, instructors still teaching material that largely ignores 50 years of methodological advances, and actively entrenching poor practices that have been railed against for almost 100 years. Consider the following references that suggest that the standard null hypothesis testing approach typically employed might be problematic.</p>
+<p>BERKSON, J., 1938. Some Difficulties of Interpretation Encountered in the Application of the Chi-Square Test.</p>
+<p>“The statistical folkways of a more primitive past continue to dominate the local scene.” (Rozeboom 1960)<label for="tufte-sn-8" class="margin-toggle sidenote-number">8</label><input type="checkbox" id="tufte-sn-8" class="margin-toggle"><span class="sidenote"><span class="sidenote-number">8</span> You may try, but you will never, <em>ever</em> find a better quote in all of statistics. Also, it’s generally expected that when uttered, those in earshot must snap at least twice and say ‘Right on, daddy-o’.</span></p>
+<p>“As a second example, consider significance tests. They are also widely overused and misused.” (Cox 1977)</p>
+<p>“Are the effects of A and B different? They are always different, for some decimal place.” Tukey</p>
+<p>All those people are dead now. Extrapolate what you wish from that fact.</p>
+<p>Unfortunately a lot of you may have to justify your use of techniques that are very appropriate to your research question</p>
 </div>
-<div id="ash-in-your-shoes" class="section level1">
-<h1>Ash in your shoes</h1>
+<div id="ash-in-your-shoes" class="section level2">
+<h2>Ash in your shoes</h2>
 </div>
-<div id="always-use-the-old-sense-of-the-words" class="section level1">
-<h1>Always use the old sense of the words</h1>
+<div id="always-use-the-old-sense-of-the-words" class="section level2">
+<h2>Always use the old sense of the words</h2>
 </div>
-<div id="your-third-drink-will-lead-you-astray" class="section level1">
-<h1>Your third drink will lead you astray</h1>
+<div id="your-third-drink-will-lead-you-astray" class="section level2">
+<h2>Your third drink will lead you astray</h2>
 </div>
-<div id="on-the-last-day-of-your-life-dont-forget-to-die" class="section level1">
-<h1>On the last day of your life, don’t forget to die</h1>
+<div id="on-the-last-day-of-your-life-dont-forget-to-die" class="section level2">
+<h2>On the last day of your life, don’t forget to die</h2>
 </div>
-<div id="dont-believe-in-people-who-say-its-all-been-done" class="section level1">
-<h1>Don’t believe in people who say it’s all been done</h1>
+<div id="dont-believe-in-people-who-say-its-all-been-done" class="section level2">
+<h2>Don’t believe in people who say it’s all been done</h2>
+<p>“Empty your mind, be formless. Shapeless, like water. If you put water into a cup, it becomes the cup. You put water into a bottle and it becomes the bottle. You put it in a teapot, it becomes the teapot. Now, water can flow… or it can <em>crash</em>. Be water, my friend.” ~ <a href="https://www.youtube.com/watch?v=cJMwBwFj5nQ">Bruce Lee</a></p>
+</div>
+</div>
+<div id="part-ii-trains-across-the-sea" class="section level1">
+<h1>Part II: Trains Across the Sea</h1>
+<div id="her-name-was-shady-sides" class="section level2">
+<h2>Her name was Shady Sides</h2>
+</div>
+<div id="its-been-evenin-all-day-long" class="section level2">
+<h2>It’s been evenin’ all day long</h2>
+</div>
+<div id="how-can-something-so-old-be-so-wrong" class="section level2">
+<h2>How can something so old, be so wrong?</h2>
+</div>
+<div id="sin-and-gravity" class="section level2">
+<h2>Sin and gravity</h2>
+</div>
+<div id="half-hours-on-earth" class="section level2">
+<h2>Half hours on earth</h2>
+</div>
+<div id="fifty-thousand" class="section level2">
+<h2>Fifty thousand</h2>
+<p>Key ideas: a few concepts to get you far, compartmentalization, simple to complex, get a book, reproducability, data processing, loops, minimizing and maximizing, explanation vs. prediction, regularization, functions, reusable code, debuggin’ de bugaloos,</p>
+</div>
 </div>
 
 

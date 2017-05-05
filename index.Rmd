@@ -20,13 +20,15 @@ These are some thoughts, particularly for graduate students, but really any rese
 
 
 
-# Sleep on your back
+# Part I: We'll get back to you
+
+## Sleep on your back
 
 Some background. I was trained as an experimental psychologist. Statistically speaking, that meant a lot of ANOVA, but not even complicated ANOVA, just some standard factorial mixed design.  Nary a word mentioned that it was a special case of more common and flexible models, I had to learn that later.  Continuous data? Discretize it and run ANOVA. Not doing an experiment? ANOVA anyway! The time spent on just t-tests and other overly simple bivariate relationships... just ridiculous.   I also had to take multivariate and psychometric techniques, which were among some of the lesser used methods in experimental psychology, but at least they started to get into something more interesting than ANOVA... like MANOVA![^manova]
 
 Programatically my training was actually worse- SPSS, and not even really programming[^spss_syntax], just using the menus and punch-card-based syntax[^punch] to run the available procedures. No one, absolutely no one was taught basic programming principles, that would have made so many things much simpler.  You pick some up along the way, but it was never incorprated into the actual training.
 
-There were red books often referenced (Winer, Kirk), 'modern' updates to those that still were 90% ANOVA methods... it was like some instructors had ignored all that had gone on around them and figured everything had statistically been settled around 1984.  1984 wasn't all bad.  In fact it was a most excellent time in some ways[^1984]. Sure there was some of the best entertainment humanity would ever offer, like Buckaroo Bonzai, Red Dawn, Knight Rider, Danger Mouse, A-team, and Battle of the Planets; one could argue it was the heyday of fashion; the cars... MR2, 300ZX, Delorean[^dmc], Countache, 288 GTO[^lazer]! But statistically, computationally, algorithmically, things were only just beginning, as computers were becoming more and more commonplace.  And it is weird to me that people were writing applied books on statistics as if none of it was even happening. Here's a smattering of articles and books from at least 20 years ago and well beyond[^efron79].
+There were red books often referenced (Winer, Kirk), 'modern' updates to those that still were 90% ANOVA methods... it was like some instructors had ignored all that had gone on around them and figured everything had statistically been settled around 1984.  1984 wasn't all bad.  In fact it was a most excellent time in some ways[^1984]. Sure there was some of the best entertainment humanity would ever offer, like Buckaroo Bonzai, Red Dawn, Knight Rider, Automan, Danger Mouse, A-team, and Battle of the Planets; one could argue it was the heyday of fashion; the cars... MR2, 300ZX, Delorean[^dmc], Countache, 288 GTO[^lazer]! But statistically, computationally, algorithmically, things were only just beginning, as computers were becoming more and more commonplace.  And it is weird to me that people were writing applied books on statistics as if none of it was even happening. Here's a smattering of articles and books from at least 20 years ago and well beyond[^efron79].
 
 - *Classification and regression trees*. L Breiman J Friedman CJ Stone RA Olshen  **1984**
 - *Induction of decision trees* J R Quinlan **1986**
@@ -60,17 +62,32 @@ All those people are dead now. Extrapolate what you wish from that fact.
 
 Unfortunately a lot of you may have to justify your use of techniques that are very appropriate to your research question
 
-# Ash in your shoes
-# Always use the old sense of the words
-# Your third drink will lead you astray
-# On the last day of your life, don't forget to die
-# Don't believe in people who say it's all been done
+## Ash in your shoes
+## Always use the old sense of the words
+## Your third drink will lead you astray
+## On the last day of your life, don't forget to die
+## Don't believe in people who say it's all been done
 
 
+"Empty your mind, be formless. Shapeless, like water. If you put water into a cup, it becomes the cup. You put water into a bottle and it becomes the bottle. You put it in a teapot, it becomes the teapot. Now, water can flow... or it can *crash*. Be water, my friend."  ~ [Bruce Lee](https://www.youtube.com/watch?v=cJMwBwFj5nQ)
 
 
-Key ideas: a few concepts to get you far, compartmentalization, simple to complex, get a book, reproducability, data processing, loops, minimizing and maximizing, explanation vs. prediction, regularization.
+# Part II: Trains Across the Sea
 
+## Her name was Shady Sides
+
+## It's been evenin' all day long
+
+## How can something so old, be so wrong?
+
+## Sin and gravity
+
+## Half hours on earth
+
+## Fifty thousand
+
+
+Key ideas: a few concepts to get you far, compartmentalization, simple to complex, get a book, reproducability, data processing, loops, minimizing and maximizing, explanation vs. prediction, regularization, functions, reusable code, debuggin' de bugaloos,
 
 
 
