@@ -1,0 +1,44 @@
+# Part II: Trains Across the Sea
+
+## Her name was Shady Sides
+
+## It's been evenin' all day long
+
+## How can something so old, be so wrong?
+
+## Sin and gravity
+
+## Half hours on earth
+
+## Fifty thousand
+
+
+Here's a smattering of articles and books from at least 20 years ago and well beyond[^efron79].
+
+- *Classification and regression trees*. L Breiman J Friedman CJ Stone RA Olshen  **1984**
+- *Induction of decision trees* J R Quinlan **1986**
+- *Bagging predictors* L Breiman  **1996**
+- *Literate programming* DE Knuth  **1984**
+- *The jackknife, the bootstrap and other resampling plans* B Efron **1982**
+- *A tutorial on hidden Markov models and selected applications in speech recognition* L R Rabiner  **1989**
+- *Convolutional networks for images, speech, and time series* Y LeCun Y Bengio **1995**
+- *Support-vector networks* C Cortes V Vapnik  **1995**
+- *A simple neural network generating an interactive memory* JA Anderson **1972**
+- *Generalized additive models* TJ Hastie RJ Tibshirani **1990**
+- *A desicion-theoretic generalization of on-line learning and an application to boosting* Y Freund RE Schapire **1995**
+- *Probabilistic reasoning in intelligent systems: Networks of plausible inference* J Pearl **1995**
+- *Maximum likelihood from incomplete data via the EM algorithm*  AP Dempster NM Laird DB Rubin **1977**
+- *Bayesian data analysis*  A Gelman JB Carlin HS Stern DB Rubin **1995**
+- *An Essay towards solving a Problem in the Doctrine of Chances* T Bayes **1763**
+
+Random forests, deep learning, the ideas for modern tools like Jupyter notebook and Rmarkdown, the Bayesian approach... some of it was old hat a long time ago.  Despite that, one can regularly find today, and in many disciplines and at top institutions, instructors still teaching material that largely ignores 50 years of methodological advances, and actively entrenching poor practices that have been railed against for almost 100 years.  Consider the following references that suggest that the standard null hypothesis testing approach typically employed might be problematic.
+
+*Some Difficulties of Interpretation Encountered in the Application of the Chi-Square Test*. J Berkson **1938**
+
+"The statistical folkways of a more primitive past continue to dominate the local scene." Rozeboom **1960**[^bestquote]
+
+"As a second example, consider significance tests. They are also widely overused and misused." Cox **1977**
+
+"Are the effects of A and B different? They are always different, for some decimal place." Tukey
+
+Those are some very old quotes.  Unfortunately a lot of you may have to justify your use of techniques that are very appropriate to your research question

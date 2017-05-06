@@ -2,13 +2,55 @@
 title: "Advice to the Graduate"
 author: "Michael Clark"
 date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
 output:
-  tufte::tufte_html: 
-    # highlight: pygments
-    toc: true
-    # toc_float: yes
-    toc_depth: 1
+  bookdown::gitbook:
+    css: [standard_html.css, mytufte.css]
+    hightlight: pygments
+    number_sections: false
+    # split_by: section
+    config:
+      toc:
+        collapse: subsection
+        scroll_highlight: yes
+        before: null
+        after: null
+      toolbar:
+        position: fixed
+      edit : null
+      download: null
+      search: yes
+      # fontsettings:
+      #   theme: white
+      #   family: sans
+      #   size: 2
+      sharing:
+        facebook: yes
+        twitter: yes
+        google: no
+        weibo: no
+        instapper: no
+        vk: no
+        all: ['facebook', 'google', 'twitter', 'weibo', 'instapaper']
+
 ---
+
+
+```{r setup, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eval=T, cache.rebuild=F, cache=T,
+                      R.options=list(width=120), fig.width=8, fig.align = 'center')
+```
+
+```{r load_common_packages, echo=FALSE, cache=FALSE, eval=TRUE}
+library(tidyverse); library(htmltools); library(tufte)
+```
+
+# 
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+knitr::include_graphics('img/nineteeneightyR.png', dpi = NA)
+```
+
+
 
 # Preface
 
@@ -18,49 +60,25 @@ It's okay. Most of the others are in the same boat.
 
 These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient. The suggestions will have a strong eye toward balance.  I realize that if you wanted to be a statistician or computer programmer, you wouldn't be getting a degree in sociology, chemistry, ecology or whatever.
 
+## Outline
+
+### General
+
+First we begin with some general things that can apply to statistics, programming, and possibly well beyond.  Concepts like compartmentalization, and so forth, many of which will not require any particular expertise, only practice.  Even so, their application can go a long way toward making research and statistical computing easier.
+
+### Basic statistical and programming
+
+After that we'll cover things that I think anyone doing research could benefit from, both statistically and in terms of programming.  For example, this will include iterative programming, coding style, and problems with common statistical practice.  Some might seem a little specific, but they generally won't take much effort to implement.
+
+### Intermediate statistical and programming
+
+The last part will regard some suggestions that get a taste for things and want to go further.  This section will be for those that want to do even better programming and statistics, as well as more to present themselves and their work to others.
 
 
-# Part I: We'll get back to you
-
-## Sleep on your back
-
-Some background. I was trained as an experimental psychologist. Statistically speaking, that meant a lot of ANOVA, but not even complicated ANOVA, just some standard factorial mixed design.  Nary a word mentioned that it was a special case of more common and flexible models, I had to learn that later.  Continuous data? Discretize it and run ANOVA. Not doing an experiment? ANOVA anyway! The time spent on just t-tests and other overly simple bivariate relationships... just ridiculous.   I also had to take multivariate and psychometric techniques, which were among some of the lesser used methods in experimental psychology, but at least they started to get into something more interesting than ANOVA... like MANOVA![^manova]
-
-Programatically my training was actually worse- SPSS, and not even really programming[^spss_syntax], just using the menus and punch-card-based syntax[^punch] to run the available procedures. No one, absolutely no one was taught basic programming principles, that would have made so many things much simpler.  You pick some up along the way, but it was never incorprated into the actual training.
-
-There were red books often referenced (Winer, Kirk), 'modern' updates to those that still were 90% ANOVA methods... it was like some instructors had ignored all that had gone on around them and figured everything had statistically been settled around 1984.  1984 wasn't all bad.  In fact it was a most excellent time in some ways[^1984]. Sure there was some of the best entertainment humanity would ever offer, like Buckaroo Bonzai, Red Dawn, Knight Rider, Automan, Danger Mouse, A-team, and Battle of the Planets; one could argue it was the heyday of fashion; the cars... MR2, 300ZX, Delorean[^dmc], Countache, 288 GTO[^lazer]! But statistically, computationally, algorithmically, things were only just beginning, as computers were becoming more and more commonplace.  And it is weird to me that people were writing applied books on statistics as if none of it was even happening. Here's a smattering of articles and books from at least 20 years ago and well beyond[^efron79].
-
-- *Classification and regression trees*. L Breiman J Friedman CJ Stone RA Olshen  **1984**
-- *Induction of decision trees* J R Quinlan **1986**
-- *Bagging predictors* L Breiman  **1996**
-- *Literate programming* DE Knuth  **1984**
-- *The jackknife, the bootstrap and other resampling plans* B Efron **1982**
-- *A tutorial on hidden Markov models and selected applications in speech recognition* L R Rabiner  **1989**
-- *Convolutional networks for images, speech, and time series* Y LeCun Y Bengio **1995**
-- *Support-vector networks* C Cortes V Vapnik  **1995**
-- *A simple neural network generating an interactive memory* JA Anderson **1972**
-- *Generalized additive models* TJ Hastie RJ Tibshirani **1990**
-- *A desicion-theoretic generalization of on-line learning and an application to boosting* Y Freund RE Schapire **1995**
-- *Probabilistic reasoning in intelligent systems: Networks of plausible inference* J Pearl **1995**
-- *Maximum likelihood from incomplete data via the EM algorithm*  AP Dempster NM Laird DB Rubin **1977**
-- *Bayesian data analysis*  A Gelman JB Carlin HS Stern DB Rubin **1995**
-- *An Essay towards solving a Problem in the Doctrine of Chances* T Bayes **1763**
-
-Random forests, deep learning, the ideas for modern tools like Jupyter notebook and Rmarkdown, the Bayesian approach... some of it was old hat a long time ago.  Despite that, one can regularly find today, and in many disciplines and at top institutions, instructors still teaching material that largely ignores 50 years of methodological advances, and actively entrenching poor practices that have been railed against for almost 100 years.  Consider the following references that suggest that the standard null hypothesis testing approach typically employed might be problematic.
-
-BERKSON, J., 1938. Some Difficulties of Interpretation Encountered in the Application of the Chi-Square Test. 
-
-"The statistical folkways of a more primitive past continue to dominate the local scene." (Rozeboom 1960)[^bestquote]
-
-"As a second example, consider significance tests. They are also widely overused and misused." (Cox 1977)
-
-"Are the effects of A and B different? They are always different, for some decimal place." Tukey
 
 
-All those people are dead now. Extrapolate what you wish from that fact.
 
 
-Unfortunately a lot of you may have to justify your use of techniques that are very appropriate to your research question
 
 ## Ash in your shoes
 ## Always use the old sense of the words
@@ -87,8 +105,22 @@ Unfortunately a lot of you may have to justify your use of techniques that are v
 ## Fifty thousand
 
 
-Key ideas: a few concepts to get you far, compartmentalization, simple to complex, get a book, reproducability, data processing, loops, minimizing and maximizing, explanation vs. prediction, regularization, functions, reusable code, debuggin' de bugaloos,
+Key ideas:
 
+
+general: apply to stats/programming/research generally
+
+- compartmentalization, get a book, reproducibility, simple to complex, focusing more on vis, embracing uncertainty but avoiding relativism, flexibility
+
+
+basics: pretty much needed to understand basic stats and programming
+
+-  a few concepts to get you far, loops, minimizing and maximizing, explanation vs. prediction, data processing, downplaying nhst, regularization, coding style, naming conventions, visualization basics
+
+
+going further: for the really motivated
+
+- functions, reusable code, debuggin' de bugaloos, building a brand
 
 
 [^manova]: I'm still trying to figure out why MANOVA is being taught for any reason in 2017, but I know that it is.
@@ -106,3 +138,11 @@ Key ideas: a few concepts to get you far, compartmentalization, simple to comple
 [^bestquote]: You may try, but you will never, *ever* find a better quote in all of statistics.  Also, it's generally expected that when uttered, those in earshot must snap at least twice and say 'Right on, daddy-o'.
 
 [^efron79]: *Computers and the theory of statistics: thinking the unthinkable* B Efron **1979**.  Here is the abstract: This is a survey article concerning recent advances in certain areas of statistical theory, written for a mathematical audience with no background in statistics. The topics are chosen to illustrate a special point: how the advent of the high-speed computer has affected the development of statistical theory. The topics discussed include nonparametric methods, the jackknife, the bootstrap, cross-validation, error-rate estimation in discriminant analysis, robust estimation, the influence function, censored data, the EM algorithm, and Cox's likelihood function. The exposition is mainly by example, with only a little offered in the way of theoretical development.  <br><br> I'd be willing to bet one could change nothing but the date, give this at a conference for some applied disciplines, and no one would notice.
+
+[^r4stats]: Despite what you may see in your discipline, this is an indisputable fact at this point.  Your discipline is not statistics, computer science or other fields driving methodological development.
+
+[^mullet]: At least those with one like Kenny Powers from Eastbound & Down.
+
+[^powergrad]: I've never understood the motivation behind faculty who request their graduate students do a power analysis. Want to know how many folks you need for your study? Here's the more appropriate question: *When* do you want to graduate?
+
+[^nie]: Perhaps surprisingly, he did not subsequently claim to have invented R.

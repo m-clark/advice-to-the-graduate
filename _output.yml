@@ -1,0 +1,6 @@
+bookdown::gitbook:
+ css: [standard_html.css, mytufte.css]
+ font-import: http://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto|Open+Sans
+ font-family: 'Roboto'
+ config:
+   highlight: pygments
