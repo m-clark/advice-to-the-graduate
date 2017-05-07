@@ -64,7 +64,7 @@ These are some thoughts, particularly for graduate students, but really any rese
 
 ### General
 
-First we begin with some general things that can apply to statistics, programming, and possibly well beyond.  Concepts like compartmentalization, and so forth, many of which will not require any particular expertise, only practice.  Even so, their application can go a long way toward making research and statistical computing easier.
+First we begin with some general things that can apply to statistics, programming, and possibly well beyond.  Concepts like compartmentalization, reproducibility, and so forth, many of which will not require any particular expertise, only practice.  Even so, their application can go a long way toward making research and statistical computing easier.
 
 ### Basic statistical and programming
 
@@ -87,22 +87,7 @@ The last part will regard some suggestions that get a taste for things and want 
 ## Don't believe in people who say it's all been done
 
 
-"Empty your mind, be formless. Shapeless, like water. If you put water into a cup, it becomes the cup. You put water into a bottle and it becomes the bottle. You put it in a teapot, it becomes the teapot. Now, water can flow... or it can *crash*. Be water, my friend."  ~ [Bruce Lee](https://www.youtube.com/watch?v=cJMwBwFj5nQ)
 
-
-# Part II: Trains Across the Sea
-
-## Her name was Shady Sides
-
-## It's been evenin' all day long
-
-## How can something so old, be so wrong?
-
-## Sin and gravity
-
-## Half hours on earth
-
-## Fifty thousand
 
 
 Key ideas:
@@ -139,7 +124,7 @@ going further: for the really motivated
 
 [^efron79]: *Computers and the theory of statistics: thinking the unthinkable* B Efron **1979**.  Here is the abstract: This is a survey article concerning recent advances in certain areas of statistical theory, written for a mathematical audience with no background in statistics. The topics are chosen to illustrate a special point: how the advent of the high-speed computer has affected the development of statistical theory. The topics discussed include nonparametric methods, the jackknife, the bootstrap, cross-validation, error-rate estimation in discriminant analysis, robust estimation, the influence function, censored data, the EM algorithm, and Cox's likelihood function. The exposition is mainly by example, with only a little offered in the way of theoretical development.  <br><br> I'd be willing to bet one could change nothing but the date, give this at a conference for some applied disciplines, and no one would notice.
 
-[^r4stats]: Despite what you may see in your discipline, this is an indisputable fact at this point.  Your discipline is not statistics, computer science or other fields driving methodological development.
+[^r4stats]: Despite what you may see in your discipline, this is an indisputable fact at this point.  Your discipline is not statistics, computer science or other fields driving methodological development.  Assuming that the common practice in an applied
 
 [^mullet]: At least those with one like Kenny Powers from Eastbound & Down.
 
