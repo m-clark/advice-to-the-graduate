@@ -1,11 +1,112 @@
 # Part I: Universal Truths & Cycles
 
+
+This first part will cover some basic things  that can apply to statistics, programming, and possibly well beyond.  None of the following really requires any specific background or experience to understand and begin implementing. 
+
+## Face the facts and accept them
+
+You have chosen to get, or have obtained, an advanced degree in a discipline that requires scientific output.  Among many things, science involves theories put into a mathematical form that allows for some form of analytical chicanery to be applied in an effort to weigh evidence for or against that theory.  This can be very simple, and it doesn't require causal formulation.  For example, the following:
+
+$$Y = f(X) + \epsilon$$
+may just mean something like life satistifaction ($Y$) is related to some set of other things like health, education, income, (i.e. all the stuff in $X$), but not exactly ($\epsilon$).
+
+How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collecting data, programming, perhaps a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  But if so, stop wasting the time and resources of faculty, students, and others who do want to engagine in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
+
+Oh, and one more thing. You cannot be good at theory and bad at statistics.  If you've said something like that, stop, and if you haven't don't ever. If you cannot express your theory in a scientific fashion, you're actually terrible at theory.
+
+
+
+## Get Organized
+
+The movies would like you to believe that science is just a series of eureka moments had by oddball geniuses who can't seem to find anything, but will intuit the perfect solution upon a moment's notice.  Put simply, this is a bunch of BS.  Disorganized people, however smart they might be, mostly just waste everyone else's time.  There are a few things you can control in your research efforts, and this is one of them, so do it.
+
+A very simple way to get organized is to create a project folder.  Many IDEs (e.g. Spyder, RStudio) seem to do this now, which makes it easy.  But for any project you have, make a project folder that will be the home for what you're working on, e.g. a specific article or dissertation. This will serve as the working directory for that project[^setwd].  
+
+In addition, it should have some organization to it, e.g. subfolders for data, code, documents etc.  There are even R packages that [do this for you](http://projecttemplate.net/), but don't use someone else's organization, as it may not work for you.  Note that your first attempt will probably not work, but that's okay, you'll eventually find one that does the trick for most of your projects.
+
+As an example, I have a batch script that will create something similar to the following folder structure:
+
+```proj_example
+Project/
+  Data_Files/
+    csvtxt/
+    Other/
+    RData/
+  Code/
+    Analysis/
+    Data_Preparation/
+    Descriptives/
+    Functions/
+    Related_Docs/
+  Misc_Notes_Etc/
+```
+
+    
+Very simple and straightforward. Also, note the underscores rather than spaces.  We'll talk about naming conventions later, but the gist is that you never want to name any file or folder with a space. It's 2017 as I write this, but somehow spaces will still screw things up sometimes, or simply must be converted to something else at some point. Sigh.
+
+The other nice thing about projects on the programming side is that whenever you open or switch to a project, all your scripts will be there just as you left them.  This allows you to pick things up right where you left off.  Little efficiencies gained just by being more organized can save weeks over the course of say, a dissertation.
+
+
+## Open and free is the way to be
+
+The movers and shakers in the academic world generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work. In fact, the most common tools of the trade are open source and freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc., and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether.
+
+The reason for this is because open source means the code is available to be inspected, the licenses for the code are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is well off enough to throw thousands of dollars at software.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS etc.[^freesas] 
+
+On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. They just released version 8, *five years* after version 7 and a *year and a half* since the last point release (7.4).  One of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist for a year or more (we don't know if they existed prior to that as well).  Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10.  This sort of approach to software development is not acceptable in 2017, especially when comparable or even better tools are available to do the same task[^propsoft]. 
+
+Before I go on a rant, statistically, the best tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite common and will produce a much better document than MS Word, especially if using mathematical formulas, graphics etc.
+
+Students shouldn't have to ask if they can put software they need for their work on their device.
+
+It used to be that the typical approach was 
+
+Excel ah
+
+
 ## Compartmentalization
+
+Now for a lesson from computer science, though more generally, it can be taken simply as <span class="emph">divide and conquer</span>.  Break your activities into smaller, more manageable chunks.  This makes it easy to pick up where you left off and get things accomplished even if you don't have a lot of time.  It has the added benefit that when things go wrong, it's much easier to isolate the problem, and probably keep working on the other aspects of projec that are working.
+
+### Analysis
+
+Break activities into something like the following:
+
+- Initial import and inspection: This is just making sure you're reading the data in correctly, and that a quick glance looks like it should
+- Data processing: This is all the stuff you should be doing before you ever look at even a mean or standard deviation. Calculating composites, data debugging, merging, etc. would be included.
+- Descriptive analysis: This includes just getting a feel for the data via simple summaries.
+- Analysis: this will include trimming the data just to those variables necessary for the models, as well as running the models themselves.
+- Visualization: This can be quite an undertaking itself, even to just get one visualization just right.
+
+### Programming
+
+Your code generally can generally follow the plan for analysis, but generally can be even further compartmentalized.  For example, scripts can be specific to one goal, however trivial.  In the analysis stage, you might be investigating several outcomes of interest.  I that case, have a script specific to each one.
+
+One might think that having a lot of scripts would be a problem, but generally, and if you're just starting out, the converse will be far more of an issue.  You can always create a master file that will call the scripts in a desired order. I have a rule of thumb that if I get to 100 lines, I better have some justification for not breaking some of it out into a more manageable chunk[^notsoftware].  
+
+This will also apply to functions for those that get further into programming.  
+
+### Other
+
+This applies to other endeavors. For example, when writing your paper, give each section it's own document.
+
 
 ## Reproducibility
 
 Assume that at some point you'll have to leave your analysis, code, document etc. behind. Maybe it's just time off, maybe it's a health issue, who knows?  But think about when you come back.  Will you know what you've done?
 
+
+
+### Analysis
+
+
+
+### Programming
+
+A starting point in your programming is to comment everything.  The comments should not be about what you're doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command is doing.
+
+
+### Other
 
 ## Get a book
 
@@ -33,8 +134,19 @@ Empty your mind, be formless. Shapeless, like water. If you put water into a cup
 
 ~ [Bruce Lee](https://www.youtube.com/watch?v=cJMwBwFj5nQ)
 
-
+The author of the one-inch-punch algorithm should not be taken lightly for obvious reasons.
 
 ## Your work isn't that important
 
 Go out and do something else.  See a show, get some exercise, go to a museum, get drunk, whatever you need to do to not think about this esoteric part of intellectual endeavor that in the end 99.9% of the world could care less about.  The world will keep spinning I assure you.
+
+
+[^setwd]: Your first line of a programming script should never have to be to set the working directory.
+
+[^notsoftware]: This is not a rule that would apply e.g. in software development, but we're not talking about that... yet.
+
+[^license]: Typically the restrictions are things like, cite the authors, and don't try to sell it.
+
+[^freesas]: It's also the reason SAS and SPSS have integration with R and Python, and finally started offering free student versions.  Too little way too late.
+
+[^propsoft]: I honestly can't understand why almost [all of these proprietary statistical packages still exist](https://en.wikipedia.org/wiki/List_of_statistical_packages#Proprietary).  Some I know are still accepting payments even though development ended years ago.  Others served a need at one time that's long been met by open source tools.  Some practially have zero presence outside of a particular discipline or country.
