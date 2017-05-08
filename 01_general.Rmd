@@ -5,20 +5,18 @@ This first part will cover some basic things  that can apply to statistics, prog
 
 ## Face the facts and accept them
 
-You have chosen to get, or have obtained, an advanced degree in a discipline that requires scientific output.  Among many things, science involves theories put into a mathematical form that allows for some form of analytical chicanery to be applied in an effort to weigh evidence for or against that theory.  This can be very simple, and it doesn't require causal formulation.  For example, the following:
+You have chosen to get, or have obtained, an advanced degree in a discipline that requires scientific output.  Among many things, science involves putting a theory into a mathematical form that allows for some form of analytical chicanery to be applied, in an effort to weigh evidence for or against that theory.  This can be very simple, and it doesn't require causal formulation.  For example, the following:
 
 $$Y = f(X) + \epsilon$$
 may just mean something like life satistifaction ($Y$) is related to some set of other things like health, education, income, (i.e. all the stuff in $X$), but not exactly ($\epsilon$).
 
-How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collecting data, programming, perhaps a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  But if so, stop wasting the time and resources of faculty, students, and others who do want to engagine in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
-
-Oh, and one more thing. You cannot be good at theory and bad at statistics.  If you've said something like that, stop, and if you haven't don't ever. If you cannot express your theory in a scientific fashion, you're actually terrible at theory.
+How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, stop wasting the time and resources of faculty, students, and others who do want to engagine in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
 
 
 
 ## Get Organized
 
-The movies would like you to believe that science is just a series of eureka moments had by oddball geniuses who can't seem to find anything, but will intuit the perfect solution upon a moment's notice.  Put simply, this is a bunch of BS.  Disorganized people, however smart they might be, mostly just waste everyone else's time.  There are a few things you can control in your research efforts, and this is one of them, so do it.
+The movies would like you to believe that science is just a series of eureka moments had by oddball geniuses who can't seem to do anything right most of the time, but will intuit the perfect solution to any problem with just a moment's reflection.  As anyone who's actually engaged in science knows, this is a bunch of BS.  Disorganized people, however smart they might be, mostly just waste everyone else's time.  There are a few things you can control in your research efforts, and this is one of them, so do it.
 
 A very simple way to get organized is to create a project folder.  Many IDEs (e.g. Spyder, RStudio) seem to do this now, which makes it easy.  But for any project you have, make a project folder that will be the home for what you're working on, e.g. a specific article or dissertation. This will serve as the working directory for that project[^setwd].  
 
@@ -66,11 +64,13 @@ Excel ah
 
 ## Compartmentalization
 
+<img src="img/philipII.png" style="display:block; margin: 0 auto;" width='25%' alt="Philip of Macedonia is often credited with the original: divide et impera">
+
 Now for a lesson from computer science, though more generally, it can be taken simply as <span class="emph">divide and conquer</span>.  Break your activities into smaller, more manageable chunks.  This makes it easy to pick up where you left off and get things accomplished even if you don't have a lot of time.  It has the added benefit that when things go wrong, it's much easier to isolate the problem, and probably keep working on the other aspects of projec that are working.
 
 ### Analysis
 
-Break activities into something like the following:
+For analysis, break activities into something like the following:
 
 - Initial import and inspection: This is just making sure you're reading the data in correctly, and that a quick glance looks like it should
 - Data processing: This is all the stuff you should be doing before you ever look at even a mean or standard deviation. Calculating composites, data debugging, merging, etc. would be included.
