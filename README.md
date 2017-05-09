@@ -13,6 +13,7 @@ Topics include:
 - Communication products
 
 
+This is under current development and will likely be all over the place in specific topic coverage and the manner of that coverage for a while. The format will eventually be a completed gitbook.
 
 
 Inspiration: My experience; the experiences of those I see in consulting across dozens of disciplines, universities, and at different levels; *Advice to the graduate* by the Silver Jews (Album: Starlight Walker)

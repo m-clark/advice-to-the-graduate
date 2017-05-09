@@ -66,13 +66,13 @@ These are some thoughts, particularly for graduate students, but really any rese
 
 First we begin with some general things that can apply to statistics, programming, and possibly well beyond.  Concepts like compartmentalization, reproducibility, and so forth, many of which will not require any particular expertise, only practice.  Even so, their application can go a long way toward making research and statistical computing easier.
 
-### Basic statistical and programming
+### Basic analysis and programming
 
 After that we'll cover things that I think anyone doing research could benefit from, both statistically and in terms of programming.  For example, this will include iterative programming, coding style, and problems with common statistical practice.  Some might seem a little specific, but they generally won't take much effort to implement.
 
-### Intermediate statistical and programming
+### Intermediate analysis and programming
 
-The last part will regard some suggestions that get a taste for things and want to go further.  This section will be for those that want to do even better programming and statistics, as well as more to present themselves and their work to others.
+The last part will regard some suggestions that get a taste for things and want to go further.  This section will be for those that want to do even more advanced programming and statistics, as well as more to present themselves and their work to others.
 
 
 
