@@ -1,0 +1,82 @@
+# Part II: Perfect Sound Forever
+
+The goal here is not expertise, but primarily conceptual awareness and understanding.  For example, you don't have to know much about machine learning approaches other than why you might use them.  You can then learn more as needed when the time comes, if it even does.  For programming, it literally could be two lines of code to import your data and run a statistical model. But the data is *never* ready, and data processing will likely be where you spend the vast majority of your time.  However, knowing even a few things about basic programming will help you spend a tremendous amount less regarding what you *have* to do, but probably more of things you *want* to do.
+
+Some motivation.  Here are some things I've seen:
+
+A social science grad student first learning R at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
+
+Another social science student using efficient programming practices to analyze big data on the high performance computing cluster.
+
+Architects, English Lit faculty, Staff librarians.  I have seen them all do basic programming and statistics to even some advanced stuff.
+
+I have seen 50+ years old SPSS folks get into machine learning.
+
+It obviously isn't easy, but anyone can do it.  You'll be surprised at what becomes easy, but be prepared for regular stumbles along the way, no matter what level you're at. As you improve, you'll just be at another level where the same amount of stuff will trip you up, only more advanced.  Case in point, here is the most common phrase I utter when programming:
+
+> You've got to be @%*^!ing kidding me!! 
+
+Once you get good at some things, you'll still hit roadblocks, be surprised, or just make stupid mistakes.  It's just part of the journey, and mostly just means you're doing something interesting.
+
+
+ 
+## Analytical
+
+to run a model in R or python requires less syntax than you would find with, e.g. SPSS and SAS,
+
+- regression and classification
+- unsupervised methods
+- loss function
+- maximum likelihood
+- problems with NHST
+- bayesian basics
+- ML basics
+- visualization heavy
+
+- what is needed further for your specific projects
+    - learn more about whatever technique your using
+
+
+## Programming
+
+- R, Python, Other
+
+- IDEs
+    - customize it
+
+- coding style
+
+- errors as calls for help
+
+- I/O
+
+- basic object types
+    - boolean
+    - numeric of a kind
+    - factor/categorical
+
+- data structures
+    - vectors
+    - matrices/arrays
+    - data frames
+  
+- indexing
+
+- iterative programming
+    - loops/while
+
+- aggregation
+  
+  
+## Other
+
+- Naming things
+    - files
+    - variables
+    - data
+    - objects
+  
+- Documents
+    - Latex or markdown
+
+- Version control basics

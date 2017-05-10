@@ -1,0 +1,41 @@
+# Part III: Down the rabbit hole
+
+
+## Analysis
+
+- Beyond GLM but standard statistical
+    - clustered data
+    - spatiotemporal situations
+    - nonlinear relationships
+
+- Latent variable models
+    - Measurement error
+    - Other
+
+- Matrix basics
+
+## Programming
+
+- Writing functions
+- Debugging
+- Vectorization
+- Profiling
+- HPC
+    - Unix
+
+
+## Other
+
+- Engaging the web
+    - web scraping
+
+- Version control revisited
+    - Git and related
+
+- Publishing
+    - Markdown, css, html etc.
+    
+- Collaboration
+    - Notebooks
+    - GitHub
+    
