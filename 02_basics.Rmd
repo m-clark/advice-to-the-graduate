@@ -6,7 +6,7 @@ Some motivation.  Here are some things I've seen:
 
 A social science grad student first learning R at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
 
-Another social science student using efficient programming practices to analyze big data on the high performance computing cluster.
+Another social science student using efficient programming practices to analyze big data on a high performance computing cluster.
 
 Architects, English Lit faculty, Staff librarians.  I have seen them all do basic programming and statistics to even some advanced stuff.
 
@@ -16,7 +16,7 @@ It obviously isn't easy, but anyone can do it.  You'll be surprised at what beco
 
 > You've got to be @%*^!ing kidding me!! 
 
-Once you get good at some things, you'll still hit roadblocks, be surprised, or just make stupid mistakes.  It's just part of the journey, and mostly just means you're doing something interesting.
+Once you get good at some things, you'll still hit roadblocks, be surprised, or just make stupid mistakes.  It's just part of the journey, and mostly just means you're doing something interesting. If it helps, think of it as an RPG and leveling up, only, you'll probably only be the one to tell you that you've leveled up[^bob].
 
 
  
@@ -80,3 +80,6 @@ to run a model in R or python requires less syntax than you would find with, e.g
     - Latex or markdown
 
 - Version control basics
+
+
+[^bob]: Should you need assistance with knowing whether you have leveled up or not, there is someone in the IT department at LSU named Robert Gill III Esq. that can help you.  You cannot provide specifics, only ask, 'Have I leveled?'. He will then respond with a series of questions that will, in one way or another, probe the essence of your being, and provide the only answer you will ever need. Sprinkled with quotes from Buckaroo Bonzai, Goonies, and for matters of import, Forrest Gump.
