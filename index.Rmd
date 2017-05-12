@@ -32,7 +32,7 @@ output:
         instapper: no
         vk: no
         all: ['facebook', 'google', 'twitter', 'weibo', 'instapaper']
-
+bibliography: ../docs/refs.bib
 ---
 
 

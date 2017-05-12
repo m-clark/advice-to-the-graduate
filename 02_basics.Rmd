@@ -4,13 +4,13 @@ The goal here is not expertise, but primarily conceptual awareness and understan
 
 Some motivation.  Here are some things I've seen:
 
-A social science grad student first learning R at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
+- A social science grad student first learning R at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
 
-Another social science student using efficient programming practices to analyze big data on a high performance computing cluster.
+- Another social science student using efficient programming practices to analyze big data on a high performance computing cluster.
 
-Architects, English Lit faculty, Staff librarians.  I have seen them all do basic programming and statistics to even some advanced stuff.
+- Architects, English Lit faculty, Staff librarians.  I have seen them all do basic programming and statistics to even some advanced stuff.
 
-I have seen 50+ years old SPSS folks get into machine learning.
+- I have seen 50+ years old SPSS folks get into machine learning.
 
 It obviously isn't easy, but anyone can do it.  You'll be surprised at what becomes easy, but be prepared for regular stumbles along the way, no matter what level you're at. As you improve, you'll just be at another level where the same amount of stuff will trip you up, only more advanced.  Case in point, here is the most common phrase I utter when programming:
 
@@ -22,13 +22,37 @@ Once you get good at some things, you'll still hit roadblocks, be surprised, or 
  
 ## Analytical
 
-to run a model in R or python requires less syntax than you would find with, e.g. SPSS and SAS,
+### Explanation vs. Prediction: a Starting Point
+
+
+### The Standard Linear Model
+
+Everything starts with the <span class="emph">standard linear regression model</span>.  To paraphrase @shalizi2013advanced, it's relatively simple[^simplerelative], it can do a decent enough job in a lot of situations, and it's a standard to the point it's essentially a tool of communication.  One of the more important aspects of it is that it serves as the foundation for everything else.
+
+Simply put, you need to get to a point where practically nothing about what you get from it in standard settings should be a mystery to you.   Coefficients, standard errors, residuals, fitted values, prediction, how categorical predictor variables are used, residual standard error, interpreting interactions, model comparison.  It's also good to know what sorts of things are important (how you specify the model) and not so much (e.g. normality assumption).
+
+If you don't understand standard regression, you'll be hard pressed to understand little else methodologically.  One additional benefit is that knowing it will take care of the special cases like ANOVA and t-tests, so you won't have to spend much time with those unless you just want to.
+
+### Classification
+
+The second most commonly used model after the standard linear model is probably <span class="emph">logistic regression</span>, where one predicts a binary target (e.g. yes-no).  Standard logistic regression, like the standard linear model, is a special case of the <span class="emph">generalized linear model</span>.  
+
+This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span>. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, specificity. Most only look at accuracy which is not a good way to do things. Actually, most don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.
+
+
+Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.
+
+
+
 
 - regression and classification
+- explanation vs. prediction
 - unsupervised methods
 - loss function
 - maximum likelihood
 - problems with NHST
+- overfitting
+- generalization
 - bayesian basics
 - ML basics
 - visualization heavy
@@ -39,12 +63,30 @@ to run a model in R or python requires less syntax than you would find with, e.g
 
 ## Programming
 
-- R, Python, Other
+One of the first things to note is, that once things are set up, it is as easy to run a model in R or python. It even requires less syntax than you would find with, e.g. SPSS and SAS.
 
-- IDEs
-    - customize it
+### R & Python
 
-- coding style
+When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because things will likely change at some point in your career.  
+
+
+
+#### Alternatives
+
+##### Other Programming languages
+
+Lower level, Julia, 
+
+##### Statistical or similar 
+
+### IDEs
+
+
+
+#### customize it
+
+
+### coding style
 
 - errors as calls for help
 
@@ -83,3 +125,6 @@ to run a model in R or python requires less syntax than you would find with, e.g
 
 
 [^bob]: Should you need assistance with knowing whether you have leveled up or not, there is someone in the IT department at LSU named Robert Gill III Esq. that can help you.  You cannot provide specifics, only ask, 'Have I leveled?'. He will then respond with a series of questions that will, in one way or another, probe the essence of your being, and provide the only answer you will ever need. Sprinkled with quotes from Buckaroo Bonzai, Goonies, and for matters of import, Forrest Gump.
+
+
+[^simplerelative]: If you're just starting out, it probably isn't to you, but we're talking *relatively*. It'll be old hat to you as well at some point.

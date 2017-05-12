@@ -9,7 +9,7 @@
     - nonlinear relationships
 
 - Latent variable models
-    - Measurement error
+    - Factor analysis and related
     - Other
 
 - Matrix basics
@@ -39,3 +39,6 @@
     - Notebooks
     - GitHub
     
+- Sharing
+  - Packages
+  - Notebooks
