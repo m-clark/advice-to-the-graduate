@@ -27,7 +27,7 @@ Once you get good at some things, you'll still hit roadblocks, be surprised, or 
 
 ### The Standard Linear Model
 
-Everything starts with the <span class="emph">standard linear regression model</span>.  To paraphrase @shalizi2013advanced, it's relatively simple[^simplerelative], it can do a decent enough job in a lot of situations, and it's a standard to the point it's essentially a tool of communication.  One of the more important aspects of it is that it serves as the foundation for everything else.
+Everything starts with the <span class="emph">standard linear regression model</span>.  To paraphrase @shalizi2017advanced, it's relatively simple[^simplerelative], it can do a decent enough job in a lot of situations, and it's a standard to the point it's essentially a tool of communication.  One of the more important aspects of it is that it serves as the foundation for everything else.
 
 Simply put, you need to get to a point where practically nothing about what you get from it in standard settings should be a mystery to you.   Coefficients, standard errors, residuals, fitted values, prediction, how categorical predictor variables are used, residual standard error, interpreting interactions, model comparison.  It's also good to know what sorts of things are important (how you specify the model) and not so much (e.g. normality assumption).
 
