@@ -24,6 +24,62 @@ Once you get good at some things, you'll still hit roadblocks, be surprised, or 
 
 ### Explanation vs. Prediction: a Starting Point
 
+<h6> *A narrative of startling interest!!* </h6>
+
+One way to look at the analytical endeavor is in terms of two goals, not mutually exclusive.  On the one hand we are interested in theory confirmation and comparison. Theory suggests certain variables have relations to other variables.  We set up mathematical models that convey the theory in a testable form, and collect data regarding the corresponding those variables. Via a a particular framework, e.g. null hypothesis testing or Bayesian, we can say something about the statistical notability of those relationships.  The ultimate goal is to tell a story about the results and their relation to the theory, possibly suggesting exceptions and modifications.  In this approach, <span class="emph">explanation</span> is the focus.
+
+On the other side, we need something that is practically viable.  The goal is not so much to tell a story as it is to get the best possible <span class="emph">prediction</span> from our models.  Techniques may be used that will tell us little about which predictors are best, or even why some predictors work better or what is even the primary feature of the data being learned.  However, not only does the result work well, such approaches always outperform the explanatory ones. 
+
+To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical significance, interval estimates, etc.  It is extremely easy to tell a story with the results.  Deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  Assuming it's applied appropriately[^deeplearnworks], it works extremely well!
+
+
+Practically every applied discipline seems to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'.  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^ of *negative value*!  The following demonstrates this.  I construct completely random data and use it in the model.
+
+```{r badmod, echo=2:6}
+set.seed(0)
+N = 250
+X = matrix(rnorm(N*10), ncol=10)
+y = rnorm(N)
+
+summary(lm(y ~ ., data.frame(X)))
+# broom::tidy(mod) %>% mutate_at(vars(-term), round, digits=3) %>% DT::datatable(options=list(dom='t', pageLength=11), rownames=F)
+```
+
+Yet you will find entire papers written about that one coefficient, with p-value slightly less than .05[^phack], while in terms of prediction it literally does worse than guessing the mean would with new data. Quite simply, this sort of practice has got to stop.
+
+The key idea is <span class="emph">balance</span>. For most applied disciplines explanation is not only required, but to be focused on.  This is fine. However, complicated models with little data require regularization.  Predictive validity is extremely important.  You cannot focus on the statistical (significance) story while entirely ignore the practical value of the model.
+
+#### A Word about Effect Size
+
+Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but alsoare regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  One of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. male vs. female). If you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
+
+- Without a corresponding interval estimate it's of little value.
+- As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard.
+- Small data and large effects mean nothing other than you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample.
+
+Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, it's pretty much not defined.  Also, what's the effect size here?
+
+```{r effectgam, echo=FALSE}
+library(mgcv)
+data(mcycle, package="MASS")
+mod = gam(accel ~ s(times), data=mcycle)
+
+library(plotly)
+mcycle %>% 
+  modelr::add_predictions(mod) %>% 
+  plot_ly(x=~times, y=~accel) %>% 
+  add_markers(marker=list(color='#ff5503'), showlegend=F) %>% 
+  add_lines(x=~times, y=~pred, line=list(color='#03b3ff'), showlegend=F) %>% 
+  theme_plotly()
+```
+
+<br>
+
+If you're dealing with interesting data and modeling, there is little chance there is an easily identified 'effect size'.  Instead, you'll need to know your measures well and think hard about what you're seeing.
+
+
+
+
 
 ### The Standard Linear Model
 
@@ -37,10 +93,10 @@ If you don't understand standard regression, you'll be hard pressed to understan
 
 The second most commonly used model after the standard linear model is probably <span class="emph">logistic regression</span>, where one predicts a binary target (e.g. yes-no).  Standard logistic regression, like the standard linear model, is a special case of the <span class="emph">generalized linear model</span>.  
 
-This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span>. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, specificity. Most only look at accuracy which is not a good way to do things. Actually, most don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.
+This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span>. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, and specificity. Most only look at accuracy which is not a good way to do things. Actually, many don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.
 
 
-Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.
+Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.  If you do use it, interpret it in terms of actual predictions at key values of the predictors[^margins] rather than statistical significance and odds ratios.  Not only are predicted probabilities easy to interpret, it's pretty much the only way to interpret interactions and other nonlinear effects.
 
 
 
@@ -124,7 +180,14 @@ Lower level, Julia,
 - Version control basics
 
 
+[^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
+
+[^phack]: I'm not even going into the fact that they probably finagled the data 20 different ways with umpteen models to get that p-value slightly less than .05, a practice called <span class="emph">p-hacking</span>.  People who do this engage in the worst type of anti-science.
+
 [^bob]: Should you need assistance with knowing whether you have leveled up or not, there is someone in the IT department at LSU named Robert Gill III Esq. that can help you.  You cannot provide specifics, only ask, 'Have I leveled?'. He will then respond with a series of questions that will, in one way or another, probe the essence of your being, and provide the only answer you will ever need. Sprinkled with quotes from Buckaroo Bonzai, Goonies, and for matters of import, Forrest Gump.
 
 
 [^simplerelative]: If you're just starting out, it probably isn't to you, but we're talking *relatively*. It'll be old hat to you as well at some point.
+
+[^margins]: Sometimes called marginal effects.
+

@@ -13,7 +13,7 @@ may just mean something like life satistifaction ($Y$) is related to some set of
 How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, it would be nice if you didn't waste the time and resources of faculty, students, and others who do want to engagine in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
 
 
-One more thing to plan on - everything, I mean *everything*, will take longer than you expect.  That may even include your time-in-training.
+One more thing to plan on - everything, I mean *everything*, will take longer than you expect.  That may even include your time-in-training.  You may, for example, plan on 4-5 years for a Ph.D., or, as faculty, 1 year to complete data collection and submit an article, but, as the old saying goes, shit happens.
 
 
 ## Get Organized
@@ -53,7 +53,7 @@ On the programming side, the other nice thing about projects is that whenever yo
 
 <img src="img/free.jpg" style="display:block; margin: 0 auto;">
 
-The movers and shakers in the academic world generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work. Even if their primary tools are proprietary, they're using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc., and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether.
+The movers and shakers in the academic world generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work, and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether. Even if their primary tools are proprietary, they're using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc.
 
 At least one reason for this is because open source means the code is available to be inspected, the licenses, for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is well off enough to throw thousands of dollars at software.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS etc.[^freesas] 
 
@@ -110,28 +110,67 @@ Assume that at some point you'll have to leave your analysis, code, document etc
 
 ### Programming
 
-A starting point in your programming is to comment everything.  The comments should not be about what you're doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command is doing.
+A starting point in your programming is to comment everything.  The comments should not be about what the code is doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command.  Instead, comment about *why* you're doing it.
 
 
 ### Other
 
 ## Get a book
 
-If you decide on a particular analytical route for your thesis or dissertation, get a book on it. Buy it, check it out whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
+<img src="img/book.png" style="display:block; margin: 0 auto;" width=10%>
+
+If you decide on a particular analytical route for your thesis or dissertation, get a book on it[^bookbycover]. Buy it, check it out, whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
 
 
 ## Complexify later
 
-A very old approach that has withstood the test of time in many domains, start with the simple, and build in complexity as you go.
+A very old approach that has withstood the test of time in many domains- start with the simple, and build in complexity as you go[^complexify].
+
+### Analysis
+
+This really comes into play with analysis.  Start with simpler models.  I personally use some of the simplest models for debugging purposes, because some data issues are difficult to discover until the implementation of analysis.  But even before modeling, you should be doing basic data checks and descriptives.
+
+### Programming
+
+In programming, this probably is best illustrated when writing functions.  Your first iteration of a function probably will only have a one or two arguments.  However, once you lay the (solid) foundation, you can build upon it later. 
 
 
 ## Much of your brain is devoted to visual processing
 
-First, assume others' brains are not so different from yours, then take advantage of it.
+<img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=50%>
+
+First, assume others' brains are not so different from yours, then take advantage of it.  One of the more annoying things I here is the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text, but that is secondary.
 
 
-## Embracing uncertainty but avoiding relativism
+The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
+In addition, when displaying information, think multivariately.  2d plots such as simple bar and scatterplots are a waste of time, and it's simply too easy to add more information.  For example, with a scatterplot one can use size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
+
+Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s won't be able to understand it."  Ridiculous.  Maybe you need to work on explaining it to make it easier to digest, but I can assure you that folks in academia can handle it.
+
+Some other things to note:
+
+- Visualization may be the most fun you'll have with your document, spend some time with it.
+- Color matters, and if you're just picking ones you like, you're doing it wrong.
+- Bar plots of any kind are next to useless. Pie charts are a form of bar chart.
+- Most cartograms are about as useful as bar plots.
+- If your map could be interpreted as reflecting little more than population, you should try something else, regardless of how cool it looks.
+- Infographics have little if any role to play in an academic setting. Do not waste people's time.
+- Use SEM style graphics in lieu of biplots.
+- Try to convert your categorical information to quantitative so that you'll have more options to play with.
+
+
+## Embrace uncertainty but avoid relativism
+
+<img src="img/uncertainty.jpg" style="display:block; margin: 0 auto;" width=10%>
+
+A lot of people living today think their opinion is valid merely by having it. This is not true, no matter what their parents told them, nor what all politicians seem to believe. You do not fly to a destination thinking it would be just as viable to flap your arms or click your heels together.  You don't cross the street thinking that the theory that 'all cars will stop for you, just for you' is a viable one.  Try telling your neighbor that the sky at noon is chartreuse.  I'm sure they'll look at you funny.
+
+I could go on, but even a moment of reflection suggests that every ounce of human behavior goes against the idea that all ideas are equally valid. Evidence not only matters, it is what we live by as a species, and what got us this far.  There are definitely areas where it is difficult to tell whether one theory is better than another, especially in interesting and new areas of research, but this does not mean the evidence is rubbish, or may not be used to suggest one path or another.  Evidence often may even lean very strongly in one particular direction, so much that one would be hard-pressed to even try to suggest an alternative.  It may also be found decades later to be utterly false. That's okay too[^laudan].
+
+Your theory, whatever you're researching, resides somewhere between false to mostly correct. Regardless, it is incomplete, and possibly grossly inaccurate in places, but without the progress of science we'll never know.  This is why, despite journal reviewers' comments, null results are not only useful, they are interesting in and of themselves, and as vital as any 'statistically significant' result. We need to know that a treatment doesn't work, that one social group is not terribly different than another, that temperatures in the 'x' range will result in a cascading series of events ultimately leading to the space craft tearing itself apart before it breaks atmosphere.
+
+Things like invterval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty.  If you're not okay with the fuzzy, science is probably not for you.
 
 
 ## Flexibility
@@ -156,9 +195,11 @@ Go out and do something else.  See some live music, get some exercise, go to a m
 
 
 
+[^complexify]: Complexify is not a word, but I like it better than complicate.  Complexity may be good, not sure about complication.
+
 [^folderstr]: Most of the folks I've come across that suggest ways to organize your folders typically call for a structure that would be notable overkill for applied researchers.  A lot of people could probably get away with just a couple folders.
 
-[^setwd]: Your first line of a programming script should never have to be to set the working directory.
+[^setwd]: The first line of a programming script shouldn't have to be to set the working directory.
 
 [^notsoftware]: This is not a rule that would apply e.g. in software development, but we're not talking about that... yet.
 
@@ -167,3 +208,9 @@ Go out and do something else.  See some live music, get some exercise, go to a m
 [^freesas]: It's also the reason SAS and SPSS have integration with R and Python, and finally started offering free student versions.  Too little, way too late.
 
 [^propsoft]: I honestly can't understand why almost [all of these proprietary statistical packages still exist](https://en.wikipedia.org/wiki/List_of_statistical_packages#Proprietary).  Some I know are still accepting payments even though development ended years ago.  Others served a need at one time that's long been met by open source tools.  Some practially have zero presence outside of a particular discipline or country.
+
+[^toolong]: They probably also have page limit restrictions.  Who will think of the printers?!!
+
+[^bookbycover]: And you can judge them by their cover. One of the most useful books out there had some of the most sage advice ever written on its cover: *Don't Panic*.
+
+[^laudan]: A useful text to peruse is @laudan2012science.
