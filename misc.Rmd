@@ -7,6 +7,34 @@
 - Half hours on earth
 - Fifty thousand
 
+- Ash in your shoes
+- Always use the old sense of the words
+- Your third drink will lead you astray
+- On the last day of your life, don't forget to die
+- Don't believe in people who say it's all been done
+
+
+
+
+
+Key ideas:
+
+
+general: apply to stats/programming/research generally
+
+- compartmentalization, get a book, reproducibility, simple to complex, focusing more on vis, embracing uncertainty but avoiding relativism, flexibility
+
+
+basics: pretty much needed to understand basic stats and programming
+
+-  a few concepts to get you far, loops, minimizing and maximizing, explanation vs. prediction, data processing, downplaying nhst, regularization, coding style, naming conventions, visualization basics
+
+
+going further: for the really motivated
+
+- functions, reusable code, debuggin' de bugaloos, building a brand
+
+
 
 Here's a smattering of articles and books from at least 20 years ago and well beyond[^efron79].
 

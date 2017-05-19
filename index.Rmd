@@ -58,7 +58,7 @@ I see you. I see a lot of you. Almost every day. You want to do quality research
 
 It's okay. Most of the others are in the same boat.
 
-These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient. The suggestions will have a strong eye toward balance.  I realize that if you wanted to be a statistician or computer programmer, you wouldn't be getting a degree in sociology, chemistry, ecology or whatever.
+These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient, more in-depth, and in the end, hopefully more fun too. The suggestions will have a strong eye toward balance.  I realize that if you wanted to be a statistician or computer programmer, you wouldn't be getting a degree in sociology, chemistry, ecology or whatever.
 
 ## Outline
 
@@ -76,36 +76,6 @@ The last part will regard some suggestions that get a taste for things and want 
 
 
 
-
-
-
-
-- Ash in your shoes
-- Always use the old sense of the words
-- Your third drink will lead you astray
-- On the last day of your life, don't forget to die
-- Don't believe in people who say it's all been done
-
-
-
-
-
-Key ideas:
-
-
-general: apply to stats/programming/research generally
-
-- compartmentalization, get a book, reproducibility, simple to complex, focusing more on vis, embracing uncertainty but avoiding relativism, flexibility
-
-
-basics: pretty much needed to understand basic stats and programming
-
--  a few concepts to get you far, loops, minimizing and maximizing, explanation vs. prediction, data processing, downplaying nhst, regularization, coding style, naming conventions, visualization basics
-
-
-going further: for the really motivated
-
-- functions, reusable code, debuggin' de bugaloos, building a brand
 
 
 [^manova]: I'm still trying to figure out why MANOVA is being taught for any reason in 2017, but I know that it is.

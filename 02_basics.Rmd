@@ -12,11 +12,11 @@ Some motivation.  Here are some things I've seen:
 
 - I have seen 50+ years old SPSS folks get into machine learning.
 
-It obviously isn't easy, but anyone can do it.  You'll be surprised at what becomes easy, but be prepared for regular stumbles along the way, no matter what level you're at. As you improve, you'll just be at another level where the same amount of stuff will trip you up, only more advanced.  Case in point, here is the most common phrase I utter when programming:
+It obviously isn't easy, but anyone can do it.  You'll likely be surprised at just what eventually does becomes easy, but be prepared for regular stumbles along the way, no matter what level you're at. As you improve, you'll just be at another level where the same amount of stuff will trip you up, only more advanced.  Case in point, here is the most common phrase I utter when programming:
 
-> You've got to be @%*^!ing kidding me!! 
+<span class="" style="font-size:125%; font-variant:small-caps; color:#B2001D">~ You've got to be @%*^!ing kidding me!! </span>
 
-Once you get good at some things, you'll still hit roadblocks, be surprised, or just make stupid mistakes.  It's just part of the journey, and mostly just means you're doing something interesting. If it helps, think of it as an RPG and leveling up, only, you'll probably only be the one to tell you that you've leveled up[^bob].
+Once you get good at some things, you'll still hit roadblocks, be surprised, or just make stupid mistakes.  It's just part of the journey, and mostly just means you're doing something interesting. If it helps, think of it as an RPG where you're leveling up, only, you'll probably be the only one to tell you that you've leveled up[^bob].
 
 
  
@@ -26,36 +26,37 @@ Once you get good at some things, you'll still hit roadblocks, be surprised, or 
 
 <h6> *A narrative of startling interest!!* </h6>
 
-One way to look at the analytical endeavor is in terms of two goals, not mutually exclusive.  On the one hand we are interested in theory confirmation and comparison. Theory suggests certain variables have relations to other variables.  We set up mathematical models that convey the theory in a testable form, and collect data regarding the corresponding those variables. Via a a particular framework, e.g. null hypothesis testing or Bayesian, we can say something about the statistical notability of those relationships.  The ultimate goal is to tell a story about the results and their relation to the theory, possibly suggesting exceptions and modifications.  In this approach, <span class="emph">explanation</span> is the focus.
+One way to look at the analytical endeavor is in terms of two goals, not mutually exclusive.  On the one hand we are interested in theory confirmation and comparison. Theory suggests certain variables have relations to other variables.  We set up mathematical models that convey the theory in a testable form, and collect data corresponding to those variables. Via a a particular framework, e.g. null hypothesis testing or Bayesian, we can say something about the statistical notability of those relationships.  The ultimate goal is to tell a story about the results and their relation to the theory, possibly suggesting exceptions and modifications.  In this approach, <span class="emph">explanation</span> is the focus.
 
-On the other side, we need something that is practically viable.  The goal is not so much to tell a story as it is to get the best possible <span class="emph">prediction</span> from our models.  Techniques may be used that will tell us little about which predictors are best, or even why some predictors work better or what is even the primary feature of the data being learned.  However, not only does the result work well, such approaches always outperform the explanatory ones. 
+On the other side, we need something that is practically viable.  The goal is not so much to tell a story as it is to get the best possible <span class="emph">prediction</span> from our models.  Techniques may be used that will tell us little about which predictors are best, or even why some predictors work better or what is even the primary feature of the data being learned.  However, not only does the result work well, such approaches almost always outperform the explanatory ones in practice. 
 
-To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical significance, interval estimates, etc.  It is extremely easy to tell a story with the results.  Deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  Assuming it's applied appropriately[^deeplearnworks], it works extremely well!
+To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical significance, interval estimates, etc.  It is extremely easy to tell a story with the results. With deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  However, assuming it's applied appropriately[^deeplearnworks], it works extremely well!
 
 
-Practically every applied discipline seems to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'.  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^ of *negative value*!  The following demonstrates this.  I construct completely random data and use it in the model.
+Practically every applied discipline seems to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'.  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^, which would tell you how much variance in the outcome you can explain with the predictors, of *negative value*!  The following demonstrates this.  I construct completely random data, i.e. none of the $X$ has any relation to $y$, and use it in the model.
 
-```{r badmod, echo=2:6}
+```{r badmod, echo=2:4}
 set.seed(0)
 N = 250
 X = matrix(rnorm(N*10), ncol=10)
 y = rnorm(N)
 
-summary(lm(y ~ ., data.frame(X)))
+# summary(lm(y ~ ., data.frame(X)))
 # broom::tidy(mod) %>% mutate_at(vars(-term), round, digits=3) %>% DT::datatable(options=list(dom='t', pageLength=11), rownames=F)
+pander::pander(summary(lm(y ~ ., data.frame(X))), justify='lrrrr', round=3)
 ```
-
+<br>
 Yet you will find entire papers written about that one coefficient, with p-value slightly less than .05[^phack], while in terms of prediction it literally does worse than guessing the mean would with new data. Quite simply, this sort of practice has got to stop.
 
-The key idea is <span class="emph">balance</span>. For most applied disciplines explanation is not only required, but to be focused on.  This is fine. However, complicated models with little data require regularization.  Predictive validity is extremely important.  You cannot focus on the statistical (significance) story while entirely ignore the practical value of the model.
+The key idea is <span class="emph">balance</span>. For most applied disciplines explanation is not only required, but to be focused on.  This is fine. Some people do researcher where collecting one observation might take a few days of effort.  This too, is okay. However, complicated models with little data require something more than statistical significance- the results bounce around too much.  But for any modeling endeavor, predictive validity is also important.  You simply cannot focus on the statistical (significance) story while entirely ignoring the practical value of the model.
 
 #### A Word about Effect Size
 
-Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but alsoare regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  One of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. male vs. female). If you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
+Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but also are regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  For example, one of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. control vs. treatment). If you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
 
-- Without a corresponding interval estimate it's of little value.
+- Without a corresponding interval estimate the effect size of little value.
 - As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard.
-- Small data and large effects mean nothing other than you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample.
+- Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample.
 
 Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, it's pretty much not defined.  Also, what's the effect size here?
 
@@ -75,7 +76,7 @@ mcycle %>%
 
 <br>
 
-If you're dealing with interesting data and modeling, there is little chance there is an easily identified 'effect size'.  Instead, you'll need to know your measures well and think hard about what you're seeing.
+If you're dealing with interesting data and modeling, there is little chance there is an easily identified 'effect size'.  Instead, you'll need to know your measures well and think hard about what you're seeing.  If you know the target variable well, effects in terms of predicted values under a variety of settings will be far more enlightening.
 
 
 
@@ -165,14 +166,46 @@ Lower level, Julia,
 
 - aggregation
   
-  
-## Other
+
+
+## Reproducibility revisited
+
+### Data 
+
+(SHOULD THIS BE IN NEXT SECTION?)
+
+Before we get to analysis, one needs to understand that 
+
+> *everything begins and ends with the data*.  
+
+If you don't collect the data carefully, it doesn't matter what else you do. You've completely wasted your own time and resources, along with that of everyone else who is affiliated with the project.  If you're not willing to get your hands dirty with the data and make sure it's collected properly, you simply shouldn't be doing research.
+
+Naming, labels, missing data etc.
+
+### Analysis
+
+For yourself, you should be able to load model-ready data, run the analysis on it, and reproduce the same result you intend to publish.  In addition, you might apply the idea of <span class="emph">convergent validity</span> to the process. Similar analytical techniques should come to the same conclusions.  And finally, give someone an outline of the necessary steps to take, and see if they can reproduce the same results.
+
+### Programming
+
+A starting point in your programming is to comment everything.  The comments should not be about what the code is doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command.  Instead, comment about *why* you're doing it.
 
 - Naming things
     - files
     - variables
     - data
     - objects
+    
+    "There are only two hard things in Computer Science: cache invalidation, naming things, and off-by-one errors."
+
+## Other
+
+
+
+### Other
+
+
+
   
 - Documents
     - Latex or markdown

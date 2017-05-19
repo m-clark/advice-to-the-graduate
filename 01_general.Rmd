@@ -100,20 +100,25 @@ This applies to other endeavors. For example, when writing your paper, give each
 
 ## Reproducibility
 
-Assume that at some point you'll have to leave your analysis, code, document etc. behind. Maybe it's just time off, maybe it's a health issue, who knows?  But think about when you come back.  Will you know what you've done?
+<img src="img/reproducible.jpg" style="display:block; margin: 0 auto;" width=50%><br>
+
+Assume that at some point you'll have to leave your analysis, code, document etc. behind. Maybe it's just time off, maybe it's a health issue, who knows?  But think about when you come back and have to complete your mission.  Will you know what you've done?
+
+This is only the beginning, but if you can't reproduce your own work it's certain no one else will. As a beginning framework, could someone take the data and your code and get the same results?  You'd be surprised at how much published work would fail what should be a simple test.
+
+Some concepts you'll want some sense of include the following:
+
+- <span class="emph">Reproducible research</span>
+- <span class="emph">Replicability</span>
+- <span class="emph">Literate statistical programming</span>
+- <span class="emph">Dynamic Report Generation</span>
+- <span class="emph">Article pre-registration</span>
+
+and others. The differences in terminology regard the focus: analysis results, code, data archiving, report generation and so forth.  Exact replication is the one thing that, no matter how hard we might try, simply can't happen. Different times, different people, etc. all work against that. However, we can get close, or define it in some acceptable way that can be done.
+
+Practically speaking, just thinking about this topic will likely make you take steps to do better than what you might have otherwise.  But one can start by just thinking about yourself, could you do it, *again*?
 
 
-
-### Analysis
-
-
-
-### Programming
-
-A starting point in your programming is to comment everything.  The comments should not be about what the code is doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command.  Instead, comment about *why* you're doing it.
-
-
-### Other
 
 ## Get a book
 
@@ -139,14 +144,13 @@ In programming, this probably is best illustrated when writing functions.  Your 
 
 <img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=50%>
 
-First, assume others' brains are not so different from yours, then take advantage of it.  One of the more annoying things I here is the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text, but that is secondary.
+First, assume others' brains are not so different from yours, then take advantage of it.  One of the more annoying things I hear is the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text and sound, but that is secondary.
 
-
-The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
+The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the black and white, print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
 In addition, when displaying information, think multivariately.  2d plots such as simple bar and scatterplots are a waste of time, and it's simply too easy to add more information.  For example, with a scatterplot one can use size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
 
-Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s won't be able to understand it."  Ridiculous.  Maybe you need to work on explaining it to make it easier to digest, but I can assure you that folks in academia can handle it.
+Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Ridiculous.  Maybe you need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.
 
 Some other things to note:
 
@@ -158,6 +162,12 @@ Some other things to note:
 - Infographics have little if any role to play in an academic setting. Do not waste people's time.
 - Use SEM style graphics in lieu of biplots.
 - Try to convert your categorical information to quantitative so that you'll have more options to play with.
+
+Use data visualizations from 1936 and the 1800s as inspiration[^noflo]:
+
+<img src="img/redlining_1936.jpg" style="display:block; margin: 0 auto;" width=50%>
+<img src="img/napolean.png" style="display:block; margin: 0 auto;" width=50%>
+<img src="img/flo_mo.jpg" style="display:block; margin: 0 auto;" width=50%>
 
 
 ## Embrace uncertainty but avoid relativism
@@ -214,3 +224,5 @@ Go out and do something else.  See some live music, get some exercise, go to a m
 [^bookbycover]: And you can judge them by their cover. One of the most useful books out there had some of the most sage advice ever written on its cover: *Don't Panic*.
 
 [^laudan]: A useful text to peruse is @laudan2012science.
+
+[^noflo]: Please don't actually do the Florence Nightengale type of plot, commonly referred to as wind rose plots.  While hers in particular is most beautiful, in the end they are glorified pie charts, and do a poor job of conveying what otherwise would be simple information to digest.
