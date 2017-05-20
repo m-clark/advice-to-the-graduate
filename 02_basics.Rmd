@@ -80,8 +80,6 @@ If you're dealing with interesting data and modeling, there is little chance the
 
 
 
-
-
 ### The Standard Linear Model
 
 Everything starts with the <span class="emph">standard linear regression model</span>.  To paraphrase @shalizi2017advanced, it's relatively simple[^simplerelative], it can do a decent enough job in a lot of situations, and it's a standard to the point it's essentially a tool of communication.  One of the more important aspects of it is that it serves as the foundation for everything else.
@@ -99,12 +97,14 @@ This gets you beyond <span class="emph">ordinary least squares methods</span> an
 
 Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.  If you do use it, interpret it in terms of actual predictions at key values of the predictors[^margins] rather than statistical significance and odds ratios.  Not only are predicted probabilities easy to interpret, it's pretty much the only way to interpret interactions and other nonlinear effects.
 
+### Unsupervised Methods
+
+Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could).  Probably the most common among these are PCA, factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, LDA, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
 
 
-
-- regression and classification
-- explanation vs. prediction
-- unsupervised methods
+- regression and classification (check)
+- explanation vs. prediction (check)
+- unsupervised methods (check)
 - loss function
 - maximum likelihood
 - problems with NHST
@@ -121,6 +121,8 @@ Even if you don't think you'll use it for your current work you'll come across p
 ## Programming
 
 One of the first things to note is, that once things are set up, it is as easy to run a model in R or python. It even requires less syntax than you would find with, e.g. SPSS and SAS.
+
+
 
 ### R & Python
 
