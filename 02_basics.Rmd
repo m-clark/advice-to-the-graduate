@@ -102,14 +102,29 @@ Even if you don't think you'll use it for your current work you'll come across p
 Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could).  Probably the most common among these are PCA, factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, LDA, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
 
 
+### Loss functions and maximum likelihood estimation
+
+In statistical modeling we are interested in estimated parameters. For example, these might be regression coefficients or variances. But how do we do it?  We certainly don't just guess, and we definitely don't use magic, so where do the numbers come from?
+
+The answer is that we pick values that bring about the best result.  But how do we define *best*? Well there is no one way to do it, and how you might do it depends on the situation.  However, there are a couple common approaches you should understand conceptually very well.
+
+Let's begin with ordinary least squares. If this is our optimizing approach, then we are trying to minimize the squared residuals in prediction.  For classification, it could simply be that we want to minimize *mis*-classification errors.
+
+Probably the most common method goes the other way.  Instead of minimizing errors in prediction, we seek parameters that maximize the likelihood of seeing the observed data.  This method, <span class="emph">maximum likelihood estimation</span>, is the most common way we estimate parameters in statistical modeling, and has equal importance in the Bayesian framework too.  Sometimes the estimates that might minimize the loss function may also be the maximum likelihood estimate. This is the case in standard linear regression, but it would not be in other settings.
+
+Many applied statistical courses will spend time almost exclusively on ordinary least squares techniques, for which they might not even talk about estimation at all, leaving the students to basically believe in magic when they do statistical analysis. Some will even report that they used maximum likelihood, but this is only because they know that is the default.  For your own sake, don't bluff this.
+
+With R or Python, you can literally write your own regression function via least squares or maximum likelihood in one or two lines of code. I strongly suggest you do this, even if only once, just to drive the point home.  I can also say it is quite satisfiying when something you put together reproduces the output you expect from the statistical program.
+
+
+
 - regression and classification (check)
 - explanation vs. prediction (check)
 - unsupervised methods (check)
-- loss function
-- maximum likelihood
+- loss function (check)
+- maximum likelihood (check)
 - problems with NHST
-- overfitting
-- generalization
+- overfitting v.s - generalization
 - bayesian basics
 - ML basics
 - visualization heavy
@@ -120,32 +135,112 @@ Along with basic regression and logistic regression, you'll need some conceptual
 
 ## Programming
 
-One of the first things to note is, that once things are set up, it is as easy to run a model in R or python. It even requires less syntax than you would find with, e.g. SPSS and SAS.
+If you're doing serious scientific research, these days you're going to have to learn some programming[^notstartrek].  Don't want to? That's okay, just do something else besides scientific research.  Even if you're doing relatively simple anlaysis, a lot of data processing will have to take place beforehand to ensure that whatever results you obtain have integrity.  Unless you like to spend several weeks on something that could take a couple hours with just basic programming skills, you'll need to spend some time in this area.
 
+
+One of the first things to note with statistical programming is, that once things are set up, it is as easy to run a model in R or Python as it is menu-driven programs like SPSS. It even requires *less* syntax than you would find with, e.g. SPSS and SAS.  Compare the following two approaches, one a menu-driven approach in SPSS and another programming approach in R.
+
+
+- SPSS
+
+```
+Click File
+Open
+hunt for file on computer
+wait a few seconds
+Click Analyze
+Click/hover Regression
+Click Linear Regression
+Search for and Click your dependent variable
+Search for and Click each independent variable
+Click on various options.
+Click ok
+```
+
+- R
+
+```{r, eval=F}
+d = haven::read_spss('filelocation')
+model = lm(DV ~ IV1 + IV2 + IV3, data=d)
+```
+
+There is no debate here, one is vastly more efficient and simply easier.  You may have to learn that you can use the <span class="pack">haven</span> package for importing SPSS files, or the <span class="func">lm</span> function to do regression, but that's very quickly picked up, and less than you would have had to learn regarding the SPSS menus.  The other nice thing is that you can redo the above in two steps with Ctrl+A (select all) and Ctrl+Enter (run).
 
 
 ### R & Python
 
-When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because things will likely change at some point in your career.  
+<div class='col2'>
+<img src="img/Rlogo.svg" style="display:block; margin: 0 auto;" width='50%'>
+<br>
+<img src="img/py.svg" style="display:block; margin: 0 auto;" width='75%'>
+</div>
+<br>
+When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because the situation will likely change at some point in your career.  <span style="color:#1f65b7">**R**</span> and <span style="color:#FFDC52">**Python**</span> are the primary tools of data science, and have pretty much overtaken both enterprise and academia.  They are both easier to program for data processing and analysis than they were even just a few years ago, and notably more so than they were in the early days of their use for modeling.  It doesn't really matter which you use.  Python will have more power when it comes to machine learning, potential enterprise applications, natural language processing, and, in general, speed.  R is still notably easier to use, and has far more developed packages for a far wider range of techniques.  However, these distinctions melt by the wayside more and more everyday. So you're fine with either.
 
 
 
 #### Alternatives
 
-##### Other Programming languages
+##### Other Programming languages and related
 
-Lower level, Julia, 
+Lower level programming languages such as Java, Fortran and C++ are not required knowledge for the vast majority of statistial and related application.  They are primarily used when you need to get the most speed you can, and you'll be able to find someone on campus to help you there, for example, in your research support group.
+
+Matlab, Julia, and Mathematica are other tools or languages you might come across that are highly capable, but are either proprietary (i.e. require a renewable license, cost money, and don't share source code), or don't yet offer much of anything beyond what you can get with Python and R, and usually far less.
+
+You will also find languages and frameworks within languages such as Scala, Spark, Hadoop, Keras, Torch, TensorFlow, SQL, Lua and so forth. Most of these have specific purposes, e.g. databases, or don't need to come into play unless you have massive data (e.g. TensorFlow).  Don't bother unless needed.
+
+In addition, people are writing analytical functionality in things like javascript, Haskell and other things that weren't meant for it nor all that good at it. I don't know why.
 
 ##### Statistical or similar 
 
+The primary statistical programs in academia are SAS, SPSS and Stata.  Stata use is actually growing, and they also have a great community. The other two are dwindling fast in academia, especially SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still do.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
+
+Excel is not an option, ever.  I would say you could use it for data entry, but it's very problematic even then. Avoid at all costs.
+
+
 ### IDEs
 
+After installing the basic components for R or Python, you can use them straight away. However, this would be silly, as they don't come with a way to use them that enables basic functionality or is easy.  If your R console comes with retina-bleeding red-colored font, or you're using the clown-colored IDLE from Python, just shut them down and walk slowly away.
+
+You want to use what's called an <span class="emph">integreted development environment</span>, or IDE.  For R, the far and away most popular one is RStudio. For Python, I would suggest Anaconda for scientific work.  There are others, but unless you have a lot more experience, I'd suggest sticking with those.
+
+What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, interactivity... this is only the beginning.  I've written this document and many other things *entirely* with RStudio.  A good IDE is essential.
 
 
 #### customize it
 
+After you initially start to get the hang of your IDE, customize it. I'm always struck by the fact that people don't change the basic settings in their software, which are often chosen by people who should not have any say in design whatsoever[^baddesign].  .
 
-### coding style
+
+
+### coding <span class="font-variant:small-caps; font-family:'Risque'">style</span>
+
+
+
+<img src="img/code_quality.png" style="display:block; margin: 0 auto;" width=200%>
+<br>
+<img src="img/code_quality_2.png" style="display:block; margin: 0 auto;" width=50%>
+<br>
+<img src="img/code_quality_3.png" style="display:block; margin: 0 auto;" width=150%>
+<br>
+
+
+Coding style matters, but not in the way that many think.  
+
+
+<span class="" style="size:125%; font-variant:small-caps">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code.<br> ~ Hadley Wickham</span>
+
+Wickham is right on the first part, wrong on the second.  No one writes perfect code, *no one*.  It takes effort just to write halfway decent code.  That's fine.  You won't be writing good code for quite some time. That's okay too.
+
+However, assuming you want others to be able to use your code, you should feel bad giving them shitty code.  Going back to one of our initial suggestions, *Don't be a jerk*. Write better code, always. Time and other resources will always be working against you, but do the best you can.
+
+The first step is to start with a coding style.  For example, both [Google](https://google.github.io/styleguide/Rguide.xml) and [Hadley](http://adv-r.had.co.nz/Style.html) have provided an R coding style for others to follow.  If you only followed those, your code will be great relative to what you would have done.  But realize they are only suggestions, some are based on decades of coding practice, others are based on whim, and they don't tell you which.
+
+For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, are 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  It's very clear which is more readable, and just as easy to type. Furthermore, with RStudio, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another, and they're both based on more experience than you'll ever have.
+
+The point is, there is no authority here, but there are better approaches than your nospace, semi;coloned, naming-things-'data', everything-in-a-single-script attempts will come up with, I guarantee you.  In coding, just trying to do better will make your code better[^github].
+
+
 
 - errors as calls for help
 
@@ -225,4 +320,10 @@ A starting point in your programming is to comment everything.  The comments sho
 [^simplerelative]: If you're just starting out, it probably isn't to you, but we're talking *relatively*. It'll be old hat to you as well at some point.
 
 [^margins]: Sometimes called marginal effects.
+
+[^notstartrek]: At least until the ideas of Star Trek become a reality.  And don't let the folks in the Bay Area fool you, it's still a very long way off.  For some perspective, at the turn of the 20^th^ century, there were no cars as we now know them other than demonstrations and prototypes. By World War I, less than 20 years later, cars were a common sight in cities, and airplanes were being used in combat. We've now had more than four decades of combined internet and personal computing capabilities, and probably the biggest difference between now and then is that people spend a lot of time staring at tiny screens in their hand.  Most of the stuff we're just now getting to was promised to be right around the corner during the space age of the 1950s and 60s.  The point is, a lot of this stuff will come, but don't hold your breath.
+
+[^baddesign]: Just look at gmail, Facebook, Amazon.  They are essentially the anti-Tron of user esteem.  Amazon in particular seems to simply vomit out the return of a search that mildly references some of the letters you actually typed into its engine, if they used Google translate on the query first, while assuming the native language was an interpretive dance in Kabuki theater.  The 'art' of basic drilldown is a completely lost enterprise.  Using that website almost makes you want to ask Alexa for the best form of suicide.
+
+[^github]: My main motivation for getting on GitHub was making my code better.  If the only reason you use it is that the thought of others looking at your code will make you write better code, then definitely do so.
 

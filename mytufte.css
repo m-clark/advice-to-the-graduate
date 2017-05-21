@@ -187,7 +187,6 @@ a:link {
 .imgbigger img {
     -webkit-transition: all .5s ease; /* Safari and Chrome */
     -moz-transition: all .5s ease; /* Firefox */
-    -ms-transition: all .5s ease; /* IE 9 */
     -o-transition: all .5s ease; /* Opera */
     transition: all .5s ease;
 }
@@ -195,7 +194,6 @@ a:link {
 .imgbigger:hover img {
     -webkit-transform:scale(2); /* Safari and Chrome */
     -moz-transform:scale(2); /* Firefox */
-    -ms-transform:scale(2); /* IE 9 */
     -o-transform:scale(2); /* Opera */
      transform:scale(2);
 }
