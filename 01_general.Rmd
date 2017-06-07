@@ -61,7 +61,7 @@ On the proprietary side, take for example, <span class="pack">Mplus</span>, a wi
 
 Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10.  This sort of approach to software development is not acceptable in 2017, especially when comparable or even better tools are available to do the same task[^propsoft]. 
 
-Before I go on a rant, statistically, the best tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite common and will produce a much better document than MS Word, especially if using mathematical formulas, tabgles, graphics etc.
+Before I go on a rant, statistically, the best tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite common and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
 
 I'm not saying you have to go as far as Richard Stallman (the guy pictured).  But you have already long used and benefitted from open source software, so all I'm saying is continue doing so in your own research. 
 
@@ -73,16 +73,16 @@ I'm not saying you have to go as far as Richard Stallman (the guy pictured).  Bu
 
 <img src="img/philipII.png" style="display:block; margin: 0 auto;" width='25%' title="Philip of Macedonia is often credited with the original: divide et impera">
 
-Now for a lesson from computer science, though more generally, it can be taken simply as <span class="emph">divide and conquer</span>.  Break your activities into smaller, more manageable chunks.  This makes it easy to pick up where you left off and get things accomplished even if you don't have a lot of time.  It has the added benefit that when things go wrong, it's much easier to isolate the problem, and probably keep working on the other aspects of projec that are working.
+Now for a lesson from computer science, though more generally, it can be taken simply as <span class="emph">divide and conquer</span>.  Break your activities into smaller, more manageable chunks.  This makes it easy to pick up where you left off and get things accomplished even if you don't have a lot of time.  It has the added benefit that when things go wrong, it's much easier to isolate the problem, and probably keep working on the other aspects of the project that are still functional.
 
 ### Analysis
 
 For analysis, break activities into something like the following:
 
-- Initial import and inspection: This is just making sure you're reading the data in correctly, and that a quick glance looks like it should
+- Initial import and inspection: This is just making sure you're reading the data in correctly, and that a quick glance to see that it looks like it should
 - Data processing: This is all the stuff you should be doing before you ever look at even a mean or standard deviation. Calculating composites, data debugging, merging, etc. would be included.
-- Descriptive analysis: This includes just getting a feel for the data via simple summaries.
-- Analysis: this will include trimming the data just to those variables necessary for the models, as well as running the models themselves.
+- Descriptive analysis: This includes just getting a feel for the data via simple summaries, but you will likely finds some data bugs you missed previously.
+- Analysis: This will include things like trimming the data just to those variables necessary for the models, as well as running the models themselves. You may yet still find data bugs at this stage.
 - Visualization: This can be quite an undertaking itself, even to just get one visualization just right.
 
 ### Programming
@@ -95,7 +95,7 @@ This will also apply to functions for those that get further into programming.
 
 ### Other
 
-This applies to other endeavors. For example, when writing your paper, give each section it's own document.
+This applies to other endeavors. For example, when writing your paper, give each section it's own document (child) to be called by the parent document or at compilation.  This is easily done with tools like $\LaTeX$ and Rmarkdown.
 
 
 ## Reproducibility
@@ -124,7 +124,9 @@ Practically speaking, just thinking about this topic will likely make you take s
 
 <img src="img/book.png" style="display:block; margin: 0 auto;" width=10%>
 
-If you decide on a particular analytical route for your thesis or dissertation, get a book on it[^bookbycover]. Buy it, check it out, whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
+If you decide on a particular analytical route for your thesis or dissertation, get a book on it[^bookbycover], or at least one that covers the topic extensifely. Buy it, check it out, whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
+
+The one thing you don't want to do is wing it based on what other applied researchers in your field are doing in the articles you're reading.  They may very well know what they're doing, but *you* may not have the skill set to distinguish that.  You can train a dog to bark when p < .05.
 
 
 ## Complexify later
@@ -148,7 +150,7 @@ First, assume others' brains are not so different from yours, then take advantag
 
 The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the black and white, print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
-In addition, when displaying information, think multivariately.  2d plots such as simple bar and scatterplots are a waste of time, and it's simply too easy to add more information.  For example, with a scatterplot one can use size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
+In addition, when displaying information, think multivariately.  2d plots such as simple bar and scatterplots are generally a waste of time, and it's simply too easy to add more information.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
 
 Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Ridiculous.  Maybe you need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.
 
@@ -178,28 +180,36 @@ A lot of people living today think their opinion is valid merely by having it. T
 
 I could go on, but even a moment of reflection suggests that every ounce of human behavior goes against the idea that all ideas are equally valid. Evidence not only matters, it is what we live by as a species, and what got us this far.  There are definitely areas where it is difficult to tell whether one theory is better than another, especially in interesting and new areas of research, but this does not mean the evidence is rubbish, or may not be used to suggest one path or another.  Evidence often may even lean very strongly in one particular direction, so much that one would be hard-pressed to even try to suggest an alternative.  It may also be found decades later to be utterly false. That's okay too[^laudan].
 
-Your theory, whatever you're researching, resides somewhere between false to mostly correct. Regardless, it is incomplete, and possibly grossly inaccurate in places, but without the progress of science we'll never know.  This is why, despite journal reviewers' comments, null results are not only useful, they are interesting in and of themselves, and as vital as any 'statistically significant' result. We need to know that a treatment doesn't work, that one social group is not terribly different than another, that temperatures in the 'x' range will result in a cascading series of events ultimately leading to the space craft tearing itself apart before it breaks atmosphere.
+Your theory, whatever you're researching, resides somewhere between false to mostly harmless/correct. Regardless, it is incomplete, and possibly grossly inaccurate in places, but without the progress of science we'll never know.  This is why, despite journal reviewers' comments, null results are not only useful, they are interesting in and of themselves, and as vital as any 'statistically significant' result. We need to know that a treatment doesn't work, that one social group is not terribly different than another on some matter, that temperatures in the 'x' range will result in a cascading series of events ultimately leading to the space craft tearing itself apart before it breaks atmosphere.
 
-Things like invterval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty.  If you're not okay with the fuzzy, science is probably not for you.
+Things like invterval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty, and that reduction is usually from a whole lot to very slightly less so.  If you're not okay with the fuzzy, science is probably not for you.
 
 
 ## Flexibility
 
 <img src="img/be_water.png" style="display:block; margin: 0 auto;" width=33%>
 
+<br>
+
 Empty your mind, be formless. Shapeless, like water. If you put water into a cup, it becomes the cup. You put water into a bottle and it becomes the bottle. You put it in a teapot, it becomes the teapot. Now, water can flow... or it can *crash*. Be water, my friend.
 
 ~ [Bruce Lee](https://www.youtube.com/watch?v=cJMwBwFj5nQ)
 
-The author of the one-inch-punch algorithm should not be taken lightly for obvious reasons.
+The author of the one-inch-punch algorithm should not be taken lightly for obvious reasons.  Things happen, and you will need to be able to roll with the punches of data collection, analysis, collaboration, life etc.  Assume that at some point, something in the research process will not go your way, and deal with it as best you can.  There is literally nothing else you can do.
 
 
 ## Back up
 
-Everything.  You should never lose more than a day's work under the worst of circumstances, and if you're doing things even with the bare modicum of responsibility, you probably won't lose more than a few minutes.
+<img src="img/UnivacTape.jpg" style="display:block; margin: 0 auto;" width=25%>
+
+<br>
+
+Everything.  You should never lose more than a day's work under the worst of circumstances, and if you're doing things even with the bare modicum of responsibility, you probably won't lose more than a few minutes.  Sometimes, you may even want to go to a previous state for replicability purposes or to fix a bug that found it's way through your system, and there are many tools available to help with this.
 
 
 ## Your work isn't that important
+
+To put some things in perspective, say an article you publish is cited by 1000 unique researchers, which would be a hell of a lot in practically any discipline.  That suggests that at least `r '2e-07'`% of the population of the world knows about it.  Congrats.
 
 Go out and do something else.  See some live music, get some exercise, go to a museum, get drunk, whatever you need to do to not think about this esoteric part of intellectual endeavor that in the end 99.9% of the world could care less about.  The world will keep spinning I assure you.
 
@@ -217,7 +227,7 @@ Go out and do something else.  See some live music, get some exercise, go to a m
 
 [^freesas]: It's also the reason SAS and SPSS have integration with R and Python, and finally started offering free student versions.  Too little, way too late.
 
-[^propsoft]: I honestly can't understand why almost [all of these proprietary statistical packages still exist](https://en.wikipedia.org/wiki/List_of_statistical_packages#Proprietary).  Some I know are still accepting payments even though development ended years ago.  Others served a need at one time that's long been met by open source tools.  Some practially have zero presence outside of a particular discipline or country.
+[^propsoft]: I honestly can't understand why almost [all of these proprietary statistical packages still exist](https://en.wikipedia.org/wiki/List_of_statistical_packages#Proprietary).  Some I know are still accepting payments even though development ended years ago.  Others served a need at one time that's long been met and surpassed by open source tools.  Some practially have zero presence outside of a particular discipline, but anyone brought up in that discipline may be unaware of that fact.
 
 [^toolong]: They probably also have page limit restrictions.  Who will think of the printers?!!
 
