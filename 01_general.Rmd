@@ -18,7 +18,8 @@ One more thing to plan on - everything, I mean *everything*, will take longer th
 
 ## Get Organized
 
-<img src="img/doc.jpg" style="display:block; margin: 0 auto;" width=50%>
+<img src="img/doc.jpg" style="display:block; margin: 0 auto;" width=300px title="Deloreans are awesome!">
+<br>
 
 The movies would like you to believe that science is just a series of eureka moments had by oddball geniuses who can't seem to do anything right most of the time, but will intuit the perfect solution to any problem with just a moment's reflection.  As anyone who's actually engaged in scientific research knows, this is a bunch of BS.  A few simple steps can be taken, but which will avoid a lot of wasted time.  There are a few things you can control in your research efforts, and this is one of them, so do it.
 
@@ -51,17 +52,18 @@ On the programming side, the other nice thing about projects is that whenever yo
 
 ## Open and free is the way to be
 
-<img src="img/free.jpg" style="display:block; margin: 0 auto;">
+<img src="img/free.jpg" style="display:block; margin: 0 auto;" width=300px title='Richard Stallman likes parrots'>
+<br>
 
-The movers and shakers in the academic world generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work, and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether. Even if their primary tools are proprietary, they're using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc.
+The  researchers in the academic world who have kept up with the times generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work, and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether. Even if their primary tools are proprietary, they're using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc.
 
-At least one reason for this is because open source means the code is available to be inspected, the licenses, for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is well off enough to throw thousands of dollars at software.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS etc.[^freesas] 
+At least one reason for this is because open source means the code is available to be inspected, the licenses for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is financially well off enough to throw thousands of dollars at software that doesn't do anything special.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS etc.[^freesas] 
 
-On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. They just released version 8, *five years* after version 7 and a *year and a half* since the last point release (7.4).  One of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist for a year or more (we don't know if they existed prior to that as well).  
+On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. They just released version 8, five years after version 7 and a year and a half since the last point release (7.4).  This in and of itself is no big deal, given that the new features are few.  However, one of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist at least for over a year, and we don't know if they existed prior to that as well.  
 
-Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10.  This sort of approach to software development is not acceptable in 2017, especially when comparable or even better tools are available to do the same task[^propsoft]. 
+Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10. Nonetheless, they expect you and or your organization to pay for it each and every year. This sort of approach to software development is not acceptable in 2017, especially when comparable or even better tools are available to do the same task[^propsoft]. 
 
-Before I go on a rant, statistically, the best tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite common and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
+Before I go on a rant, practically speaking, the best statistical and related tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite common and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
 
 I'm not saying you have to go as far as Richard Stallman (the guy pictured).  But you have already long used and benefitted from open source software, so all I'm saying is continue doing so in your own research. 
 
@@ -71,7 +73,8 @@ I'm not saying you have to go as far as Richard Stallman (the guy pictured).  Bu
 
 ## Compartmentalization
 
-<img src="img/philipII.png" style="display:block; margin: 0 auto;" width='25%' title="Philip of Macedonia is often credited with the original: divide et impera">
+<img src="img/philipII.png" style="display:block; margin: 0 auto;" height=200px title="Philip of Macedonia is often credited with the original: divide et impera">
+<br>
 
 Now for a lesson from computer science, though more generally, it can be taken simply as <span class="emph">divide and conquer</span>.  Break your activities into smaller, more manageable chunks.  This makes it easy to pick up where you left off and get things accomplished even if you don't have a lot of time.  It has the added benefit that when things go wrong, it's much easier to isolate the problem, and probably keep working on the other aspects of the project that are still functional.
 
@@ -79,7 +82,7 @@ Now for a lesson from computer science, though more generally, it can be taken s
 
 For analysis, break activities into something like the following:
 
-- Initial import and inspection: This is just making sure you're reading the data in correctly, and that a quick glance to see that it looks like it should
+- Initial import and inspection: This is just making sure you're reading the data in correctly, and that a quick glance to see that it looks like it should. Maybe you'll do some filtering to get rid of things you know you'll not need.
 - Data processing: This is all the stuff you should be doing before you ever look at even a mean or standard deviation. Calculating composites, data debugging, merging, etc. would be included.
 - Descriptive analysis: This includes just getting a feel for the data via simple summaries, but you will likely finds some data bugs you missed previously.
 - Analysis: This will include things like trimming the data just to those variables necessary for the models, as well as running the models themselves. You may yet still find data bugs at this stage.
@@ -89,18 +92,19 @@ For analysis, break activities into something like the following:
 
 Your code can generally follow the plan for analysis, but it can easily be even further compartmentalized.  For example, scripts can be specific to one goal, however trivial.  In the analysis stage, you might be investigating several outcomes of interest.  I that case, have a script specific to each one.
 
-One might think that having a lot of scripts would be a problem, but generally, and if you're just starting out, the converse will be far more of an issue.  You can always create a master file that will call the scripts in a desired order. I have a rule of thumb that if I get to 100 lines, I better have some justification for not breaking some of it out into a more manageable chunk[^notsoftware].  
+One might think that having a lot of scripts would be a problem, but generally, and if you're just starting out, the converse will be far more of an issue.  You can always create a master file that will call the scripts in a desired order. I have a not-so-hard-and-fast rule of thumb that if I get to 100 lines, I should have some justification for not breaking some of it out into a more manageable chunk[^notsoftware].  
 
-This will also apply to functions for those that get further into programming.  
+This will also apply to functions for those that get further into programming.  Having one massive function that does everything is a PITA to debug, or have users inspect.  Having smaller functions allow one to isolate problems and make for more rapid debugging.
 
 ### Other
 
-This applies to other endeavors. For example, when writing your paper, give each section it's own document (child) to be called by the parent document or at compilation.  This is easily done with tools like $\LaTeX$ and Rmarkdown.
+The idea of compartmentalization applies to other endeavors as well. For example, when writing your paper, give each section it's own document (child) to be called by the parent document or at compilation.  This is easily done with tools like $\LaTeX$ and Rmarkdown.
 
 
 ## Reproducibility
 
-<img src="img/reproducible.jpg" style="display:block; margin: 0 auto;" width=50%><br>
+<img src="img/reproducible.jpg" style="display:block; margin: 0 auto;" width=300px><br>
+<br>
 
 Assume that at some point you'll have to leave your analysis, code, document etc. behind. Maybe it's just time off, maybe it's a health issue, who knows?  But think about when you come back and have to complete your mission.  Will you know what you've done?
 
@@ -122,7 +126,8 @@ Practically speaking, just thinking about this topic will likely make you take s
 
 ## Get a book
 
-<img src="img/book.png" style="display:block; margin: 0 auto;" width=10%>
+<img src="img/book.png" style="display:block; margin: 0 auto;" width=20%>
+<br>
 
 If you decide on a particular analytical route for your thesis or dissertation, get a book on it[^bookbycover], or at least one that covers the topic extensifely. Buy it, check it out, whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
 
@@ -130,6 +135,11 @@ The one thing you don't want to do is wing it based on what other applied resear
 
 
 ## Complexify later
+
+<img src="img/complexity2.jpg" style="display:block; margin: 0 auto;" width=300px>
+<br>
+
+
 
 A very old approach that has withstood the test of time in many domains- start with the simple, and build in complexity as you go[^complexify].
 
@@ -139,20 +149,25 @@ This really comes into play with analysis.  Start with simpler models.  I person
 
 ### Programming
 
-In programming, this probably is best illustrated when writing functions.  Your first iteration of a function probably will only have a one or two arguments.  However, once you lay the (solid) foundation, you can build upon it later. 
+In programming, this probably is best illustrated when writing functions.  Your first iteration of a function probably will only have a one or two arguments.  However, once you lay the (solid) foundation, you can build upon it later.  This suggestion has roots in the Knuth quote:
+
+> Premature optimization is the root of all evil
+
+It's okay to write some code that simply works, and add details and generalizations later.  You'll often be on some completely arbitrary time crunch, so the main thing is to write good code at the beginning, then work on making it more optimal or handle more complex situations later. 
 
 
 ## Much of your brain is devoted to visual processing
 
-<img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=50%>
+<img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=300px>
+<br>
 
 First, assume others' brains are not so different from yours, then take advantage of it.  One of the more annoying things I hear is the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text and sound, but that is secondary.
 
 The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the black and white, print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
-In addition, when displaying information, think multivariately.  2d plots such as simple bar and scatterplots are generally a waste of time, and it's simply too easy to add more information.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
+In addition, when displaying information, think multivariately.  2d plots such as simple bar and scatterplots are generally a waste of time, and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
 
-Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Ridiculous.  Maybe you need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.
+Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Utterly ridiculous.  Maybe you will need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.  If they were that dumb, which I refuse to believe, why exactly would you care if they even read your article? Are you anxious to be cited by nincompoops?
 
 Some other things to note:
 
@@ -174,7 +189,9 @@ Use data visualizations from 1936 and the 1800s as inspiration[^noflo]:
 
 ## Embrace uncertainty but avoid relativism
 
-<img src="img/uncertainty.jpg" style="display:block; margin: 0 auto;" width=10%>
+<img src="img/uncertainty.jpg" style="display:block; margin: 0 auto;" width=20%>
+<br>
+
 
 A lot of people living today think their opinion is valid merely by having it. This is not true, no matter what their parents told them, nor what all politicians seem to believe. You do not fly to a destination thinking it would be just as viable to flap your arms or click your heels together.  You don't cross the street thinking that the theory that 'all cars will stop for you, just for you' is a viable one.  Try telling your neighbor that the sky at noon is chartreuse.  I'm sure they'll look at you funny.
 
@@ -182,12 +199,12 @@ I could go on, but even a moment of reflection suggests that every ounce of huma
 
 Your theory, whatever you're researching, resides somewhere between false to mostly harmless/correct. Regardless, it is incomplete, and possibly grossly inaccurate in places, but without the progress of science we'll never know.  This is why, despite journal reviewers' comments, null results are not only useful, they are interesting in and of themselves, and as vital as any 'statistically significant' result. We need to know that a treatment doesn't work, that one social group is not terribly different than another on some matter, that temperatures in the 'x' range will result in a cascading series of events ultimately leading to the space craft tearing itself apart before it breaks atmosphere.
 
-Things like invterval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty, and that reduction is usually from a whole lot to very slightly less so.  If you're not okay with the fuzzy, science is probably not for you.
+Things like interval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty, and that reduction is usually from a whole lot to very slightly less so.  If you're not okay with the fuzzy, science is probably not for you.
 
 
 ## Flexibility
 
-<img src="img/be_water.png" style="display:block; margin: 0 auto;" width=33%>
+<img src="img/be_water.png" style="display:block; margin: 0 auto;" width=300px title='I could kick your ass, but I'd rather be cool'>
 
 <br>
 
@@ -195,23 +212,55 @@ Empty your mind, be formless. Shapeless, like water. If you put water into a cup
 
 ~ [Bruce Lee](https://www.youtube.com/watch?v=cJMwBwFj5nQ)
 
-The author of the one-inch-punch algorithm should not be taken lightly for obvious reasons.  Things happen, and you will need to be able to roll with the punches of data collection, analysis, collaboration, life etc.  Assume that at some point, something in the research process will not go your way, and deal with it as best you can.  There is literally nothing else you can do.
+The author of the one-inch-punch algorithm should not be taken lightly for obvious reasons[^leevoice].  Things happen, and you will need to be able to roll with the punches of data collection, analysis, collaboration, life etc.  Assume that at some point, something in the research process will not go your way, and deal with it as best you can.  There is literally nothing else you can do.
 
 
 ## Back up
 
-<img src="img/UnivacTape.jpg" style="display:block; margin: 0 auto;" width=25%>
-
+<img src="img/UnivacTape.jpg" style="display:block; margin: 0 auto;" height=300px title='Always back up in style.'>
 <br>
 
-Everything.  You should never lose more than a day's work under the worst of circumstances, and if you're doing things even with the bare modicum of responsibility, you probably won't lose more than a few minutes.  Sometimes, you may even want to go to a previous state for replicability purposes or to fix a bug that found it's way through your system, and there are many tools available to help with this.
+Everything.  You should never lose more than a day's work under the worst of circumstances, and if you're doing things even with the bare modicum of responsibility, you probably won't lose more than a few minutes[^impermanence].  Sometimes, you may even want to go to a previous state for replicability purposes or to fix a bug that found it's way through your system, and there are many tools available to help with this.
 
+
+## Know the basics of how computers/OS work
+
+<img src="img/computer.jpg" style="display:block; margin: 0 auto;" width=300px>
+<br>
+
+
+If you're wondering about what specifically I might be referring to in this section, it probably means you don't know the basics of how computers work.  As a result, you are wasting a tremendous amount of your own and very likely others' time.  Note that I'm not even remotely suggesting things that would be regarded as 'technical' by anyone besides a news reporter.
+
+I'll provide a single example. Probably the biggest time sink I experience in consulting is a Mac user looking for a file.
+
+Thankfully, your primary computer doesn't work like your phone (yet), so don't expect it to or treat it as if it did.
 
 ## Your work isn't that important
 
-To put some things in perspective, say an article you publish is cited by 1000 unique researchers, which would be a hell of a lot in practically any discipline.  That suggests that at least `r '2e-07'`% of the population of the world knows about it.  Congrats.
+To put some things in perspective, say an article you publish is cited by 1000 unique researchers, which would be a hell of a lot in practically any discipline.  That suggests that at least `r '2e-07'`% of the population of the world knows about it.  Congrats.  A couple billion more and you'll be on par with a pop song everyone's already forgotten about.
 
 Go out and do something else.  See some live music, get some exercise, go to a museum, get drunk, whatever you need to do to not think about this esoteric part of intellectual endeavor that in the end 99.9% of the world could care less about.  The world will keep spinning I assure you.
+
+## Magic
+
+<img src="img/magic.png" style="display:block; margin: 0 auto;" width=300px>
+<br>
+
+Research takes a lot of effort. It does *not* happen by magic.  If some aspect about your work seems magical to you, you can be sure that a reviewer, other researcher, conference attendee will ask you about it.
+
+
+### Analysis
+
+SEM example
+
+
+### Programming
+
+[MOVE COMP Here?]
+
+Icons are not apps
+
+
 
 
 
@@ -236,3 +285,7 @@ Go out and do something else.  See some live music, get some exercise, go to a m
 [^laudan]: A useful text to peruse is @laudan2012science.
 
 [^noflo]: Please don't actually do the Florence Nightengale type of plot, commonly referred to as wind rose plots.  While hers in particular is most beautiful, in the end they are glorified pie charts, and do a poor job of conveying what otherwise would be simple information to digest.
+
+[^leevoice]: This document is written in alternating voices of the narrator of the Hitchhiker's Guide to the Galaxy and Bruce Lee in that clip.
+
+[^impermanence]: I personally don't adhere to this as strongly as you should because I don't have deadlines/graduation looming, and I am fond of the Buddhist notion of impermanence.  I won't go so far as blowing my awesome sand mandala away as soon as I've created it, but I often don't mind starting over.

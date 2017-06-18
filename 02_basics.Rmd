@@ -4,7 +4,7 @@ The goal here is not expertise, but primarily conceptual awareness and understan
 
 Some motivation.  Here are some things I've seen:
 
-- A social science grad student first learning R at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
+- A social science grad student first learning R/programming at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
 
 - Another social science student using efficient programming practices to analyze big data on a high performance computing cluster.
 
@@ -110,20 +110,55 @@ The answer is that we pick values that bring about the best result.  But how do 
 
 Let's begin with ordinary least squares. If this is our optimizing approach, then we are trying to minimize the squared residuals in prediction.  For classification, it could simply be that we want to minimize *mis*-classification errors.
 
-Probably the most common method goes the other way.  Instead of minimizing errors in prediction, we seek parameters that maximize the likelihood of seeing the observed data.  This method, <span class="emph">maximum likelihood estimation</span>, is the most common way we estimate parameters in statistical modeling, and has equal importance in the Bayesian framework too.  Sometimes the estimates that might minimize the loss function may also be the maximum likelihood estimate. This is the case in standard linear regression, but it would not be in other settings.
+Probably the most common method goes the other way.  Instead of minimizing errors in prediction, we seek parameters that maximize the likelihood of seeing the observed data.  This method, <span class="emph">maximum likelihood estimation</span>, is the most common way we estimate parameters in statistical modeling, and has equal importance in the Bayesian framework too.  Sometimes the estimates that might minimize the loss function may also be the maximum likelihood estimate. This is the case in standard linear regression, but it would not be in other settings.  The primary point is, knowing the <span class="emph">objective function</span> for your analysis will help it not seem so mysterious. There are many optimization algorithms, and while you don't need to know the details of them, do know that you may get errors because their default settings don't work for your analytical situation.
 
 Many applied statistical courses will spend time almost exclusively on ordinary least squares techniques, for which they might not even talk about estimation at all, leaving the students to basically believe in magic when they do statistical analysis. Some will even report that they used maximum likelihood, but this is only because they know that is the default.  For your own sake, don't bluff this.
 
 With R or Python, you can literally write your own regression function via least squares or maximum likelihood in one or two lines of code. I strongly suggest you do this, even if only once, just to drive the point home.  I can also say it is quite satisfiying when something you put together reproduces the output you expect from the statistical program.
 
 
+### Problems with NHST
+
+I'm sick and tired of talking about the issues with <span class="emph">null hypothesis testing</span>, and I think the statistician types in general are.  Its problems have been noted since it was first proposed, and people in both methodological and applied disciplines have been raising the issues for over almost a century at this point.  It's annoying for me to even think about it, so if you want details, I won't be rehashing them here, but you won't have to look far on the web to find them.
+
+Assuming you're even using the approach correctly (almost never the case in applied research), just about every other statistic that falls out of an analysis is more important than the p-value. Yet I have seen people torture data, change their theories, ignore important findings etc. becuase of it.  Researchers still doing this are not doing important work, because almost by definition it's work that won't stand the test of time, probably even the second time.  They are wasting their own and others time in general.
+
+Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  Go in with competing models, even if they are simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do you'll regularly have something interesting to talk about regardless of any p-value.
+
+
+*Some Difficulties of Interpretation Encountered in the Application of the Chi-Square Test*. J Berkson **1938**
+
+"The statistical folkways of a more primitive past continue to dominate the local scene." Rozeboom **1960**[^bestquote]
+
+"As a second example, consider significance tests. They are also widely overused and misused." Cox **1977**
+
+"Are the effects of A and B different? They are always different, for some decimal place." Tukey **1991**
+
+That first one is an article, but otherwise those are some very old quotes.  
+
+### Overfitting
+
+
+### The Bayes Way
+
+
+### Machine Learning Basics
+
+Any applied discipline that teaches a semester course in statistical analysis should have a week of it devoted to an overview of machine learning.  The only reason you may not see it much in your discipline is due to 1. your discipline never teaches it, or 2. people outside of your discipline are doing the interesting things for your discipline, and publishing elsewhere.  I can tell you however, that it is useful, you may need to employ it some day, or at the very least, you shouldn't ignore articles using it because you don't know what they're talking about conceptually.
+
+Data can be big, complex, or both, and there are techniques to handle it if so.  If you don't know about them, you may be inclined to do some very silly things to coerce the situation to one you know, which is precisely the wrong thing to do.  If your discipline doesn't cover it in any fashion, do a workshop, look online for some exercises, or simply schedule some time to chat with someone who does know about them.
+
+
+### Visualization
+
+### Learn more
 
 - regression and classification (check)
 - explanation vs. prediction (check)
 - unsupervised methods (check)
 - loss function (check)
 - maximum likelihood (check)
-- problems with NHST
+- problems with NHST (check)
 - overfitting v.s - generalization
 - bayesian basics
 - ML basics
@@ -147,12 +182,12 @@ One of the first things to note with statistical programming is, that once thing
 Click File
 Open
 hunt for file on computer
-wait a few seconds
+wait a few seconds for SPSS to open its own file type
 Click Analyze
 Click/hover Regression
 Click Linear Regression
-Search for and Click your dependent variable
-Search for and Click each independent variable
+Search for and Click your dependent variable (or click, start typing the name, and hope)
+Search for and Click each 'independent' variable
 Click on various options.
 Click ok
 ```
@@ -160,11 +195,13 @@ Click ok
 - R
 
 ```{r, eval=F}
-d = haven::read_spss('filelocation')
-model = lm(DV ~ IV1 + IV2 + IV3, data=d)
+d = haven::read_spss('filelocation/file.ext')
+model = lm(DV ~ x1 + x2 + x3, data=d)
 ```
 
-There is no debate here, one is vastly more efficient and simply easier.  You may have to learn that you can use the <span class="pack">haven</span> package for importing SPSS files, or the <span class="func">lm</span> function to do regression, but that's very quickly picked up, and less than you would have had to learn regarding the SPSS menus.  The other nice thing is that you can redo the above in two steps with Ctrl+A (select all) and Ctrl+Enter (run).
+There is no debate here, one is vastly more efficient and simply easier.  In fact, with RStudio's autocompletion, the odds are that the first line probably only required a few keystrokes. You may have to learn that you can use the <span class="pack">haven</span> package for importing SPSS files, or the <span class="func">lm</span> function to do regression, but that's very quickly picked up, and less than you would have had to learn regarding the SPSS menus, which have remained mostly unchanged and in their disorganized state for over 20 years.  The other nice thing is that you can redo the above in two steps with Ctrl+A (select all) and Ctrl+Enter (run)[^pyspss].
+
+
 
 
 ### R & Python
@@ -175,7 +212,7 @@ There is no debate here, one is vastly more efficient and simply easier.  You ma
 <img src="img/py.svg" style="display:block; margin: 0 auto;" width='75%'>
 </div>
 <br>
-When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because the situation will likely change at some point in your career.  <span style="color:#1f65b7">**R**</span> and <span style="color:#FFDC52">**Python**</span> are the primary tools of data science, and have pretty much overtaken both enterprise and academia.  They are both easier to program for data processing and analysis than they were even just a few years ago, and notably more so than they were in the early days of their use for modeling.  It doesn't really matter which you use.  Python will have more power when it comes to machine learning, potential enterprise applications, natural language processing, and, in general, speed.  R is still notably easier to use, and has far more developed packages for a far wider range of techniques.  However, these distinctions melt by the wayside more and more everyday. So you're fine with either.
+When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because the situation will likely change at some point in your career.  <span style="color:#1f65b7">**R**</span> and <span style="color:#FFDC52">**Python**</span> are the primary tools of statistics/data science, and have pretty much overtaken both enterprise and academia.  They are both easier to program for data processing and analysis than they were even just a few years ago, and notably more so than they were in the early days of their use for modeling.  It doesn't really matter which you use.  Python will have more power when it comes to machine learning, potential enterprise applications, natural language processing, and, in general, speed.  R is still notably easier to use, and has far more developed packages for a far wider range of techniques.  However, these distinctions melt by the wayside more and more everyday. So you're fine with either.
 
 
 
@@ -189,14 +226,22 @@ Matlab, Julia, and Mathematica are other tools or languages you might come acros
 
 You will also find languages and frameworks within languages such as Scala, Spark, Hadoop, Keras, Torch, TensorFlow, SQL, Lua and so forth. Most of these have specific purposes, e.g. databases, or don't need to come into play unless you have massive data (e.g. TensorFlow).  Don't bother unless needed.
 
-In addition, people are writing analytical functionality in things like javascript, Haskell and other things that weren't meant for it nor all that good at it. I don't know why.
+In addition, people are writing analytical functionality in things like javascript, Haskell and other things that weren't meant for it nor are all that good at it. I don't know why.
 
 ##### Statistical or similar 
 
-The primary statistical programs in academia are SAS, SPSS and Stata.  Stata use is actually growing, and they also have a great community. The other two are dwindling fast in academia, especially SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still do.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
+The primary statistical programs in academia are SAS, SPSS and Stata.  Unlike the others, Stata use is actually growing, and they also have a great community. The other two are dwindling fast in academia, especially, and thankfully, SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still do.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
+
+If you use something like SAS or Stata, you still can't use the menus for analysis.  Aside from being inefficient, it's not reproducible, and thus not a way to do science.
 
 Excel is not an option, ever.  I would say you could use it for data entry, but it's very problematic even then. Avoid at all costs.
 
+If you don't want to take my word for it here are some other things to peruse.
+
+[Link 1](http://spectrum.ieee.org/computing/software/the-2016-top-programming-languages)
+[Link 2](https://www.tiobe.com/tiobe-index/)
+[Link 3](http://r4stats.com/articles/popularity/)
+[Link 4](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
 
 ### IDEs
 
@@ -232,11 +277,11 @@ Coding style matters, but not in the way that many think.
 
 Wickham is right on the first part, wrong on the second.  No one writes perfect code, *no one*.  It takes effort just to write halfway decent code.  That's fine.  You won't be writing good code for quite some time. That's okay too.
 
-However, assuming you want others to be able to use your code, you should feel bad giving them shitty code.  Going back to one of our initial suggestions, *Don't be a jerk*. Write better code, always. Time and other resources will always be working against you, but do the best you can.
+However, assuming you want others to be able to use your code, you should feel bad giving them shitty code, because you'll be wasting their time.  Going back to one of our initial suggestions, *Don't be a jerk*. Write better code, always. Time and other resources will always be working against you, but do the best you can.
 
 The first step is to start with a coding style.  For example, both [Google](https://google.github.io/styleguide/Rguide.xml) and [Hadley](http://adv-r.had.co.nz/Style.html) have provided an R coding style for others to follow.  If you only followed those, your code will be great relative to what you would have done.  But realize they are only suggestions, some are based on decades of coding practice, others are based on whim, and they don't tell you which.
 
-For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, are 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  It's very clear which is more readable, and just as easy to type. Furthermore, with RStudio, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another, and they're both based on more experience than you'll ever have.
+For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, are 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  It's very clear which is more readable, and just as easy to type. Furthermore, with RStudio, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another and themseleves, and they're both based on more experience than you'll ever have, so that should give you some sense that it isn't exactly easy.
 
 The point is, there is no authority here, but there are better approaches than your nospace, semi;coloned, naming-things-'data', everything-in-a-single-script attempts will come up with, I guarantee you.  In coding, just trying to do better will make your code better[^github].
 
@@ -275,7 +320,7 @@ Before we get to analysis, one needs to understand that
 
 > *everything begins and ends with the data*.  
 
-If you don't collect the data carefully, it doesn't matter what else you do. You've completely wasted your own time and resources, along with that of everyone else who is affiliated with the project.  If you're not willing to get your hands dirty with the data and make sure it's collected properly, you simply shouldn't be doing research.
+If you don't collect the data carefully, it doesn't matter what else you do, despite what the folks in the Engineering department tell you. You've completely wasted your own time and resources, along with that of everyone else who is affiliated with the project.  If you're not willing to get your hands dirty with the data and make sure it's collected properly, you simply shouldn't be doing research.
 
 Naming, labels, missing data etc.
 
@@ -327,3 +372,6 @@ A starting point in your programming is to comment everything.  The comments sho
 
 [^github]: My main motivation for getting on GitHub was making my code better.  If the only reason you use it is that the thought of others looking at your code will make you write better code, then definitely do so.
 
+[^bestquote]: You may try, but you will never, *ever* find a better quote in all of statistics.  Also, it's generally expected that when uttered, those in earshot must snap at least twice and say 'Right on, daddy-o'.
+
+[^pyspss]: I was going to do a Python example too, but I couldn't find an example that wouldn't take 5 or more lines not counting the import lines, which would be several more.  
