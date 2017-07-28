@@ -6,7 +6,7 @@
 - Beyond GLM but standard statistical
     - clustered data
     - spatiotemporal situations
-    - nonlinear relationships
+    - nonlinear relationships (additive models as a starting point)
 
 - Latent variable models
     - Factor analysis and related

@@ -33,7 +33,7 @@ On the other side, we need something that is practically viable.  The goal is no
 To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical significance, interval estimates, etc.  It is extremely easy to tell a story with the results. With deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  However, assuming it's applied appropriately[^deeplearnworks], it works extremely well!
 
 
-Practically every applied discipline seems to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'.  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^, which would tell you how much variance in the outcome you can explain with the predictors, of *negative value*!  The following demonstrates this.  I construct completely random data, i.e. none of the $X$ has any relation to $y$, and use it in the model.
+Most applied disciplines seem to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'[^repcrisis].  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^, which would tell you how much variance in the outcome you can explain with the predictors, of *negative value*!  The following demonstrates this.  I construct completely random data, i.e. none of the $X$ has any relation to $y$, and use it in the model.
 
 ```{r badmod, echo=2:4}
 set.seed(0)
@@ -54,8 +54,8 @@ The key idea is <span class="emph">balance</span>. For most applied disciplines 
 
 Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but also are regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  For example, one of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. control vs. treatment). If you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
 
-- Without a corresponding interval estimate the effect size of little value.
-- As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard.
+- Without a corresponding interval estimate the effect size is of little value.
+- As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard or possibly even a viable way to define it.
 - Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample.
 
 Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, it's pretty much not defined.  Also, what's the effect size here?
@@ -76,7 +76,7 @@ mcycle %>%
 
 <br>
 
-If you're dealing with interesting data and modeling, there is little chance there is an easily identified 'effect size'.  Instead, you'll need to know your measures well and think hard about what you're seeing.  If you know the target variable well, effects in terms of predicted values under a variety of settings will be far more enlightening.
+If you're dealing with interesting data and modeling, there is little chance there is an easily identified 'effect size'.  Instead, you'll need to know your measures well and think hard about what you're seeing.  If you know the target variable well, effects in terms of predicted values under a variety of data settings will be far more enlightening.
 
 
 
@@ -134,7 +134,7 @@ Statistical analysis will not provide you a hard answer or truth, and claiming s
 
 "Are the effects of A and B different? They are always different, for some decimal place." Tukey **1991**
 
-That first one is an article, but otherwise those are some very old quotes.  
+That first one is an article title, but otherwise those are some very old quotes.  
 
 ### Overfitting
 
@@ -375,3 +375,5 @@ A starting point in your programming is to comment everything.  The comments sho
 [^bestquote]: You may try, but you will never, *ever* find a better quote in all of statistics.  Also, it's generally expected that when uttered, those in earshot must snap at least twice and say 'Right on, daddy-o'.
 
 [^pyspss]: I was going to do a Python example too, but I couldn't find an example that wouldn't take 5 or more lines not counting the import lines, which would be several more.  
+
+[^repcrisis]: It is *current* if you're not aware of statistical history of the past 60+ years.  The only thing that's different from past calls to do better work is people's ability to complain on social media.  Applied researchers will do no more methodologically than what is expected, which seems largely defined by whatever they come across in the few journals they spend time with.  This is not necessarily right or wrong, just the way it is.

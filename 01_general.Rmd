@@ -13,7 +13,7 @@ may just mean something like life satistifaction ($Y$) is related to some set of
 How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, it would be nice if you didn't waste the time and resources of faculty, students, and others who do want to engagine in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
 
 
-One more thing to plan on - everything, I mean *everything*, will take longer than you expect.  That may even include your time-in-training.  You may, for example, plan on 4-5 years for a Ph.D., or, as faculty, 1 year to complete data collection and submit an article, but, as the old saying goes, shit happens.
+One more thing to plan on - everything, I mean *everything*, will take longer than you expect.  That may even include your time-in-training.  You may, for example, plan on 4-5 years for a Ph.D., or, as faculty, 1 year to complete data collection and submit an article, but, as the old saying goes, shit happens.  You'll have to learn to deal with it.
 
 
 ## Get Organized
@@ -45,7 +45,7 @@ Project/
 ```
 
     
-Very simple and straightforward. Also, note the underscores rather than spaces.  We'll talk about naming conventions later, but the gist is that you never want to name any file or folder with a space. People tell me it's 2017 as I write this, but somehow spaces will still screw things up sometimes, or simply must be converted to something else at some point. Sigh.
+Very simple and straightforward. Also, note the underscores rather than spaces.  We'll talk about naming conventions later, but the gist is that you never want to name any file or folder with a space. People tell me it's `r year(today())` as I write this, but somehow spaces will still screw things up sometimes, or simply must be converted to something else at some point. Sigh.
 
 On the programming side, the other nice thing about projects is that whenever you open or switch to a project, all your scripts will be there just as you left them.  This allows you to pick things up right where you left off.  Little efficiencies gained just by being even slightly more organized can save weeks over the course of say, a dissertation.  Other things we will cover, e.g. doing things in a reproducible fashion, moving from simpler things to more complex, compartmentalization, version control, etc. are all little steps in organization that go a long way towards efficiency.
 
@@ -61,7 +61,7 @@ At least one reason for this is because open source means the code is available 
 
 On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. They just released version 8, five years after version 7 and a year and a half since the last point release (7.4).  This in and of itself is no big deal, given that the new features are few.  However, one of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist at least for over a year, and we don't know if they existed prior to that as well.  
 
-Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10. Nonetheless, they expect you and or your organization to pay for it each and every year. This sort of approach to software development is not acceptable in 2017, especially when comparable or even better tools are available to do the same task[^propsoft]. 
+Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10. Nonetheless, they expect you and or your organization to pay for it each and every year. This sort of approach to software development is not acceptable in `r year(today())`, especially when comparable or even better tools are available to do the same task[^propsoft]. 
 
 Before I go on a rant, practically speaking, the best statistical and related tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite common and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
 
@@ -204,7 +204,7 @@ Things like interval estimates and prediction error give us a sense of how much 
 
 ## Flexibility
 
-<img src="img/be_water.png" style="display:block; margin: 0 auto;" width=300px title='I could kick your ass, but I'd rather be cool'>
+<img src="img/be_water.png" style="display:block; margin: 0 auto;" width=300px title='I just kicked your ass with my mind.'>
 
 <br>
 
@@ -229,11 +229,12 @@ Everything.  You should never lose more than a day's work under the worst of cir
 <br>
 
 
-If you're wondering about what specifically I might be referring to in this section, it probably means you don't know the basics of how computers work.  As a result, you are wasting a tremendous amount of your own and very likely others' time.  Note that I'm not even remotely suggesting things that would be regarded as 'technical' by anyone besides a news reporter.
+If you're wondering about what specifically I might be referring to in this section, it may mean you don't know the basics of how computers work.  As a result, you are wasting a tremendous amount of your own and very likely others' time.  Note that I'm not even remotely suggesting things that would be regarded as 'technical' by anyone besides a news reporter.
 
 I'll provide a single example. Probably the biggest time sink I experience in consulting is a Mac user looking for a file.
 
-Thankfully, your primary computer doesn't work like your phone (yet), so don't expect it to or treat it as if it did.
+Thankfully, your primary computer doesn't work like your phone (yet), so don't expect it to or treat it as if it did.  However, your computer may not have enough hardware to do sophisticated analysis with the data you are interested in.  You may have have to work on other machines.  While this is getting much easier, you may have to gain some technical know-how to use, for example, a computing cluster environment of some kind.
+
 
 ## Your work isn't that important
 
