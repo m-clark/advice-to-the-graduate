@@ -238,16 +238,16 @@ Thankfully, your primary computer doesn't work like your phone (yet), so don't e
 
 ## Your work isn't that important
 
-To put some things in perspective, say an article you publish is cited by 1000 unique researchers, which would be a hell of a lot in practically any discipline.  That suggests that at least `r '2e-07'`% of the population of the world knows about it.  Congrats.  A couple billion more and you'll be on par with a pop song everyone's already forgotten about.
+To put some things in perspective, say an article you publish is cited by 1000 unique researchers, which would be a hell of a lot in practically any discipline.  That suggests that at least `r round(1000/7.5e+09, 7)`% of the population of the world knows about it.  Congrats.  A couple billion more and you'll be on par with a you tube video of a cat from three months ago that everyone's already forgotten about.
 
-Go out and do something else.  See some live music, get some exercise, go to a museum, get drunk, whatever you need to do to not think about this esoteric part of intellectual endeavor that in the end 99.9% of the world could care less about.  The world will keep spinning I assure you.
+Go out and do something else.  See some live music, get some exercise, go to a museum, get drunk, whatever you need to do to not think about this esoteric part of intellectual endeavor that in the end 99.9% of the world could care less about.  The world will keep spinning I assure you.  Also, don't be a jerk to your collaborators or people you need to do your work (e.g. IT, administrators, etc.). First author is not equivalent to alone.
 
 ## Magic
 
 <img src="img/magic.png" style="display:block; margin: 0 auto;" width=300px>
 <br>
 
-Research takes a lot of effort. It does *not* happen by magic.  If some aspect about your work seems magical to you, you can be sure that a reviewer, other researcher, conference attendee will ask you about it.
+Research takes a lot of effort. It does *not* happen by magic.  If some aspect about your work seems magical to you, you can be sure that a reviewer, other researcher, conference attendee will ask you about it.  For applied researchers doing quantitative work, this means being able to say more than 'I clicked and this happened!', or throwing the grad student under the bus when pressed on something you don't know.
 
 
 ### Analysis

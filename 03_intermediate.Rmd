@@ -1,20 +1,25 @@
 # Part III: One Last Caress
 
+This section is for those who get the bug, and actually find they enjoy programming and analysis, or simply want to continue expanding their toolbox to do better analysis.  It'll outline some good things to be aware of, or skills to start obtaining.
 
 ## Analysis
+
+Once you get the GLM basics, there are some common extensions to consider.
 
 - Beyond GLM but standard statistical
     - clustered data
     - spatiotemporal situations
     - nonlinear relationships (additive models as a starting point)
 
-- Latent variable models
+- Dimension Reduction/Latent variable models
     - Factor analysis and related
     - Other
 
 - Matrix basics
 
 ## Programming
+
+You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything,  etc.
 
 - Writing functions
 - Debugging
@@ -24,6 +29,14 @@
     - Unix
 
 ## Visualization
+
+If you are still using bar charts as a primary visual tool, and selecting colors based on defaults or what seems pretty to you, you should spend some effort learning a few more visual tools and approaches (lots actually).  
+
+To begin, if you can express what a plot conveys in a single sentence, it probably isn't worth doing the plot. For example, a plot does little for anyone if all you want to show is that group means differ. In fact, I'd say the primary usage such plots is to exacerbate small differences.  You don't need a plot to say, for example, that group B is higher than the rest.
+
+A good visualization will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  Interactivity is key.
+
+I have been told multiple times that the reason for not doing a particular style of plot is because the audience of Ph.D.s, M.D.s and graduate students won't be able to figure it out.  This is an utterly ridiculous notion with no proof whatsoever.  Unless you are thinking interactively first, you probably aren't even producing a visualization that is as complex (and commonplace) as those in news outlets like the New York Times.
 
 color, transparency
 

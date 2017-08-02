@@ -56,7 +56,7 @@ Some disciplines, e.g. psychology, try to get their adherents to focus on effect
 
 - Without a corresponding interval estimate the effect size is of little value.
 - As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard or possibly even a viable way to define it.
-- Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample.
+- Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample. In fact, your first move after seeing a large effect in a small sample should probably be to go back to the data processing stage to make sure no errors were introduced.
 
 Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, it's pretty much not defined.  Also, what's the effect size here?
 
@@ -173,7 +173,7 @@ Data can be big, complex, or both, and there are techniques to handle it if so. 
 If you're doing serious scientific research, these days you're going to have to learn some programming[^notstartrek].  Don't want to? That's okay, just do something else besides scientific research.  Even if you're doing relatively simple anlaysis, a lot of data processing will have to take place beforehand to ensure that whatever results you obtain have integrity.  Unless you like to spend several weeks on something that could take a couple hours with just basic programming skills, you'll need to spend some time in this area.
 
 
-One of the first things to note with statistical programming is, that once things are set up, it is as easy to run a model in R or Python as it is menu-driven programs like SPSS. It even requires *less* syntax than you would find with, e.g. SPSS and SAS.  Compare the following two approaches, one a menu-driven approach in SPSS and another programming approach in R.
+One of the first things to note with statistical programming is, that once things are set up in terms of the data, it is as easy to run a model in R or Python as it is menu-driven programs like SPSS. It even requires *less* syntax than you would find with, e.g. SPSS and SAS.  Compare the following two approaches, one a menu-driven approach in SPSS and another programming approach in R.
 
 
 - SPSS
@@ -238,7 +238,7 @@ Excel is not an option, ever.  I would say you could use it for data entry, but 
 
 If you don't want to take my word for it here are some other things to peruse.
 
-[Link 1](http://spectrum.ieee.org/computing/software/the-2016-top-programming-languages)
+[Link 1](http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages)
 [Link 2](https://www.tiobe.com/tiobe-index/)
 [Link 3](http://r4stats.com/articles/popularity/)
 [Link 4](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
