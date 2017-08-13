@@ -5,9 +5,10 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
-    css: [standard_html.css, mytufte.css]
+    css: [css/standard_html.css, css/book.css]
     hightlight: pygments
     number_sections: false
+    toc_depth: 2
     # split_by: section
     config:
       toc:
