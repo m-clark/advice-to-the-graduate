@@ -19,7 +19,7 @@ Once you get the GLM basics, there are some common extensions to consider.
 
 ## Programming
 
-You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything,  etc.
+You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase,  etc.
 
 - Writing functions
 - Debugging

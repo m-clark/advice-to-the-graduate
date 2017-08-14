@@ -46,7 +46,8 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eva
 library(tidyverse); library(htmltools); library(tufte); library(lazerhawk); library(lubridate)
 ```
 
-# 
+#
+
 ```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
 knitr::include_graphics('img/nineteeneightyR.png', dpi = NA)
 ```

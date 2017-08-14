@@ -4,7 +4,7 @@ The goal here is not expertise, but primarily conceptual awareness and understan
 
 Some motivation.  Here are some things I've seen:
 
-- A social science grad student first learning R/programming at the beginning of the semester, that within a few months was a RStudio keyboard shortcut whiz, and was taking some Python workshops to boot.
+- A social science grad student first learning R/programming at the beginning of the semester, that within a few months was a keyboard shortcut whiz, and was taking some Python workshops to boot.
 
 - Another social science student using efficient programming practices to analyze big data on a high performance computing cluster.
 
@@ -22,43 +22,45 @@ Once you get good at some things, you'll still hit roadblocks, be surprised, or 
  
 ## Analytical
 
-### Explanation vs. Prediction: a Starting Point
+### Explanation and Prediction: a Starting Point
 
 <h6> *A narrative of startling interest!!* </h6>
 
 One way to look at the analytical endeavor is in terms of two goals, not mutually exclusive.  On the one hand we are interested in theory confirmation and comparison. Theory suggests certain variables have relations to other variables.  We set up mathematical models that convey the theory in a testable form, and collect data corresponding to those variables. Via a a particular framework, e.g. null hypothesis testing or Bayesian, we can say something about the statistical notability of those relationships.  The ultimate goal is to tell a story about the results and their relation to the theory, possibly suggesting exceptions and modifications.  In this approach, <span class="emph">explanation</span> is the focus.
 
-On the other side, we need something that is practically viable.  The goal is not so much to tell a story as it is to get the best possible <span class="emph">prediction</span> from our models.  Techniques may be used that will tell us little about which predictors are best, or even why some predictors work better or what is even the primary feature of the data being learned.  However, not only does the result work well, such approaches almost always outperform the explanatory ones in practice. 
+On the other side, we need something that is practically viable.  The goal is not so much to tell a story as it is to get the best possible <span class="emph">prediction</span> from our models.  Techniques may be used that will tell us little about which predictors are best, why some predictors work better, or what is even the primary feature of the data being learned.  However, not only does the result work well, such approaches almost always outperform the far more explanatory ones in practice. 
 
 To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical significance, interval estimates, etc.  It is extremely easy to tell a story with the results. With deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  However, assuming it's applied appropriately[^deeplearnworks], it works extremely well!
 
 
 Most applied disciplines seem to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'[^repcrisis].  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^, which would tell you how much variance in the outcome you can explain with the predictors, of *negative value*!  The following demonstrates this.  I construct completely random data, i.e. none of the $X$ has any relation to $y$, and use it in the model.
 
-```{r badmod, echo=2:4}
+```{r badmod, echo=2:6, eval=-6}
 set.seed(0)
 N = 250
 X = matrix(rnorm(N*10), ncol=10)
 y = rnorm(N)
 
-# summary(lm(y ~ ., data.frame(X)))
+summary(lm(y ~ ., data.frame(X)))
 # broom::tidy(mod) %>% mutate_at(vars(-term), round, digits=3) %>% DT::datatable(options=list(dom='t', pageLength=11), rownames=F)
 pander::pander(summary(lm(y ~ ., data.frame(X))), justify='lrrrr', round=3)
 ```
-<br>
-Yet you will find entire papers written about that one coefficient, with p-value slightly less than .05[^phack], while in terms of prediction it literally does worse than guessing the mean would with new data. Quite simply, this sort of practice has got to stop.
 
-The key idea is <span class="emph">balance</span>. For most applied disciplines explanation is not only required, but to be focused on.  This is fine. Some people do researcher where collecting one observation might take a few days of effort.  This too, is okay. However, complicated models with little data require something more than statistical significance- the results bounce around too much.  But for any modeling endeavor, predictive validity is also important.  You simply cannot focus on the statistical (significance) story while entirely ignoring the practical value of the model.
+<br>
+
+One term has a p-value of `r round(summary(lm(y ~ ., data.frame(X)))$coefficients['X10', 'Pr(>|t|)'], 3)`, but we know this is meaningless. Yet you will find entire papers written about that one coefficient, with p-value slightly less than .05[^phack], while in terms of prediction the model literally does worse than guessing the mean would with new data. Quite simply, this sort of practice has got to stop.
+
+The key idea is <span class="emph">balance</span>. For most applied disciplines explanation is not only required, but to be focused on.  This is fine. Some people do research where collecting one observation might take a few days of effort.  This too, is okay. However, complicated models with little data require something more than statistical significance- the results generally will have too much variability associated with them.  But for any modeling endeavor, predictive validity is also important.  You simply cannot focus on the statistical (significance) story while entirely ignoring the practical value of the model.
 
 #### A Word about Effect Size
 
-Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but also are regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  For example, one of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. control vs. treatment). If you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
+Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but also are regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  For example, one of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. control vs. treatment).  It's applicable in cases where the primary goal is a single group comparison, e.g. via a t-test.  However, if you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
 
-- Without a corresponding interval estimate the effect size is of little value.
+- Without a corresponding interval estimate the effect size is of little value.  That's right, the effect size has associated uncertainty with it just like everything else.
 - As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard or possibly even a viable way to define it.
 - Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample. In fact, your first move after seeing a large effect in a small sample should probably be to go back to the data processing stage to make sure no errors were introduced.
 
-Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, it's pretty much not defined.  Also, what's the effect size here?
+Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, which is where most models should be these days, it's pretty much not defined.  For example, what's the effect size here?
 
 ```{r effectgam, echo=FALSE}
 library(mgcv)
@@ -69,8 +71,8 @@ library(plotly)
 mcycle %>% 
   modelr::add_predictions(mod) %>% 
   plot_ly(x=~times, y=~accel) %>% 
-  add_markers(marker=list(color='#ff5503'), showlegend=F) %>% 
-  add_lines(x=~times, y=~pred, line=list(color='#03b3ff'), showlegend=F) %>% 
+  add_markers(marker=list(color=palettes$orange$complementary[1]), showlegend=F) %>% 
+  add_lines(x=~times, y=~pred, line=list(color=palettes$orange$complementary[2]), showlegend=F) %>% 
   theme_plotly()
 ```
 
@@ -84,9 +86,9 @@ If you're dealing with interesting data and modeling, there is little chance the
 
 Everything starts with the <span class="emph">standard linear regression model</span>.  To paraphrase @shalizi2017advanced, it's relatively simple[^simplerelative], it can do a decent enough job in a lot of situations, and it's a standard to the point it's essentially a tool of communication.  One of the more important aspects of it is that it serves as the foundation for everything else.
 
-Simply put, you need to get to a point where practically nothing about what you get from it in standard settings should be a mystery to you.   Coefficients, standard errors, residuals, fitted values, prediction, how categorical predictor variables are used, residual standard error, interpreting interactions, model comparison.  It's also good to know what sorts of things are important (how you specify the model) and not so much (e.g. normality assumption).
+Simply put, you need to get to a point where practically nothing about what you get from it in standard settings should be a mystery to you.   Coefficients, standard errors, residuals, fitted values, prediction, how categorical predictor variables are used, residual standard error, interpreting interactions, model comparison.  It's also good to know what sorts of things are important (how you specify the model), and not so much (e.g. normality assumption).
 
-If you don't understand standard regression, you'll be hard pressed to understand little else methodologically.  One additional benefit is that knowing it will take care of the special cases like ANOVA and t-tests, so you won't have to spend much time with those unless you just want to.
+If you don't understand standard regression, you'll be hard pressed to understand little else methodologically.  One additional benefit is that knowing it will take care of the special cases like ANOVA and t-tests, so you won't have to spend time learning those unless you just want to.
 
 ### Classification
 
@@ -95,11 +97,11 @@ The second most commonly used model after the standard linear model is probably 
 This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span>. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, and specificity. Most only look at accuracy which is not a good way to do things. Actually, many don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.
 
 
-Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.  If you do use it, interpret it in terms of actual predictions at key values of the predictors[^margins] rather than statistical significance and odds ratios.  Not only are predicted probabilities easy to interpret, it's pretty much the only way to interpret interactions and other nonlinear effects.
+Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.  If you do use it, consider interpreting it in terms of actual predictions at key values of the predictors[^margins] rather than statistical significance and odds ratios.  Not only are predicted probabilities easy to interpret, it's pretty much the only way to interpret interactions and other nonlinear effects that might be included in the model.
 
 ### Unsupervised Methods
 
-Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could).  Probably the most common among these are PCA, factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, LDA, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
+Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could do that too).  Probably the most common among these are PCA, factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, standard linear discriminant analysis, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
 
 
 ### Loss functions and maximum likelihood estimation
@@ -121,9 +123,7 @@ With R or Python, you can literally write your own regression function via least
 
 I'm sick and tired of talking about the issues with <span class="emph">null hypothesis testing</span>, and I think the statistician types in general are.  Its problems have been noted since it was first proposed, and people in both methodological and applied disciplines have been raising the issues for over almost a century at this point.  It's annoying for me to even think about it, so if you want details, I won't be rehashing them here, but you won't have to look far on the web to find them.
 
-Assuming you're even using the approach correctly (almost never the case in applied research), just about every other statistic that falls out of an analysis is more important than the p-value. Yet I have seen people torture data, change their theories, ignore important findings etc. becuase of it.  Researchers still doing this are not doing important work, because almost by definition it's work that won't stand the test of time, probably even the second time.  They are wasting their own and others time in general.
-
-Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  Go in with competing models, even if they are simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do you'll regularly have something interesting to talk about regardless of any p-value.
+Assuming you're even using the approach correctly (almost never the case in applied research), just about every other statistic that falls out of an analysis is more important than the p-value. Yet I have seen people torture data, change their theories, ignore important findings, etc., because of it.  Researchers still doing this are not doing good work, because almost by definition it is work that likely won't stand the test of time, probably even the second time.  They are wasting their own and others time in general.
 
 
 *Some Difficulties of Interpretation Encountered in the Application of the Chi-Square Test*. J Berkson **1938**
@@ -134,9 +134,12 @@ Statistical analysis will not provide you a hard answer or truth, and claiming s
 
 "Are the effects of A and B different? They are always different, for some decimal place." Tukey **1991**
 
-That first one is an article title, but otherwise those are some very old quotes.  
+That first one is an article title, but otherwise those are some very old quotes, indicating just how long this has been a problem.  NHST as a *scientific* paradigm, in which evidence is weighed to assess a theory's real-world effectiveness, for a variety of reasons, doesn't work in practice.  It is difficult to say whether it ever did. Many disciplines are possibly decades behind in their science both because of missed opportunities, and because of trudging through weak results that didn't hold up, but were adhered to merely because of statistical significance.
 
-### Overfitting
+Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  The goal in statistical approaches to science is not to say whether a predictor is important or not, but rather whether the data is consistent with a given theory in general, and whether viable predictions can be made with a given theory. Go in with competing models, e.g. simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do you'll regularly have something interesting to talk about regardless of any p-value.
+
+### Under and Overfitting
+
 
 
 ### The Bayes Way
@@ -144,12 +147,54 @@ That first one is an article title, but otherwise those are some very old quotes
 
 ### Machine Learning Basics
 
-Any applied discipline that teaches a semester course in statistical analysis should have a week of it devoted to an overview of machine learning.  The only reason you may not see it much in your discipline is due to 1. your discipline never teaches it, or 2. people outside of your discipline are doing the interesting things for your discipline, and publishing elsewhere.  I can tell you however, that it is useful, you may need to employ it some day, or at the very least, you shouldn't ignore articles using it because you don't know what they're talking about conceptually.
+Any applied discipline that teaches a semester course in statistical analysis should have a week of it devoted to an overview of machine learning.  The only reason you may not see it practiced much in your discipline is due to 1. your discipline never teaches it, or 2. people outside of your discipline are doing the interesting things for your discipline, and publishing elsewhere.  I can tell you however, that it is useful, you may need to employ it some day, or at the very least, you shouldn't ignore articles using it because you don't know what they're talking about conceptually.
 
-Data can be big, complex, or both, and there are techniques to handle it if so.  If you don't know about them, you may be inclined to do some very silly things to coerce the situation to one you know, which is precisely the wrong thing to do.  If your discipline doesn't cover it in any fashion, do a workshop, look online for some exercises, or simply schedule some time to chat with someone who does know about them.
+Data can be big, complex, or both, and there are techniques to handle it if so.  If you don't know about them, you may be inclined to do some very silly things to coerce the situation to one you know, which is precisely the wrong thing to do.  If your discipline doesn't cover it in any fashion, do a workshop, look online for some exercises, or simply schedule some time to chat with someone who does know about them.  With tools like R and Python, the difficulty will *not* be running the models.
 
 
 ### Visualization
+
+### Variable transformations
+
+There are some good reasons to transform a variable. For example, mean centering (subtracting the mean), or additionally scaling numerical variables both makes a value of 0 practically meaningful (i.e. it is the mean), and can go a long way toward making the estimation process easier for many algorithms.  Some techniques are not even useful unless the variables are similarly scaled.  There are also times, especially in the case of categorical outcomes and predictors, when the need arises to collapse categories which have very few observations.  Otherwise they can lead a model to fail.  Finally, some, especially econometricians, prefer to speak in terms of <span class="emph">elasticities</span>, and so will take the log of a numeric variable to do so.  That's pretty much it as far as the reasons to transform a variable, easier estimation or theoretical interpretiability.
+
+Here are couple things not to do.  If you have a numeric variable, there simply is no justification for discretizing it.  You are just making it a less reliable and expressive measure, and there is no benefit to that.  In addition, transforming a variable 'due to normality' is translated as 'I don't actually know what the normality assumption is'.  Case in point, the following is a perfectly reasonable target variable that would meet the normality assumption for regression.
+
+```{r normality, echo=FALSE}
+x = sample(0:1, 500, replace=T)
+y = 5*x + rnorm(500)
+ydens = density(y)
+
+data_frame(y=ydens$x, dens=ydens$y) %>% 
+  arrange(y) %>% 
+  plot_ly(x=~y, y=~dens) %>% 
+  add_lines(color=I(palettes$orange$complementary[2])) %>% 
+  theme_plotly()
+```
+
+Why? Because the assumption regards the *residuals*, not the observed target variable. The above is just what you'd expect if you were dealing with a very strong group effect. The following shows the density plot of the residuals and a test of normality (non-significant means okay).
+
+```{r residuals, echo=FALSE}
+ydensres = density(residuals(lm(y~x)))
+
+data_frame(y=ydensres$x, dens=ydensres$y) %>% 
+  arrange(y) %>% 
+  plot_ly(x=~y, y=~dens) %>% 
+  add_lines(color=I(palettes$orange$complementary[2])) %>% 
+  theme_plotly()
+# shapiro.test(residuals(lm(y~x))) %>% broom::tidy()
+
+```
+
+```{r normality2, echo=FALSE}
+# this completely f/d up the whole document by including it with the previous plotly chunk
+shapiro.test(residuals(lm(y~x))) %>% pander::pander()
+```
+
+
+I've seen this assumption so confused that some think it applies to the predictors as well!  Some have also tried to apply it to ordinal variables. A moment's reflection will prove this will not meet with success.  Some also apply it to data, such as counts, where we actually expect it to be skewed.  And I don't know anyone that knows how to interpret a variable that has undergone an square root arcsine transformation.
+
+If you're model is not capturing tails or other aspects of the observed target, it's likely because the normal distribution is not a viable candidate for the underlying data generating process, or the model simply isn't capturing a key aspect of the data (e.g. inherent clustering).  It makes more sense to change your assumption about the distribution (e.g. use a t or beta distribution if appropriate), or fixing your model (e.g. using a mixed model if appropriate), than trying to torture your data in a misguided attempt to speak to one of the less important assumptions in the standard linear model.  You'll also find that the heteroscedasticity problems magically go away as well. 
 
 ### Learn more
 
@@ -161,8 +206,9 @@ Data can be big, complex, or both, and there are techniques to handle it if so. 
 - problems with NHST (check)
 - overfitting v.s - generalization
 - bayesian basics
-- ML basics
+- ML basics (check)
 - visualization heavy
+- variable transformation (check)
 
 - what is needed further for your specific projects
     - learn more about whatever technique your using
@@ -170,7 +216,7 @@ Data can be big, complex, or both, and there are techniques to handle it if so. 
 
 ## Programming
 
-If you're doing serious scientific research, these days you're going to have to learn some programming[^notstartrek].  Don't want to? That's okay, just do something else besides scientific research.  Even if you're doing relatively simple anlaysis, a lot of data processing will have to take place beforehand to ensure that whatever results you obtain have integrity.  Unless you like to spend several weeks on something that could take a couple hours with just basic programming skills, you'll need to spend some time in this area.
+If you're doing serious scientific research, these days you're going to have to learn some programming[^notstartrek].  Don't want to? That's okay, just do something else besides scientific research.  Even if you're doing relatively simple anlaysis, a lot of data processing will have to take place beforehand to ensure that whatever results you obtain have integrity.  Unless you like to spend several weeks on something that could take a couple hours with even just basic programming skills, you'll need to spend some time in this area.
 
 
 One of the first things to note with statistical programming is, that once things are set up in terms of the data, it is as easy to run a model in R or Python as it is menu-driven programs like SPSS. It even requires *less* syntax than you would find with, e.g. SPSS and SAS.  Compare the following two approaches, one a menu-driven approach in SPSS and another programming approach in R.
@@ -195,7 +241,7 @@ Click ok
 - R
 
 ```{r, eval=F}
-d = haven::read_spss('filelocation/file.ext')
+d = haven::read_spss('filelocation/file.spss')
 model = lm(DV ~ x1 + x2 + x3, data=d)
 ```
 
@@ -212,7 +258,7 @@ There is no debate here, one is vastly more efficient and simply easier.  In fac
 <img src="img/py.svg" style="display:block; margin: 0 auto;" width='75%'>
 </div>
 <br>
-When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because the situation will likely change at some point in your career.  <span style="color:#1f65b7">**R**</span> and <span style="color:#FFDC52">**Python**</span> are the primary tools of statistics/data science, and have pretty much overtaken both enterprise and academia.  They are both easier to program for data processing and analysis than they were even just a few years ago, and notably more so than they were in the early days of their use for modeling.  It doesn't really matter which you use.  Python will have more power when it comes to machine learning, potential enterprise applications, natural language processing, and, in general, speed.  R is still notably easier to use, and has far more developed packages for a far wider range of techniques.  However, these distinctions melt by the wayside more and more everyday. So you're fine with either.
+When it comes to statistical programming and computation, there are two primary choices these days, but you should be flexible, because the situation will likely change at some point in your career.  <span style="color:#1f65b7">**R**</span> and <span style="color:#FFDC52">**Python**</span> are the primary tools of statistics/data science, and have pretty much overtaken both enterprise and academia.  They are both easier to program for data processing and analysis than they were even just a few years ago, and notably more so than they were in the early days of their use for modeling.  It doesn't really matter which you use.  Python will have more power when it comes to machine learning, potential enterprise applications, natural language processing, and, in general, speed.  R is still notably easier to use for applied interactive analysis, and has far more developed packages for a far wider range of techniques.  However, these distinctions melt by the wayside more and more everyday. So you're fine with either.
 
 
 
@@ -220,7 +266,7 @@ When it comes to statistical programming and computation, there are two primary 
 
 ##### Other Programming languages and related
 
-Lower level programming languages such as Java, Fortran and C++ are not required knowledge for the vast majority of statistial and related application.  They are primarily used when you need to get the most speed you can, and you'll be able to find someone on campus to help you there, for example, in your research support group.
+Lower level programming languages such as Java, Fortran, and C++ are not required knowledge for the vast majority of statistical and related application.  They are primarily used when you need to get the most speed you can, and you'll be able to find someone on campus to help you there, for example, in your research support group.
 
 Matlab, Julia, and Mathematica are other tools or languages you might come across that are highly capable, but are either proprietary (i.e. require a renewable license, cost money, and don't share source code), or don't yet offer much of anything beyond what you can get with Python and R, and usually far less.
 
@@ -228,9 +274,10 @@ You will also find languages and frameworks within languages such as Scala, Spar
 
 In addition, people are writing analytical functionality in things like javascript, Haskell and other things that weren't meant for it nor are all that good at it. I don't know why.
 
+
 ##### Statistical or similar 
 
-The primary statistical programs in academia are SAS, SPSS and Stata.  Unlike the others, Stata use is actually growing, and they also have a great community. The other two are dwindling fast in academia, especially, and thankfully, SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still do.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
+The primary statistical programs in academia are SAS, SPSS and Stata.  Unlike the others, Stata use is actually growing, and they also have a great community. The other two are dwindling fast in academia, especially, and thankfully, SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still use it.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
 
 If you use something like SAS or Stata, you still can't use the menus for analysis.  Aside from being inefficient, it's not reproducible, and thus not a way to do science.
 
@@ -247,15 +294,14 @@ If you don't want to take my word for it here are some other things to peruse.
 
 After installing the basic components for R or Python, you can use them straight away. However, this would be silly, as they don't come with a way to use them that enables basic functionality or is easy.  If your R console comes with retina-bleeding red-colored font, or you're using the clown-colored IDLE from Python, just shut them down and walk slowly away.
 
-You want to use what's called an <span class="emph">integreted development environment</span>, or IDE.  For R, the far and away most popular one is RStudio. For Python, I would suggest Anaconda for scientific work.  There are others, but unless you have a lot more experience, I'd suggest sticking with those.
+You want to use what's called an <span class="emph">integreted development environment</span>, or IDE.  For R, the far and away most popular one is RStudio. For Python, I would suggest Anaconda for scientific work.  There are others, but unless you have a lot more experience, I'd suggest sticking with those[^atom].
 
 What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, interactivity... this is only the beginning.  I've written this document and many other things *entirely* with RStudio.  A good IDE is essential.
 
 
 #### customize it
 
-After you initially start to get the hang of your IDE, customize it. I'm always struck by the fact that people don't change the basic settings in their software, which are often chosen by people who should not have any say in design whatsoever[^baddesign].  .
-
+After you initially start to get the hang of your IDE, customize it. I'm always struck by the fact that people don't change the basic settings in their software, which are often chosen by people who should not have any say in design whatsoever[^baddesign].
 
 
 ### coding <span class="font-variant:small-caps; font-family:'Risque'">style</span>
@@ -275,13 +321,13 @@ Coding style matters, but not in the way that many think.
 
 <span class="" style="size:125%; font-variant:small-caps">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code.<br> ~ Hadley Wickham</span>
 
-Wickham is right on the first part, wrong on the second.  No one writes perfect code, *no one*.  It takes effort just to write halfway decent code.  That's fine.  You won't be writing good code for quite some time. That's okay too.
+Wickham is right on the first part, but I'm not so much in agreeement with the second.  No one writes perfect code, *no one*.  It takes effort just to write halfway decent code.  That's fine.  As you start out, you won't be writing good code for quite some time. That's okay too.
 
 However, assuming you want others to be able to use your code, you should feel bad giving them shitty code, because you'll be wasting their time.  Going back to one of our initial suggestions, *Don't be a jerk*. Write better code, always. Time and other resources will always be working against you, but do the best you can.
 
-The first step is to start with a coding style.  For example, both [Google](https://google.github.io/styleguide/Rguide.xml) and [Hadley](http://adv-r.had.co.nz/Style.html) have provided an R coding style for others to follow.  If you only followed those, your code will be great relative to what you would have done.  But realize they are only suggestions, some are based on decades of coding practice, others are based on whim, and they don't tell you which.
+The first step is to start with a coding style.  For example, both [Google](https://google.github.io/styleguide/Rguide.xml) and [Hadley](http://adv-r.had.co.nz/Style.html) have provided an R coding style for others to follow, and there is [PEP8](https://www.python.org/dev/peps/pep-0008/) for Python.  If you only followed those, your code will be great relative to what you would have done.  But realize they are only suggestions, some are based on decades of coding practice, others are based on whim, and they don't tell you which.
 
-For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, are 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  It's very clear which is more readable, and just as easy to type. Furthermore, with RStudio, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another and themseleves, and they're both based on more experience than you'll ever have, so that should give you some sense that it isn't exactly easy.
+For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, are 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  However, it's very clear which is more readable, and just as easy to type. Furthermore, with modern IDEs, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another and themseleves, and yet they're both based on more experience than you'll ever have, so that should give you some sense that it isn't exactly easy to figure out what works best.
 
 The point is, there is no authority here, but there are better approaches than your nospace, semi;coloned, naming-things-'data', everything-in-a-single-script attempts will come up with, I guarantee you.  In coding, just trying to do better will make your code better[^github].
 
@@ -355,6 +401,9 @@ A starting point in your programming is to comment everything.  The comments sho
 - Version control basics
 
 
+## Summary of Part II
+
+
 [^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
 
 [^phack]: I'm not even going into the fact that they probably finagled the data 20 different ways with umpteen models to get that p-value slightly less than .05, a practice called <span class="emph">p-hacking</span>.  People who do this engage in the worst type of anti-science.
@@ -377,3 +426,5 @@ A starting point in your programming is to comment everything.  The comments sho
 [^pyspss]: I was going to do a Python example too, but I couldn't find an example that wouldn't take 5 or more lines not counting the import lines, which would be several more.  
 
 [^repcrisis]: It is *current* if you're not aware of statistical history of the past 60+ years.  The only thing that's different from past calls to do better work is people's ability to complain on social media.  Applied researchers will do no more methodologically than what is expected, which seems largely defined by whatever they come across in the few journals they spend time with.  This is not necessarily right or wrong, just the way it is.
+
+[^atom]: I do like Atom for Julia and Python, but it's a general text editor, not a program specific IDE.
