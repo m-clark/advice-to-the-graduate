@@ -140,6 +140,12 @@ Statistical analysis will not provide you a hard answer or truth, and claiming s
 
 ### Under and Overfitting
 
+#### Overfitting
+
+
+
+#### Underfitting
+
 
 
 ### The Bayes Way
@@ -216,7 +222,7 @@ If you're model is not capturing tails or other aspects of the observed target, 
 
 ## Programming
 
-If you're doing serious scientific research, these days you're going to have to learn some programming[^notstartrek].  Don't want to? That's okay, just do something else besides scientific research.  Even if you're doing relatively simple anlaysis, a lot of data processing will have to take place beforehand to ensure that whatever results you obtain have integrity.  Unless you like to spend several weeks on something that could take a couple hours with even just basic programming skills, you'll need to spend some time in this area.
+If you're doing serious scientific research, these days you're going to have to learn some programming[^notstartrek].  Don't want to? That's okay, just do something else besides scientific research.  Even if you're doing relatively simple analysis, a lot of data processing will have to take place beforehand to ensure that whatever results you obtain have integrity.  Unless you like to spend several weeks on something that could take a couple hours with even just basic programming skills, you'll need to spend some time in this area to develop said skills.
 
 
 One of the first things to note with statistical programming is, that once things are set up in terms of the data, it is as easy to run a model in R or Python as it is menu-driven programs like SPSS. It even requires *less* syntax than you would find with, e.g. SPSS and SAS.  Compare the following two approaches, one a menu-driven approach in SPSS and another programming approach in R.
@@ -245,7 +251,9 @@ d = haven::read_spss('filelocation/file.spss')
 model = lm(DV ~ x1 + x2 + x3, data=d)
 ```
 
-There is no debate here, one is vastly more efficient and simply easier.  In fact, with RStudio's autocompletion, the odds are that the first line probably only required a few keystrokes. You may have to learn that you can use the <span class="pack">haven</span> package for importing SPSS files, or the <span class="func">lm</span> function to do regression, but that's very quickly picked up, and less than you would have had to learn regarding the SPSS menus, which have remained mostly unchanged and in their disorganized state for over 20 years.  The other nice thing is that you can redo the above in two steps with Ctrl+A (select all) and Ctrl+Enter (run)[^pyspss].
+
+
+There is no debate here, even givng SPSS the head start of having the data in its own format, one approach is vastly more efficient, and simply easier.  In fact, with RStudio's autocompletion, the odds are that the first line probably only required a few keystrokes. You may have to learn that you can use the <span class="pack">haven</span> package for importing SPSS files, or the <span class="func">lm</span> function to do regression, but that's very quickly picked up, and less than you would have had to learn regarding the SPSS menus, which have remained mostly unchanged and in their disorganized state for over 20 years.  The other nice thing is that you can redo the above in two steps with Ctrl+A (select all) and Ctrl+Enter (run)[^pyspss].
 
 
 
@@ -266,37 +274,37 @@ When it comes to statistical programming and computation, there are two primary 
 
 ##### Other Programming languages and related
 
-Lower level programming languages such as Java, Fortran, and C++ are not required knowledge for the vast majority of statistical and related application.  They are primarily used when you need to get the most speed you can, and you'll be able to find someone on campus to help you there, for example, in your research support group.
+Lower level programming languages such as Java, Fortran, and C++ are not required knowledge for the vast majority of applied statistical and related application.  They are primarily used when you need to get the most speed you can, and you'll be able to find someone on campus to help you there, for example, in your research support group.
 
-Matlab, Julia, and Mathematica are other tools or languages you might come across that are highly capable, but are either proprietary (i.e. require a renewable license, cost money, and don't share source code), or don't yet offer much of anything beyond what you can get with Python and R, and usually far less.
+Matlab, Julia, and Mathematica are other tools or languages you might come across that are highly capable, but are either proprietary (i.e. require a renewable license, cost money, and don't share source code), or don't yet offer much beyond what you can get with Python and R, and usually far less.  Of these I'd recommend Julia as its use appears to be on the rise and is freely available.
 
-You will also find languages and frameworks within languages such as Scala, Spark, Hadoop, Keras, Torch, TensorFlow, SQL, Lua and so forth. Most of these have specific purposes, e.g. databases, or don't need to come into play unless you have massive data (e.g. TensorFlow).  Don't bother unless needed.
+You will also find languages and frameworks within languages such as Scala, Spark, Hadoop, Keras, Torch, TensorFlow, SQL, Lua and so forth. Most of these have specific purposes, e.g. databases, or don't need to come into play unless you have massive data (e.g. TensorFlow).  Don't bother unless needed, but don't be surprised if you do.
 
-In addition, people are writing analytical functionality in things like javascript, Haskell and other things that weren't meant for it nor are all that good at it. I don't know why.
+In addition, people are writing analytical functionality in things like javascript, Ruby, Haskell and other things that weren't meant for it nor are all that good at it. I don't know why.
 
 
 ##### Statistical or similar 
 
-The primary statistical programs in academia are SAS, SPSS and Stata.  Unlike the others, Stata use is actually growing, and they also have a great community. The other two are dwindling fast in academia, especially, and thankfully, SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still use it.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
+The primary statistical programs in academia are SAS, SPSS and Stata.  Unlike the others, Stata use actually appears to be growing, and they also have a great community. The other two are dwindling fast in academia, especially, and thankfully, SPSS.  Aside from those, there are relics, money-grabs, and WTFs of all kinds. Seriously, there is some ridiculous software out there that some poor folks in some specific niche of a discipline got suckered into using a long time ago, and for whatever reason still use it.  If you're using non-open source software whose functionality is completely matched and bettered by others that are freely available, you'd better be able to justify it in some way, and I can't think of anything you could come up with.
 
 If you use something like SAS or Stata, you still can't use the menus for analysis.  Aside from being inefficient, it's not reproducible, and thus not a way to do science.
 
-Excel is not an option, ever.  I would say you could use it for data entry, but it's very problematic even then. Avoid at all costs.
+Excel is not an option for scientific work, ever.  I would say you could use it for data entry, but it's very problematic even then. Avoid at all costs.
 
 If you don't want to take my word for it here are some other things to peruse.
 
-[Link 1](http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages)
-[Link 2](https://www.tiobe.com/tiobe-index/)
-[Link 3](http://r4stats.com/articles/popularity/)
-[Link 4](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
+- [Link 1](http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages)
+- [Link 2](https://www.tiobe.com/tiobe-index/)
+- [Link 3](http://r4stats.com/articles/popularity/)
+- [Link 4](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
 
 ### IDEs
 
 After installing the basic components for R or Python, you can use them straight away. However, this would be silly, as they don't come with a way to use them that enables basic functionality or is easy.  If your R console comes with retina-bleeding red-colored font, or you're using the clown-colored IDLE from Python, just shut them down and walk slowly away.
 
-You want to use what's called an <span class="emph">integreted development environment</span>, or IDE.  For R, the far and away most popular one is RStudio. For Python, I would suggest Anaconda for scientific work.  There are others, but unless you have a lot more experience, I'd suggest sticking with those[^atom].
+You want to use what's called an <span class="emph">integreted development environment</span>, or IDE.  For R, the far and away most popular one is RStudio. For Python, I would suggest Anaconda/Spyder for scientific work.  There are others, but unless you have a lot more experience, I'd suggest sticking with those[^atom].
 
-What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, interactivity... this is only the beginning.  I've written this document and many other things *entirely* with RStudio.  A good IDE is essential.
+What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, autospacing, interactivity... this is only the beginning.  I've written this document and many other things *entirely* with RStudio.  A good IDE is essential.
 
 
 #### customize it
@@ -316,7 +324,7 @@ After you initially start to get the hang of your IDE, customize it. I'm always 
 <br>
 
 
-Coding style matters, but not in the way that many think.  
+Coding style matters, but perhaps not in the way that many think.  
 
 
 <span class="" style="size:125%; font-variant:small-caps">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code.<br> ~ Hadley Wickham</span>
@@ -327,7 +335,7 @@ However, assuming you want others to be able to use your code, you should feel b
 
 The first step is to start with a coding style.  For example, both [Google](https://google.github.io/styleguide/Rguide.xml) and [Hadley](http://adv-r.had.co.nz/Style.html) have provided an R coding style for others to follow, and there is [PEP8](https://www.python.org/dev/peps/pep-0008/) for Python.  If you only followed those, your code will be great relative to what you would have done.  But realize they are only suggestions, some are based on decades of coding practice, others are based on whim, and they don't tell you which.
 
-For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, are 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  However, it's very clear which is more readable, and just as easy to type. Furthermore, with modern IDEs, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another and themseleves, and yet they're both based on more experience than you'll ever have, so that should give you some sense that it isn't exactly easy to figure out what works best.
+For example, the Google says using underscores for variable names, e.g. `this_is_a_variable`, is 'bad', while capital first camel casing is 'good', e.g. `ThisIsAVariable`.  However, it's very clear which is more readable, and just as easy to type. Furthermore, with modern IDEs, once the object is created, you only have to type a couple letters to complete the rest.  Both Wickham's and Google's style guide consistently contradict one another and themseleves, and yet they're both based on more experience than you'll ever have, so that should give you some sense that it isn't exactly easy to figure out what works best.
 
 The point is, there is no authority here, but there are better approaches than your nospace, semi;coloned, naming-things-'data', everything-in-a-single-script attempts will come up with, I guarantee you.  In coding, just trying to do better will make your code better[^github].
 
