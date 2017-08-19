@@ -140,12 +140,118 @@ Statistical analysis will not provide you a hard answer or truth, and claiming s
 
 ### Under and Overfitting
 
+> With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.
+
+~ John Von Neumann 
+
+
 #### Overfitting
 
+A common problem in standard statistical modeling and machine learning includes <span class="emph">overfitting</span>. Overfitting may be described in a couple ways, but the key idea is one of model comparison.  For example, usually we want to compare simpler models vs. more complex models. While more complex models may better mimic what we see in nature, simpler models may perform nearly as well, allow for simpler interpretation, provide computational benefits etc.  Ideally we want a parsimonious model, one that is complex, but not overly so.  A more complex model can actually make no better or even worse predictions than a simpler model. In this case we are overfitting the data.
+
+Take for example the following plot of data.
+
+```{r overfitting0, echo=FALSE}
+adj_rsq = function(rsq, p, n) {rsq - (1-rsq)*(p/(n-p-1))}
+rmse = function(res){
+  sqrt(crossprod(res)/length(residuals))
+}
+mae = function(res){
+  mean(abs(res))
+}
+set.seed(1234)
+library(mgcv)
+d = gamSim(1, n=500, verbose=F)
+idx = sample(1:500, 50)
+d_50 = d[idx,]
+d_450 = d[-idx, c('x2','y')]
+
+d_50 %>% 
+  plot_ly(x=~x2, y=~y) %>% 
+  add_markers(color=I(palettes$orange$orange)) %>% 
+  theme_plotly()
+```
+
+A sufficiently complex model might obtain the following fit.
+
+```{r overfitting1, echo=FALSE}
+library(modelr)
+
+model_justright = gam(y ~ s(x2, bs='gp'), data=d_50)
+model_overfit = loess(y ~ x2, span=.15, data=d_50, surface='direct')
+model_underfit = lm(y ~ poly(x2, 2), data=d_50)
+
+d_50 %>% 
+  add_predictions(model_overfit, var='fit') %>% 
+  plot_ly(x=~x2, y=~y) %>% 
+  add_markers(color=I(palettes$orange$orange), showlegend=F) %>% 
+  add_lines(y=~fit, color=I(palettes$orange$complementary[2]), showlegend=F) %>%
+  theme_plotly()
+```
+
+Great fit right? The R^2^ for the model is `r round(cor(model_overfit$fitted, model_overfit$y)^2, 2)` with mean absolute error (MAE) of `r round(mae(model_overfit$residuals), 1)`. However, if we predict it on new data from the same underlying data generation process, the MAE is `r round(mae(predict(model_overfit, newdata=d_450)- d_450$y), 1)`, which is notably worse!
+
+```{r overfitting2, echo=FALSE}
+d_450 %>% 
+  add_predictions(model_overfit, var='overfit') %>% 
+  add_predictions(model_underfit, var='underfit') %>% 
+  plot_ly(x=~x2, y=~y) %>% 
+  add_markers(color=I(palettes$orange$orange), showlegend=F, opacity=.5) %>% 
+  add_lines(y=~overfit, color=I(palettes$orange$complementary[2]), showlegend=F) %>%
+  add_lines(y=~underfit, color=I(palettes$orange$tetradic[3]), showlegend=F) %>%
+  theme_plotly()
+
+```
+
+Conversely, a simple regression with a quadratic term has comparable fit, with even a lower MAE (`r round(mae(predict(model_underfit, newdata=d_450)- d_450$y), 1)`).  For reasons we're about to see, I would not recommend the standard regression fit either, but the point of overfitting is illustrated.
+
+
+Another way to think about overfitting is in terms of the number of parameters you must estimate with the model vs. the number of data points you have to estimate them.  Some machine learning approaches may have thousands of parameters for example, so you better have a lot of data for them to work well.  A comon problem I see is with structural equation modeling, where people routinely fit complex models with several dozen to more than a hundred parameters with very little data. Because they also don't compare models to simpler ones, or even typically discuss prediction *at all*, they don't even speak to the notion of overfitting.  Sometimes, when their model doesn't fit as well as they'd like, they'll even use purely data driven approaches to add even more parameters!
+
+For more on overfitting, see [this discussion](http://andrewgelman.com/2017/07/15/what-is-overfitting-exactly/) at Andrew Gelman's blog.
 
 
 #### Underfitting
 
+A converse problem is perhaps just as ubiquitous or even more prevalent in some fields, and that is not incorporating sufficiently complex models, or <span class="emph">underfitting</span>.  Take for example, the fact that standard linear regression, with no interactions or nonlinear effects, is still the most commonly employed model.  It seems suspect that a straight line would be 'good enough' to explain most relationships in nature.  In many cases the simplification may be worth it, but we are well beyond the time where that should be a so widely used as a default.
+
+Consider an generalized additive model (GAM) fit to the previous data. It initially won't fit as well as the overparameterized model. But it certainly does better than a straight line would.
+
+
+```{r underfitting0, echo=FALSE}
+d_50 %>% 
+  add_predictions(model_overfit, var='overfit') %>% 
+  add_predictions(lm(y~x2, d_50), var='underfit') %>% 
+  add_predictions(model_justright, var='justright') %>% 
+  plot_ly(x=~x2, y=~y) %>% 
+  add_markers(color=I(palettes$orange$orange), opacity=.5, showlegend=F) %>% 
+  add_lines(y=~overfit, color=I(palettes$orange$complementary[2]), showlegend=F) %>%
+  add_lines(y=~underfit, color=I(palettes$orange$tetradic[3]), showlegend=F) %>%
+  add_lines(y=~justright, color=I(palettes$orange$tetradic[4]), showlegend=F, line=list(width=3)) %>%
+  theme_plotly()
+```
+
+
+When it comes to new data, it performs the best (MAE = `r round(mae(predict(model_justright, newdata=d_450)- d_450$y), 1)`).
+
+```{r underfitting1, echo=FALSE}
+d_450 %>% 
+  add_predictions(model_overfit, var='overfit') %>% 
+  add_predictions(model_underfit, var='underfit') %>% 
+  add_predictions(model_justright, var='justright') %>% 
+  plot_ly(x=~x2, y=~y) %>% 
+  add_markers(color=I(palettes$orange$orange), opacity=.5, showlegend=F) %>% 
+  add_lines(y=~overfit, color=I(palettes$orange$complementary[2]), showlegend=F) %>%
+  add_lines(y=~underfit, color=I(palettes$orange$tetradic[3]), showlegend=F) %>%
+  add_lines(y=~justright, color=I(palettes$orange$tetradic[4]), showlegend=F, line=list(width=3)) %>%
+  theme_plotly()
+
+```
+
+My own opinion is that a generalized additive model should be the default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition interactions, spatial effects, random effects and myriad approaches are avaible to add to it.
+
+The issues around over- and underfitting can be somewhat subtle.  In general I think underfitting is more the problem in the stuff I see, and with penalized regression approaches, one can incorporate more complex models while still guarding against overfitting.  Interpretation becomes more difficult, but also more rich, and more fun in my opinion.
+ 
 
 
 ### The Bayes Way
@@ -246,7 +352,7 @@ Click ok
 
 - R
 
-```{r, eval=F}
+```{r lm_vs_spss, eval=F}
 d = haven::read_spss('filelocation/file.spss')
 model = lm(DV ~ x1 + x2 + x3, data=d)
 ```
