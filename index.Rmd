@@ -34,16 +34,17 @@ output:
         vk: no
         all: ['facebook', 'google', 'twitter', 'weibo', 'instapaper']
 bibliography: ../docs/refs.bib
+favicon: img/R.ico
 ---
 
 
 ```{r setup, include=FALSE, eval=TRUE}
-knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eval=T, cache.rebuild=F, cache=T,
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eval=T, cache.rebuild=T, cache=T,
                       R.options=list(width=120), fig.width=8, fig.align = 'center')
 ```
 
 ```{r load_common_packages, echo=FALSE, cache=FALSE, eval=TRUE}
-library(tidyverse); library(htmltools); library(tufte); library(lazerhawk); library(lubridate)
+library(plotly); library(tidyverse); library(htmltools); library(tufte); library(lazerhawk); library(lubridate)
 ```
 
 #

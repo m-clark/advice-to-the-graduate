@@ -248,13 +248,19 @@ d_450 %>%
 
 ```
 
-My own opinion is that a generalized additive model should be the default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition interactions, spatial effects, random effects and myriad approaches are avaible to add to it.
+My own opinion is that a generalized additive model should be the default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition interactions, spatial effects, random effects and myriad approaches are avaible to add to it.  For more on these models, see my intros [here](https://m-clark.github.io/docs/GAM.html) and [here](https://m-clark.github.io/workshops/stars/).
 
-The issues around over- and underfitting can be somewhat subtle.  In general I think underfitting is more the problem in the stuff I see, and with penalized regression approaches, one can incorporate more complex models while still guarding against overfitting.  Interpretation becomes more difficult, but also more rich, and more fun in my opinion.
+The issues around over- and underfitting can be somewhat subtle, but they are pervasive.  In general I think underfitting is more the problem in the stuff I see, and with penalized regression approaches (see the next sections), one can incorporate more complex models while still guarding against overfitting.  Interpretation of more complex models may become more difficult, but also more rich, and more fun in my opinion.
  
 
-
 ### The Bayes Way
+
+Bayesian analysis is commonplace, and requires no more justification than standard techniques. If you don't see it regularly applied in your field, it is your discipline that hasn't been keeping up with things. *You*, on the other hand, should feel comfortable using it in lieu of any other analysis you would, starting with regression.  A Bayesian regression requires no more effort to explain than a standard regression, *because it is just a standard regression*, albeit estimated differently.  
+
+The benefits of the Bayesian approach are many.  To begin, you get probabilities and intervals that make sense, and don't require some notion of 'infinitely repeated experiments' and backward logic.  Any statistic you can calculate from a model will automatically have an interval estimate. For example, in a standard regression you'd not only get an 'adjusted' R^2^ by default[^bayesianr2], you'd also have an interval estimate for it.  The Bayesian approach works well in cases where you have small samples, having built in <span class="emph">regularization</span> to guard against overfitting, allowing you to explore more fully your data even when you don't have much of it.  For more complicated models, the p-values and intervals are no more difficult to acquire than usual, unlike the traditional setting where it seems that for many models beyond the GLM setting approximations are required (e.g. mixed models, generalized additive models).
+
+In general the Bayesian approach will give you more flexibility and better assessment of uncertainty, and can definitely be your default modeling approach. For an introduction to Bayesian analysis, see my introduction [here](https://m-clark.github.io/docs/bayesian_book).
+
 
 
 ### Machine Learning Basics
@@ -542,3 +548,5 @@ A starting point in your programming is to comment everything.  The comments sho
 [^repcrisis]: It is *current* if you're not aware of statistical history of the past 60+ years.  The only thing that's different from past calls to do better work is people's ability to complain on social media.  Applied researchers will do no more methodologically than what is expected, which seems largely defined by whatever they come across in the few journals they spend time with.  This is not necessarily right or wrong, just the way it is.
 
 [^atom]: I do like Atom for Julia and Python, but it's a general text editor, not a program specific IDE.
+
+[^bayesianr2]:  See Gelman [here](http://www.stat.columbia.edu/~gelman/research/published/rsquared.pdf) and [here](http://www.stat.columbia.edu/~gelman/research/unpublished/bayes_R2.pdf).
