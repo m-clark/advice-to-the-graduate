@@ -30,15 +30,10 @@ You'll always be able to go further in programming, if for no other reason than 
 
 ## Visualization
 
-If you are still using bar charts as a primary visual tool, and selecting colors based on defaults or what seems pretty to you, you should spend some effort learning a few more visual tools and approaches (lots actually).  
+For those that want to go down the rabbit hole regarding visualization, this document can perhaps serve as a starting point. The text that is of a contrast ratio relative to the background that would satisfy some of the more strict [web accessibility standards](http://www.webaxe.org/color-contrast-tools/).  This includes the color coded text, though those are not quite as stringent. I use my own css files to implement these through the document.  In addition, the colors in the plots are evenly spaced and would be distinguishable for those with even rare forms of color-blindness.  You'll also notice there are no gridlines, which are completely unnecessary when you can obtain the specific values by hovering over the plot[^gridlines].
 
-To begin, if you can express what a plot conveys in a single sentence, it probably isn't worth doing the plot. For example, a plot does little for anyone if all you want to show is that group means differ. In fact, I'd say the primary usage such plots is to exacerbate small differences.  You don't need a plot to say, for example, that group B is higher than the rest.
+Beyond adding complexity and appropriate coloration, you also want to think interactively.  Interactivity is key in this day and age, and should be a fundamental part of your visualization arsenal. It probably won't be long before it's an expected part of scientific visualization, assuming the journals get out of the way.  The nice thing is, you can always start with an interactive plot, and take a snapshot for the publication, keeping the interactive plot as supplementary material.
 
-A good visualization will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  Interactivity is key.
-
-I have been told multiple times that the reason for not doing a particular style of plot is because the audience of Ph.D.s, M.D.s and graduate students won't be able to figure it out.  This is an utterly ridiculous notion with no proof whatsoever.  Unless you are thinking interactively first, you probably aren't even producing a visualization that is as complex (and commonplace) as those in news outlets like the New York Times.
-
-color, transparency
 
 ## Other
 
@@ -59,3 +54,5 @@ color, transparency
   - Packages
   - Notebooks
   
+  
+[^gridlines]: Gridlines are unnecessary anyway in my opinion. First, can you really not tell roughly where the values are without them?  Second, they often convey a level of precision that is not inherent in the data.  Third, and most important, they're ugly.  This goes for their use in tables as well.

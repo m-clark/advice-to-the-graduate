@@ -175,8 +175,6 @@ First, assume others' brains are not so different from yours, then take advantag
 
 The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the black and white, print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
-In addition, when displaying information for others to consume, think multivariately.  2d plots such as simple bar and scatter plots are generally a waste of time, and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have 5 pieces of information represented in the same graph.
-
 Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Utterly ridiculous.  Maybe you will need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.  If they were that dumb, which I refuse to believe, why exactly would you care if they even read your article? Are you anxious to be cited by nincompoops?
 
 Some other things to note:

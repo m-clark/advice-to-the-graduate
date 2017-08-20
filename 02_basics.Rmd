@@ -121,9 +121,9 @@ With R or Python, you can literally write your own regression function via least
 
 ### Problems with NHST
 
-I'm sick and tired of talking about the issues with <span class="emph">null hypothesis testing</span>, and I think the statistician types in general are.  Its problems have been noted since it was first proposed, and people in both methodological and applied disciplines have been raising the issues for over almost a century at this point.  It's annoying for me to even think about it, so if you want details, I won't be rehashing them here, but you won't have to look far on the web to find them.
+I'm sick and tired of talking about the issues with <span class="emph">null hypothesis testing</span>, and I think the statistician types in general are.  Its problems have been noted since it was first proposed, and people in both methodological and applied disciplines have been raising the issues for almost a century at this point.  It's annoying for me to even think about it, so if you want details, I won't be rehashing them here, but you won't have to look far on the web to find them.
 
-Assuming you're even using the approach correctly (almost never the case in applied research), just about every other statistic that falls out of an analysis is more important than the p-value. Yet I have seen people torture data, change their theories, ignore important findings, etc., because of it.  Researchers still doing this are not doing good work, because almost by definition it is work that likely won't stand the test of time, probably even the second time.  They are wasting their own and others time in general.
+Assuming you're even using the approach correctly (almost never the case in applied research), just about every other statistic that falls out of an analysis is more important than the p-value. Yet I have seen people torture data, change their theories, ignore important findings, etc., because of it.  Researchers still doing this are not doing good analysis, because almost by definition it is work that likely won't stand the test of time, probably even the second time.  They are wasting their own and others time in general.
 
 
 *Some Difficulties of Interpretation Encountered in the Application of the Chi-Square Test*. J Berkson **1938**
@@ -136,7 +136,7 @@ Assuming you're even using the approach correctly (almost never the case in appl
 
 That first one is an article title, but otherwise those are some very old quotes, indicating just how long this has been a problem.  NHST as a *scientific* paradigm, in which evidence is weighed to assess a theory's real-world effectiveness, for a variety of reasons, doesn't work in practice.  It is difficult to say whether it ever did. Many disciplines are possibly decades behind in their science both because of missed opportunities, and because of trudging through weak results that didn't hold up, but were adhered to merely because of statistical significance.
 
-Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  The goal in statistical approaches to science is not to say whether a predictor is important or not, but rather whether the data is consistent with a given theory in general, and whether viable predictions can be made with a given theory. Go in with competing models, e.g. simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do you'll regularly have something interesting to talk about regardless of any p-value.
+Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  The goal in statistical approaches to science is not to say whether a predictor is important or not, but rather whether the data is consistent with a given theory *in general*, and whether viable predictions can be made with a given theory. Go in with competing models, e.g. simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do you'll regularly have something interesting to talk about regardless of any p-value.
 
 ### Under and Overfitting
 
@@ -152,6 +152,7 @@ A common problem in standard statistical modeling and machine learning includes 
 Take for example the following plot of data.
 
 ```{r overfitting0, echo=FALSE}
+virpal = viridis::plasma(4)
 adj_rsq = function(rsq, p, n) {rsq - (1-rsq)*(p/(n-p-1))}
 rmse = function(res){
   sqrt(crossprod(res)/length(residuals))
@@ -257,7 +258,7 @@ The issues around over- and underfitting can be somewhat subtle, but they are pe
 
 Bayesian analysis is commonplace, and requires no more justification than standard techniques. If you don't see it regularly applied in your field, it is your discipline that hasn't been keeping up with things. *You*, on the other hand, should feel comfortable using it in lieu of any other analysis you would, starting with regression.  A Bayesian regression requires no more effort to explain than a standard regression, *because it is just a standard regression*, albeit estimated differently.  
 
-The benefits of the Bayesian approach are many.  To begin, you get probabilities and intervals that make sense, and don't require some notion of 'infinitely repeated experiments' and backward logic.  Any statistic you can calculate from a model will automatically have an interval estimate. For example, in a standard regression you'd not only get an 'adjusted' R^2^ by default[^bayesianr2], you'd also have an interval estimate for it.  The Bayesian approach works well in cases where you have small samples, having built in <span class="emph">regularization</span> to guard against overfitting, allowing you to explore more fully your data even when you don't have much of it.  For more complicated models, the p-values and intervals are no more difficult to acquire than usual, unlike the traditional setting where it seems that for many models beyond the GLM setting approximations are required (e.g. mixed models, generalized additive models).
+The benefits of the Bayesian approach are many.  To begin, you get probabilities and intervals that make sense, and don't require some notion of 'infinitely repeated experiments' and backward logic.  Any statistic you can calculate from a model will automatically have an interval estimate. For example, in a standard regression you'd not only get an 'adjusted' R^2^ by default[^bayesianr2], you'd also have an interval estimate for it.  The Bayesian approach works well in cases where you have small samples, possessing built-in <span class="emph">regularization</span> to guard against overfitting, allowing you to explore more fully your data even when you don't have much of it.  For more complicated models, the p-values and intervals are no more difficult to acquire than usual, unlike the traditional setting where it seems that for many models beyond the GLM setting approximations are required (e.g. mixed models, generalized additive models).
 
 In general the Bayesian approach will give you more flexibility and better assessment of uncertainty, and can definitely be your default modeling approach. For an introduction to Bayesian analysis, see my introduction [here](https://m-clark.github.io/docs/bayesian_book).
 
@@ -271,6 +272,22 @@ Data can be big, complex, or both, and there are techniques to handle it if so. 
 
 
 ### Visualization
+
+There are two important things to know when you begin learning about visualization.  The first is, your intuition is wrong.  You don't know how to visualize well because most visualization is done poorly if not terribly, so going by what you see will simply perpetuate bad approaches.  For example, no one should be doing bar plots with error bars on the top of them[^barplots]. On top of this, I've never even heard of an applied stats course where actual time was spent teaching the basics of visualization.  I don't mean producing plots, but actually thinking about the means of conveying scientific information visually.
+
+Second, depending on the tool used, default settings may be just as bad as what you would choose.  For example in terms of color, whatever you'd pick on your own is not going to do well, but unless the package developer put actual effort into it, you might end up with red-green or other problematic combos[^jetcolor]. Lines may be too thin, gridlines may overwhelm the actual plot content, and so forth. With color, issues of emphasis, colorblindness, etc. come in to play, and unless you put some thought into it, your visualization will have problems.
+
+A good visualization will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  When thinking of a visualization, the goal is to take a complex story and make it easier to understand.  Showing the difference in group means is not complex, so a visualization is just going to create a bunch of whitespace to tell you what a single sentence could. When displaying information for others to consume, think multivariately.  2d plots such as simple bar and scatter plots are generally a waste of time, and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have five pieces of information represented in the same graph.
+
+It has gotten easier over time to pick some decent colors.  For example, <span class="pack">ggplot2</span> in R will default to evenly spaced colors, and the <span class="pack">viridis</span> module in Python and R package will provide evenly spaced, colorblind-, and print-friendly palettes.  [Colorbrewer.org](https://colorbrewer2.org/) and the <span class="pack">RColorBrewer</span> package is another useful tool.
+
+Also note that for scientific communication, [infovis](https://en.wikipedia.org/wiki/Information_visualization) is not an option.  This isn't advertising, and what may look cool may not be very useful for scientific presentation.  Take for example, word clouds. People seem to love them, but they are almost useless.
+
+As mentioned in the first part, your audience will be fine with something more than a bar plot. I have been told multiple times that the reason for not doing a particular style of plot is because the audience of Ph.D.s, M.D.s and graduate students won't be able to figure it out.  This is an utterly ridiculous notion with no proof whatsoever.  Unless you are thinking interactively first, you probably aren't even producing a visualization that is as complex (and commonplace) as those commonly seen in news outlets like the New York Times.  If someone is actually interested in your work, they will read the caption or associated text and have the cognitive capability to sort out what you're showing.
+
+
+
+
 
 ### Variable transformations
 
@@ -312,21 +329,9 @@ shapiro.test(residuals(lm(y~x))) %>% pander::pander()
 
 I've seen this assumption so confused that some think it applies to the predictors as well!  Some have also tried to apply it to ordinal variables. A moment's reflection will prove this will not meet with success.  Some also apply it to data, such as counts, where we actually expect it to be skewed.  And I don't know anyone that knows how to interpret a variable that has undergone an square root arcsine transformation.
 
-If you're model is not capturing tails or other aspects of the observed target, it's likely because the normal distribution is not a viable candidate for the underlying data generating process, or the model simply isn't capturing a key aspect of the data (e.g. inherent clustering).  It makes more sense to change your assumption about the distribution (e.g. use a t or beta distribution if appropriate), or fixing your model (e.g. using a mixed model if appropriate), than trying to torture your data in a misguided attempt to speak to one of the less important assumptions in the standard linear model.  You'll also find that the heteroscedasticity problems magically go away as well. 
+If your model is not capturing tails or other aspects of the observed target, it's likely because the normal distribution is not a viable candidate for the underlying data generating process, or the model simply isn't capturing a key aspect of the data (e.g. inherent clustering).  It makes more sense to change your assumption about the distribution (e.g. use a t or beta distribution if appropriate), or fixing your model (e.g. using a mixed model if appropriate), than trying to torture your data in a misguided attempt to speak to one of the less important assumptions in the standard linear model.  You'll also find that the heteroscedasticity problems magically go away as well. 
 
-### Learn more
-
-- regression and classification (check)
-- explanation vs. prediction (check)
-- unsupervised methods (check)
-- loss function (check)
-- maximum likelihood (check)
-- problems with NHST (check)
-- overfitting v.s - generalization
-- bayesian basics
-- ML basics (check)
-- visualization heavy
-- variable transformation (check)
+### Analytical summary
 
 - what is needed further for your specific projects
     - learn more about whatever technique your using
@@ -424,7 +429,7 @@ What these do, practically speaking, is make your coding efforts a lot more easy
 After you initially start to get the hang of your IDE, customize it. I'm always struck by the fact that people don't change the basic settings in their software, which are often chosen by people who should not have any say in design whatsoever[^baddesign].
 
 
-### coding <span class="font-variant:small-caps; font-family:'Risque'">style</span>
+### coding <span class="font-variant:small-caps; font-family:'Dancing Script'">style</span>
 
 
 
@@ -452,29 +457,85 @@ For example, the Google says using underscores for variable names, e.g. `this_is
 The point is, there is no authority here, but there are better approaches than your nospace, semi;coloned, naming-things-'data', everything-in-a-single-script attempts will come up with, I guarantee you.  In coding, just trying to do better will make your code better[^github].
 
 
+### Errors as calls for help
 
-- errors as calls for help
+When you first start programming, you'll get a lot of errors.  Rather than getting frustrated, you should see them as calls for help from the programming environment you're working in.  For example, take the following.
 
-- I/O
+```{r errors, error=TRUE}
+sum(z)
+```
 
-- basic object types
-    - boolean
-    - numeric of a kind
-    - factor/categorical
+This is simply R telling you that it can't find something named <span class="objclass">x</span>. It may be that you called it `Z`, or haven't yet run the line that starts `z = ` to create it.  But it's no reason to be frustrated.
 
-- data structures
-    - vectors
-    - matrices/arrays
-    - data frames
+When running models, errors typically signify that a variable or even the whole data set is not in the correct format. Check the documentation.  In other cases, you're probably spelling it wrong.
+
+Warnings are not errors, but you should investigate why they are occurring, rather than ignoring them.  A warning telling you that a package was built with a more recent version of R is no big deal.  A warning telling you that your model did not converge is serious. As you start out you may not know the difference, so treat them as serious until you understand them.
+
+The more programming you do, the fewer errors you'll see, but when they do occur, you'll also more likely know what they mean and can more easily deal with them.
+
+### I/O
+
+One of the first things you want to learn in scientific programming is how to get common data formats, such as text files or statistical program formats, in and out of your programming environment.  As long as it is difficult for you to even get started, the less likely you are going to want to do any programming in the first place.  In the past it might have taken a couple steps to go from one format to another, but this is no longer the case[^stattransfer].  And every programming language or statistical package can easily read in common formats, but you'll have to get used to how to do it initially.  Even RStudio provides a point-and-click approach to importing data, but you should be doing things such that coding it will be more efficient.  Note that very large data sets may require special needs, but you'll just cross that bridge when you get to it.
+
+### Basic object types
+
+There are object types that are common to practically all programming languages, and you should be familiar with them.
+
+- <span class="objclass">boolean</span>: a binary 0-1, or TRUE/FALSE. These are especially important to be familiar with for [indexing][indexing] purposes.
+- <span class="objclass">numeric</span> of a kind: specifically 'floats' or 'integers' but for practical reasons can be anything that isn't a string variable (and may include boolean)
+- <span class="objclass">string</span>: text based represenation. For example, a variable may be a boolean called `Male`, which would indicate that values of 1 or TRUE would indicate an observation is a male, or the variable might be a string called `Sex` with values of 'Male' or 'Female'.
+
+Beyond that, statistically oriented programming environments typically distinguish categorical variables, called <span class="objclass">factors</span>. You can think of them as labeled integers.  For example, we might have a variable called `Sex` that has values of 1 and 2 but with labels 'Male' and 'Female'.  The distinction between factors and strings is less an issue these days, but depending on the package you're using or analysis being conducted, you may need one or the other.
+
+
+### Data structures
+
+Beyond basic objects/variables, we also have more complicated structures, which again you'll want to be aware of, because you'll use them often.
+
+- <span class="objclass">vectors</span>: Vectors contain multiple elements of the same type. 
+- <span class="objclass">matrices</span>/arrays: Matrices in R can be thought of as two-dimensional data structures, and arrays will allow beyond 2-d. In Python, these would be numpy arrays.
+- <span class="objclass">data frames</span>: Data frames are, at least in R, the fundamental modeling object that has all the variables you want to analyze.  They are distinguished from matrices in that they are able to possess variables of different types, e.g. factors and integers.  The corresponding Python object is a pandas <span class="objclass">DataFrame</span>.
+- <span class="objclass">lists</span>: lists are objects with no restrictions on what the elements may be[^rdataframe]. The first element could be the word 'cat', the second could be a list of strings pertaining to animal names, the third could be a thousand numeric matrices.  They are extremely common in R, as practically every model function returns a list (e.g. including elements of coefficients, fitted values, etc.).  Lists are found in Python too, and aditionally one can think of Python <span class="objclass">dictionaries</span> as named lists (though there is a little more going on than that). Note that R doesn't care whether you name the elements of the list or not, it's still just a list.
   
-- indexing
+### Indexing
 
-- iterative programming
+Once you have a data structure you'll need to learn how access parts of it.  For example, you may want to inspect the first 10 rows, or the fifth column, or all the variables that start with 'X'.  This is what a base R approach might look like.
+
+```{r demoIndexing, eval=FALSE}
+mydata[c(1:2, 6, 8), 5:10]      # works for matrices or data frames
+mydata[mydate$Sex == 'Male', ]  # boolean indexing
+mydata[,'variable_name']        # works for matrices or data frames
+mydata$variable_name            # works for lists/data frames
+```
+
+However, base R indexing for data frames is largely a good way to write ugly and/or bad code.  One of the first and lasting rules in programming for scientific work is:
+
+> Avoid magic numbers.
+
+Indexing by numbers goes against reproducibility, because row and columns can change quite dramatically both in data collection and data object creation. The `Age` column might be the fifth one now, but it may not be later. If you want the `Age` column, reference it by name.
+
+The <span class="pack">tidyverse</span> approach in R enhances reproducibility by making it easier to use names and by using functions that make it clear what's going on.  Take the following for example.
+
+```{r tidyverse, eval=FALSE}
+mydata %>% 
+  select(Age, contains('blue'), starts_with('A'))
+```
+
+You might not have ever worked with the <span class="pack">dplyr</span> package, but I'll be you know what that's doing.  Furthermore, if it's your code, you'll know what it means six months from now.
+
+The gist is, you need to get familiar with how to slice and dice your data structures, and the quicker you will be able to process the data and get to the interesting aspects of it.
+
+### Aggregation
+
+
+
+
+### Iterative programming
     - loops/while
 
-- aggregation
   
 
+### Programming summary
 
 ## Reproducibility revisited
 
@@ -550,3 +611,11 @@ A starting point in your programming is to comment everything.  The comments sho
 [^atom]: I do like Atom for Julia and Python, but it's a general text editor, not a program specific IDE.
 
 [^bayesianr2]:  See Gelman [here](http://www.stat.columbia.edu/~gelman/research/published/rsquared.pdf) and [here](http://www.stat.columbia.edu/~gelman/research/unpublished/bayes_R2.pdf).
+
+[^barplots]: Or barplots at all in my opinion.
+
+[^jetcolor]: Matlab ignored for years calls to get rid of its default 'jet' colorscheme.  They finally did, and laughably have tried to make their new choice, *which is still problematic* proprietary.
+
+[^stattransfer]: Some of you may still come across a tool like StatTransfer to go from say, SPSS to Stata. This completely unnecessary.
+
+[^rdataframe]: Technically, R data.frames are lists.
