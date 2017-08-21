@@ -465,7 +465,7 @@ When you first start programming, you'll get a lot of errors.  Rather than getti
 sum(z)
 ```
 
-This is simply R telling you that it can't find something named <span class="objclass">x</span>. It may be that you called it `Z`, or haven't yet run the line that starts `z = ` to create it.  But it's no reason to be frustrated.
+This is simply R telling you that it can't find something named <span class="objclass">z</span>. It may be that you called it `Z`, or haven't yet run the line in your code that starts with `z = ` to create it.  But it's no reason to be frustrated.
 
 When running models, errors typically signify that a variable or even the whole data set is not in the correct format. Check the documentation.  In other cases, you're probably spelling it wrong.
 
@@ -506,11 +506,12 @@ mydata[c(1:2, 6, 8), 5:10]      # works for matrices or data frames
 mydata[mydate$Sex == 'Male', ]  # boolean indexing
 mydata[,'variable_name']        # works for matrices or data frames
 mydata$variable_name            # works for lists/data frames
+mydata[['variable_name']]       # works for lists/data frames
 ```
 
 However, base R indexing for data frames is largely a good way to write ugly and/or bad code.  One of the first and lasting rules in programming for scientific work is:
 
-> Avoid magic numbers.
+> <span class="" style="font-size:500%">Avoid magic numbers.</span>
 
 Indexing by numbers goes against reproducibility, because row and columns can change quite dramatically both in data collection and data object creation. The `Age` column might be the fifth one now, but it may not be later. If you want the `Age` column, reference it by name.
 
@@ -525,65 +526,130 @@ You might not have ever worked with the <span class="pack">dplyr</span> package,
 
 The gist is, you need to get familiar with how to slice and dice your data structures, and the quicker you will be able to process the data and get to the interesting aspects of it.
 
+
 ### Aggregation
 
+One of the most common data processing procedures beyond slicing rows or columns is the 'group-by' operation.  As such, you'll need to get used to using it in your environment as early as possible, such that it becomes second nature. When it comes to R, do *not* use base R approaches like <span class="func">tapply</span> or <span class="func">aggregate</span>. They are slow, memory-intensive, or just plain annoying in implementation.  Again, the <span class="pack">tidyverse</span> will help here.
+
+```{r group_by, eval=FALSE}
+mydata %>% 
+  group_by(Sex) %>% 
+  summarize(Age = mean(Age))
+```
+
+The above would return the mean age for both Males and Females. Very straightforward.  Pandas in Python will have similar functionality[^wes].
 
 
 
 ### Iterative programming
-    - loops/while
 
-  
+One of the most common activities in programming is doing a specific operation on all rows or columns, or some subset of them.  It's so common, that you'll need to learn it early on, and use it often.  The basic approach for most programming languages, called a <span class="emph">for loop</span> is as follows:
+
+```{r loop_example, eval=FALSE}
+column_means = list()
+for (i in 1:10) {
+  column_means[[i]] = mean(mydata[,i])
+}
+```
+
+The above would calculate the mean of the first 10 columns of some matrix/dataframe x. When you look at the column_means object after running the loop, it will have 10 elements, each being the mean of the associated column in x.
+
+It is *extremely important* to know how to use loops very early on in your programming, or you will be wasting enormous amounts of time, because it *always* comes up.  Once you get the basic idea down, know that it will be conceptually identical and often even look the same in almost every programming language.  Here is the same loop in Python, using the <span class="pack">numpy</span> module (as `np`).
+
+```{python pyloop, eval=FALSE}
+column_means = []
+for i in range(0, 10):
+  column_means.append(np.mean(x[:,i]))
+```
+
+
+However, for data science, there is typically a more efficient approach, in terms of code, computational time, or both.  All of the following would be a better way to do the same operation in R.
+
+```{r noloops, eval=FALSE}
+colMeans(x[,1:10])
+apply(x[,1:10], 2, mean)
+sapply(x[,1:10], mean)
+x %>% summarise_at(1:10, mean)
+```
+
+
+Similarly in Python:
+
+```{python colmeans, eval=FALSE}
+np.mean(x, axis=0)
+```
+
+Again, you need the concept first, so start by doing explicit loops, then see how to use the tools available so that you almost never have to write an explicit loop.
 
 ### Programming summary
+
+Programming is a fundamental part of modern science, and I personally would go so far to say that if you aren't doing any programming, you aren't doing science. It formalizes the analytical approach, makes all your data processing efforts more efficient, and tends the entire endeavor toward a more reproducible setting.  The better you become at it, the more time you can spend on the other things.
 
 ## Reproducibility revisited
 
 ### Data 
 
-(SHOULD THIS BE IN NEXT SECTION?)
-
 Before we get to analysis, one needs to understand that 
 
 > *everything begins and ends with the data*.  
 
-If you don't collect the data carefully, it doesn't matter what else you do, despite what the folks in the Engineering department tell you. You've completely wasted your own time and resources, along with that of everyone else who is affiliated with the project.  If you're not willing to get your hands dirty with the data and make sure it's collected properly, you simply shouldn't be doing research.
+If you don't collect the data carefully, it doesn't matter what else you do[^hardscience]. You've completely wasted your own time and resources, along with that of everyone else who is affiliated with the project.  At this stage in your career, if you're not willing to get your hands dirty with the data and make sure it's collected and processed properly, you simply shouldn't be doing research[^admin].
 
-Naming, labels, missing data etc.
+Collecting and processing the data is not as fun as analyzing it, but analyzing it isn't any fun at all if you can't trust the data.  Furthermore, the more time you spend with the data, the analysis stage will likely be very brief, because there will be less going back and forth from analysis to data checks.
+
+
 
 ### Analysis
 
-For yourself, you should be able to load model-ready data, run the analysis on it, and reproduce the same result you intend to publish.  In addition, you might apply the idea of <span class="emph">convergent validity</span> to the process. Similar analytical techniques should come to the same conclusions.  And finally, give someone an outline of the necessary steps to take, and see if they can reproduce the same results.
+The first step in reproducibility is to be able to duplicate the results of an analysis.  We can refer to this as <span class="emph">reproducible data analysis</span>.  The key idea is whether you could start with the raw data and produce the same results as you publish.  In addition, you might apply the idea of <span class="emph">convergent validity</span> to the process. Similar analytical techniques should come to the same conclusions.  
+
+However, this is a very low bar for reproducibility in general.  A real first step would involve setting things up so that someone *else* could reproduce the results you came up with.  The best way to achieve this is to engage in <span class="emph">literate statistical programming</span>, probably best exemplified with using Rmarkdown for your documents.  Using LSP, the document, data, and code are combined into one entity.  
+
+As an example, one can see [this article](https://m-clark.github.io/docs/George_2017_Readiness_preprint.pdf).  The actual files that produced it are a combination of text, R code, HTML, $\LaTeX$, and more.  Not a single number you see in it was typed- there is R code embedded throughout the text producing those values.  The figures[^notme] are produced with the document, not cut and paste into it.  Same with the statistical results.  To reproduce the results one merely has to compile the document with a single click.  In fact, it's *impossible* to get different results.
+
+There is actually no need to write 'scripts' anymore.  One can, with Rmarkdown, Jupyter Notebook/Lab, and similar tools, take a reproducible manuscript as the default scientific product.
+
+
 
 ### Programming
 
-A starting point in your programming is to comment everything.  The comments should not be about what the code is doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command.  Instead, comment about *why* you're doing it.
+> There are only two hard things in Computer Science: cache invalidation, naming things, and off-by-one errors.
 
-- Naming things
-    - files
-    - variables
-    - data
-    - objects
+
+#### Comments
+
+A starting point for reproducibility in your programming is to comment everything.  The comments should not be about what the code is doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command does.  Instead, comment about *why* you're doing it, or what the goal of the code execution is.  However comments aren't exactly necessary if your code is embedded in the research product, i.e. the document, itself, though they still might prove useful.
+
+
+#### Naming things
+
+Another thing to think about is naming things. If you are naming anything of importance as 'data', you deserve whatever happens.  Even more if you are naming things 'data3' or 'finaldata7'.  However, most of us aren't taught this, and so are guilty of it at some point or another.  But now you know. So don't.
+
+This goes for files, objects, variables, *everything*. Name things as though you won't need it for a year, and yet a year later you'd know what it was.  With modern IDEs autocomplete means you can use long names and not even have to type but a couple letters. Take advantage of this.
+
+
+#### Projects
+
+This was mentioned in the previous [getting organized section][get organized]. Another thing IDEs and even some statistical software do is allow for the creation of <span class="emph">projects</span>.  These become self-contained folders where all your scripts, documents, visuals, and so forth reside.  Basically, if you are hunting for files or have to set your working directory, you're not doing things in a reproducible fashion.  Creating projects is so simple, there is no reason not to.
     
-    "There are only two hard things in Computer Science: cache invalidation, naming things, and off-by-one errors."
-
-## Other
 
 
+### Documents
+   
+Writing up scientific results in something like Microsoft Word is a deplorable practice.
+   
+- Latex or markdown
 
-### Other
+
+### Version control basics
 
 
-
-  
-- Documents
-    - Latex or markdown
-
-- Version control basics
 
 
 ## Summary of Part II
 
+
+Naming, labels, missing data etc.
 
 [^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
 
@@ -619,3 +685,11 @@ A starting point in your programming is to comment everything.  The comments sho
 [^stattransfer]: Some of you may still come across a tool like StatTransfer to go from say, SPSS to Stata. This completely unnecessary.
 
 [^rdataframe]: Technically, R data.frames are lists.
+
+[^wes]: In case it wasn't obvious, the Pandas and tidyverse authors are in cahoots with one another, though the Pandas author is no longer actively involved in its development as far as code is concerned.  It should be fairly easy enough to move from one to the other.
+
+[^hardscience]: Despite what some in the 'hard' sciences seem to think, merely collecting the data and having a good theory is not enough for strong science.
+
+[^admin]: One can distinguish researchers from (research) administrators.  I have respect for the latter, as they are often the ones who coordinate the teams, acquire the funds, and drive the research in general, though in many situations, I would hesitate to say they are actually *doing* the research.  For graduate students and early career folks for whom this document is intended however, this distinction doesn't really apply.  You should be neck deep in your data.
+
+[^notme]: Sadly I largely lost most of the arguments on the visuals.
