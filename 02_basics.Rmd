@@ -630,13 +630,13 @@ This goes for files, objects, variables, *everything*. Name things as though you
 
 #### Projects
 
-This was mentioned in the previous [getting organized section][get organized]. Another thing IDEs and even some statistical software do is allow for the creation of <span class="emph">projects</span>.  These become self-contained folders where all your scripts, documents, visuals, and so forth reside.  Basically, if you are hunting for files or have to set your working directory, you're not doing things in a reproducible fashion.  Creating projects is so simple, there is no reason not to.
+This was mentioned in the previous [getting organized section][get organized]. IDEs and even some statistical software allow for the creation of <span class="emph">projects</span>.  These become self-contained folders where all your scripts, documents, visuals, and so forth reside.  Basically, if you are hunting for files or have to set your working directory, you're not doing things in an efficient or reproducible fashion.  Creating projects is so simple, there is no reason not to.  For any distinct work you're doing, create an organized and self-contained folder that only pertains to the work done for that project.
     
 
 
 ### Documents
    
-Writing up scientific results in something like Microsoft Word is a deplorable practice.
+Writing up scientific results in something like Microsoft Word is a deplorable practice.  Copying and pasting output into a document is practically the definition of irreproducibility, opens the door for numerous errors, and, on the practical side, is exceedingly tedious.  If any change has to be made to the data, e.g. an error is discovered, analyses re-run etc., one will potentially have to change every number and visualization associated with the document.  That alone should be reason enough not to want to engage in such a practice.
    
 - Latex or markdown
 
