@@ -82,27 +82,3 @@ The last part will regard some suggestions for those that get a taste for things
 
 
 
-
-[^manova]: I'm still trying to figure out why MANOVA is being taught for any reason in 2017, but I know that it is.
-
-[^spss_syntax]: Not that learning SPSS syntax would have been a good way to spend one's time.
-
-[^punch]: I'm not kidding.  SPSS syntax was developed during the punch card mainframe era of the 1970s. The first release was actually 1968.  It has slightly more functionality now, though the graphics are about the same.
-
-[^1984]: As long as you weren't a minority, ignored the economy, and didn't mind being taught to hide under your desk in case a nuclear bomb was dropped on your head.  I admit that this is a U.S. centric recollection.  I'm sure the Canadians were fine for example, though they didn't learn to flip their collars for a couple more years.
-
-[^dmc]: Deloreans actually ceased production in 1983, but that was mostly because almost every household that could had purchased at least one and the market was exhausted.  The streets were literally cluttered with them, and many people would even leave them in parking lots with wings open, hoping someone would steal it.
-
-[^lazer]: Insert Lazerhawk and/or Kavinsky here.
-
-
-
-[^efron79]: *Computers and the theory of statistics: thinking the unthinkable* B Efron **1979**.  Here is the abstract: This is a survey article concerning recent advances in certain areas of statistical theory, written for a mathematical audience with no background in statistics. The topics are chosen to illustrate a special point: how the advent of the high-speed computer has affected the development of statistical theory. The topics discussed include nonparametric methods, the jackknife, the bootstrap, cross-validation, error-rate estimation in discriminant analysis, robust estimation, the influence function, censored data, the EM algorithm, and Cox's likelihood function. The exposition is mainly by example, with only a little offered in the way of theoretical development.  <br><br> I'd be willing to bet one could change nothing but the date, give this at a conference for some applied disciplines, and no one would notice.
-
-[^r4stats]: Despite what you may see in your discipline, this is an indisputable fact at this point.  Your discipline is not statistics, computer science or other fields driving methodological development.  Assuming that the common practice in an applied
-
-[^mullet]: At least those with one like Kenny Powers from Eastbound & Down.
-
-[^powergrad]: I've never understood the motivation behind faculty who request their graduate students do a power analysis. Want to know how many folks you need for your study? Here's the more appropriate question: *When* do you want to graduate?
-
-[^nie]: Perhaps surprisingly, he did not subsequently claim to have invented R.

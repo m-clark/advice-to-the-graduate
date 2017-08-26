@@ -635,21 +635,41 @@ This was mentioned in the previous [getting organized section][get organized]. I
 
 
 ### Documents
+
+<div class='col2'>
+<img src="img/RMarkdownOutputFormats.png" style="display:block; margin: 0 auto;" width='50%'>
+<br><br><br><br>
+<img src="img/jupyter.svg" style="display:block; margin: 0 auto;" width='50%'>
+</div>
+<br>
    
-Writing up scientific results in something like Microsoft Word is a deplorable practice.  Copying and pasting output into a document is practically the definition of irreproducibility, opens the door for numerous errors, and, on the practical side, is exceedingly tedious.  If any change has to be made to the data, e.g. an error is discovered, analyses re-run etc., one will potentially have to change every number and visualization associated with the document.  That alone should be reason enough not to want to engage in such a practice.
+Writing up scientific results in something like Microsoft Word is a deplorable practice in terms of science.  Copying and pasting output from a statistical or  other programming environment into a Word document is practically the definition of irreproducibility, opens the door for numerous errors, and, on the practical side, is exceedingly tedious.  If any change has to be made to the data, e.g. an error is discovered, analyses re-run etc., one will potentially have to change every number and visualization associated with the document.  That alone should be reason enough not to want to engage in such a practice.
    
-- Latex or markdown
+Many disciplines have used <span class="emph">$\LaTeX$</span> as their approach and still do. Not only does it produce beautiful documents for print, it eventually became a means for <span class="emph">literate programming</span>, simultaneously embedding word and text and providing the means for more reproducible work.  Unfortunately, $\LaTeX$ is inherently a print medium, making it at best marginally useful these days.  If you've learned it, don't fret you can still use it, e.g. with math formulas, but everything you could have done with it you can now do via other means. Except you won't have to completely disrupt your train of thought and text messing with floats and tables.
+   
+<span class="emph">Markdown</span> has displaced $\LaTeX$ for scientific publishing these days.  In the right environment, there is nothing you can't do with it that you couldn't do with $\LaTeX$, and if you think otherwise, it just means you haven't gotten used to it yet.  The issue is that, despite what many journals still seem to think, the web is the medium of scientific communication, just as it is with practically everything else.  If you're creating a scientific document with a print-first mentality, you are probably not interested in disseminating your work to the broadest possible audience, and you are going to continually handicap what you might have been able to show with your efforts.
+
+<span class="emph">Rmarkdown</span> allows one to produce HTML, PDF, MS Word and a whole host of other formats (e.g. slide presentations), and in about as easy a fashion as one could, especially compared to $\LaTeX$.  Other statistical environments such as Matlab and Stata are playing catchup, while others, still haven't figured it out.  In the Python world, you have <span class="emph">Jupyter Notebook</span> and eventually <span class="emph">Jupyter Lab</span>, though I haven't seen it used in as extensive fashion as Rmarkdown[^jn], which incidentally would allow you to incorporate Python and some other languages along with your R.
+
+The gist is, your document first needs to be connected to the underlying data, and secondly needs to be ready for the web.  To get a sense how far one can go, I recently collaborated on a paper entirely in Rmarkdown, in which not a single digit in the final copy was actually typed.  All values, tables (which were also formatted via code), figures, and inline text was produced via underlying R code, and with the final output, as much as it pains me to admit, MS Word.  For those using R, [Rmarkdown](http://rmarkdown.rstudio.com/) makes it such that you don't even really have to write traditional scripts anymore, you can just use Rmarkdown and let your normal text take the place of comments.  For Python, you have [Jupyter Notebook](https://jupyter.org/) that appears to allow much of the same.
 
 
 ### Version control basics
 
+<img src="img/octocat.png" style="display:block; margin: 0 auto;" width=35%>
 
+I'll talk more about version control in the next section, but it's something you should be aware of even if you don't use it beyond the versions in things like Box drive.  For decades now there have been what are called <span class="emph">version control systems</span> (VCS) for software development.  And even if you don't use formal a formal VCS, the concept of thinking of your <span class="emph">science as software development</span> will go a long way toward improving your scientific method.
+
+Tools like [Git](https://git-scm.com/) and [Mercurial](https://www.mercurial-scm.org/) allow for complex development involving many developers and iterations of applications to come together in a way that allows one to more rapidly correct mistakes, branch off into exploratory endeavors, add new people to the project, etc.  But you're not a software developer you say.  I say so what.
+
+Consider a faculty member with several grad students working on different phases of multiple projects.  These tools would potentially allow for much more seemless collaboration, where, for example on one project a student could be working on the visualization 'branch', another on the conference presentation, another may be correcting some data, and while the faculty is working on the write-up, and eventually all these pieces can be merged into a final product.  If there is any issue found later, it is easy to revert back to the correct state and continue from that point.  VCS are also typically hosted remotely, e.g. at [GitHub](https://github.com/), and so automatic backup is in place, and it also provides a potential way to have your work exposed to even more people. The latter is especially nice for students, who will usually want to be marketing themselves and their skills as much as possible.  However the real benefit to using something like Git and GitHub, is that if you know others are going to see your code, you *will* write better code.
+
+When you start thinking of your science and modeling as software development, one that goes through a potentially continual (and public) process of improvement, you'll almost automatically avoid many of the problems associated with the so-called 'crisis' of reproducibility.  People engaged in this aren't having any crisis at all, their methods are open, their documents are infused with data.  Journal outlets, as they are now, are impediments, not facilitators.  'Articles', if the term should even apply, should come with titles plus a version number, ready to be extended, improved, or *merely* replicated.
 
 
 ## Summary of Part II
 
 
-Naming, labels, missing data etc.
 
 [^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
 
@@ -693,3 +713,5 @@ Naming, labels, missing data etc.
 [^admin]: One can distinguish researchers from (research) administrators.  I have respect for the latter, as they are often the ones who coordinate the teams, acquire the funds, and drive the research in general, though in many situations, I would hesitate to say they are actually *doing* the research.  For graduate students and early career folks for whom this document is intended however, this distinction doesn't really apply.  You should be neck deep in your data.
 
 [^notme]: Sadly I largely lost most of the arguments on the visuals.
+
+[^jn]: I don't see many bells and whistles with what people do with Jupyter Notebook - practically all the ones I come across look like the default - which makes me think it isn't easy to go into deep customization, though I don't really know (I've only dabbled with it myself, so I'm speaking from a place of ignorance).  However notebooks in general, including R notebooks generated by RStudio or Jupyter, are very much geared toward interactive coding rather than creating a more or less static scientific document.  Though things may change in the future, that has less a role in typical scientific communication, where you wouldn't want code interfering with the data story you're trying to convey. It will be interesting to see where [Jupyter Lab](https://jupyterlab.github.io/jupyterlab/) goes in furthering the development.
