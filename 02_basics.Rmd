@@ -669,10 +669,13 @@ When you start thinking of your science and modeling as software development, on
 
 ## Summary of Part II
 
-Most applied researchers, or anyone engaging in statistical modeling generally, can not only benefit from the concepts outlined in Part I and II, but also have plenty of time to do the other things they need and/or want to do.  It may seem like spending time with these things might seem like something you don't want to do, but the alternative includes far *more* time cutting and pasting, redoing uninteresting analyses, trying to find which file/data goes with what, writing about noisy results, creating ugly visualizations etc.  
+Most applied researchers, or anyone engaging in statistical modeling generally, can not only benefit from many of the concepts outlined in Part I and II, but also have plenty of time to do the other things they need and/or want to do.  It may seem like spending time with these things might seem like something you don't want to do, but the alternative includes far *more* time cutting and pasting, redoing uninteresting analyses, trying to find which file/data goes with what, writing about noisy results, creating ugly visualizations etc.  
 
 
-In other words, they don't have to be a strong programmer, though they will have to be one, and take steps to be a better one.
+In other words, you don't have to be a strong programmer, though you will have to do some programming, and take steps to do it better.  You don't have to be a statistician, but you will need to learn well a technique you intend to use.  It won't be easy, but I've never seen an instance in which the alternative was easier.  Don't deceive yourself. Do better.
+
+
+
 
 
 [^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
