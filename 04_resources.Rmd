@@ -1,0 +1,44 @@
+# Resources
+
+The following resources should be seen not as definitive, but merely potential starting points.
+
+
+## Web
+
+### MOOCs
+
+MOOCs can be hit or miss. I've done a few, and some were more about fighting the system than learning programming or analytical methods.  For example, you can having working, even efficient, code that produces the correct answer, but still have it rejected for completely inconsequential reasons, or have to wait inordinate time to have it run and checked on the servers etc.  Some methods-based courses were more about having to learn more about a programming language than learning techniques.  Some assume notably more background knowledge than described, or are taught by people who really aren't good educators, or aren't adequately tested/piloted.
+
+On the other hand, a good one can be a great way to get a solid background in some topic relatively quickly.  If you're still struggling after the first few topics, don't continue to waste your time.  You can always come back to it, or another might come along that's a better match for you.  Also, don't pay for them.  The odds of it being worth it are slim and none.  If you're willing to pay, you should just take a university course or workshop and get personal attention.
+
+### Stackexchange & Stackoverflow
+
+
+
+
+### Github
+
+
+
+
+## Texts
+
+
+### Standard modeling and beyond
+
+Gelman & Hill
+
+Fahrmeier
+
+### Bayesian
+
+Gelman
+Mclreath
+
+
+### Machine Learning
+
+elements
+elements in R
+Murphy
+

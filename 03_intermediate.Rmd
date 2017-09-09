@@ -2,31 +2,89 @@
 
 This section is for those who get the bug, and actually find they enjoy programming and analysis, or simply want to continue expanding their toolbox to do better analysis.  It'll outline some good things to be aware of, or skills to start obtaining.
 
-## Analysis
+## Analytical
 
-Once you get the GLM basics, there are some common extensions to consider.
 
-- Beyond GLM but standard statistical
-    - clustered data
-    - spatiotemporal situations
-    - nonlinear relationships (additive models as a starting point)
+### Beyond GLM 
 
-- Dimension Reduction/Latent variable models
-    - Factor analysis and related
-    - Other
+After standard regression and classification techniques, there are some common extensions to consider.  However, I would suggest you first learn an advanced technique that is commonly used in your discipline.  Beyond that, some more common statistical models that take a next step in complexity are those that deal with clustered data (mixed models), nonlinear relationships (e.g. additive models), and those that deal with space or time (possibly both).  Be aware that the additional complexity brings with it a fuzziness, such that it becomes difficult to use standard null hypothesis testing.  This is not a drawback by any stretch, but it will be difficult for you if you've come to rely on p-values as your primary means of interpreting models.
 
-- Matrix basics
+
+### Dimension Reduction/Latent variable models
+
+In the previous section we noted that one should at least be familiar with why you would use things like PCA and factor analysis.  For the more motivated, these should be standard tools in your toolbox.  I would specifically suggest PCA, standard factor analysis, latent dirichlet allocation, and model-based clustering methods (i.e. mixture models).
+
+### Matrix basics
+
+There are two reasons to know just a smidge of matrix operations- speeding up your code and understanding methodological presentations.  As far as the amount, you probably don't need any more than is commonly found in the appendices of some statistical texts, and being familiar with those operations in your programming language of choice.  With programming, while others are writing verbose loops, you'll be speedily one-lining the same operations in <span class="emph">vectorized</span> fashion.  Furthermore, when you're wanting to learn new techniques, such knowledge will allow for more rapid acquisition.
+
+### The Bayes Way
+
+Bayesian analysis is commonplace, and requires no more justification than standard techniques. If you don't see it regularly applied in your field, it is your discipline that hasn't been keeping up with things. *You*, on the other hand, should feel comfortable using it in lieu of any other analysis you would, starting with regression.  A Bayesian regression requires no more effort to explain than a standard regression, *because it is just a standard regression*, albeit estimated differently.  
+
+The benefits of the Bayesian approach are many.  To begin, you get probabilities and intervals that make sense, and don't require some notion of 'infinitely repeated experiments' and backward logic.  Any statistic you can calculate from a model will automatically have an interval estimate. For example, in a standard regression you'd not only get an 'adjusted' R^2^ by default[^bayesianr2], you'd also have an interval estimate for it.  The Bayesian approach works well in cases where you have small samples, possessing built-in <span class="emph">regularization</span> to guard against overfitting, allowing you to explore more fully your data even when you don't have much of it.  For more complicated models, the p-values and intervals are no more difficult to acquire than usual, unlike the traditional setting where it seems that for many models beyond the GLM setting approximations are required (e.g. mixed models, generalized additive models).
+
+In general the Bayesian approach will give you more flexibility and better assessment of uncertainty, and can definitely be your default modeling approach. For an introduction to Bayesian analysis, see my document [here](https://m-clark.github.io/docs/bayesian_book).
+
+
+
+### Machine Learning
+
+In this day and age, any applied discipline that teaches a semester course in statistical analysis should have a week of it devoted to an overview of machine learning.  The only reason you may not see it practiced much in your discipline is due to 1. your discipline never teaches it, or 2. people outside of your discipline are doing the interesting things for your discipline, and publishing elsewhere.  I can tell you however, that it is useful, you may need to employ it some day, or at the very least, you shouldn't ignore articles using it because you don't know what they're talking about conceptually.
+
+Data can be big, complex, or both, and there are techniques to handle it if so.  If you don't know about them, you may be inclined to do some very silly things to coerce the situation to one you know, which is precisely the wrong thing to do.  If your discipline doesn't cover it in any fashion, do a workshop, look online for some exercises, or simply schedule some time to chat with someone who does know about them.  With tools like R and Python, the difficulty will *not* be running the models.
+
+
+
 
 ## Programming
 
 You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase,  etc.
 
-- Writing functions
-- Debugging
-- Vectorization
-- Profiling
-- HPC
-    - Unix
+### Writing functions
+
+One of the first things you can do to take your programming further is to write your own functions.  One of the tenets of programming is <span class="emph">DRY</span>, or *don't repeat yourself*.  Writing functions can be extremely simple.  For example, the following takes two variables, divides one by the other and multiplies by 100 (i.e. creates a percentage).
+
+R
+
+```{r eval=FALSE}
+percent <- function(x, y) {
+  100*x/y
+}
+```
+
+Python
+
+```{python eval=FALSE}
+def percent(x, y):
+  return 100*x/y
+```
+
+
+If you want, you can now add additional complexity to make it do more (e.g. add  rounding, formatting).  Furthermore, you can reuse the function anywhere you like.
+
+Once you get the hang of writing functions, you'll find yourself doing so regularly, because it simply makes things easier.  In addition, you may find other functions available in packages do *almost* everything you want, and you'll be able to tweak their code to do *exactly* what you want.
+
+
+### Debugging
+
+<span class="emph">Debugging</span> is the process of finding errors or issues in code.  If you are writing your own functions, debugging will allow you to course through the function line by line, inspecting the output created, and fix any errors.  Even if it's not your own function, debugging can allow you to find out why some function is spitting an esoteric error message at you.
+
+More generally, the *concept* of debugging is essential to scientific endeavor.  Data, models, and theories come with bugs too, and you should have a similar mindset when approaching them as you do problematic code, inspecting them piece by piece and improving them whenever the opportunity arises.
+
+### Iterative Programming & Vectorization
+
+One of the more popular blogs on Rbloggers was 'Writing your first <span class="emph">for loop</span>'.  The reason is that iterative programming is core programming technique, particularly in data science.  It is so common that you'll want to apply some function to every row or column, that not knowing how to do so in an efficient fashion will severly hamper your coding practice.
+
+Some programming languages have even more efficiency to be gained through <span class="emph">vectorization</span>, where operations are done on vectors rather than proceeding element by element.   For example, in R, between core functions being vectorized, matrix operations, the <span class="func">apply</span> family of functions, and packages like <span class="pack">purr</span> I almost never have to write an explicit loop, and code runs much faster.  With some languages you may find some that suggest vectorization will not produce much speed gain.  They are wrong, if only because it will take you less time to write the code.  Cleaner and clearer code is always desirable too.
+
+
+### High Performance Computing
+
+At some point your data or models will require more resources than your laptop can provide.  Research universities provide cluster computing for such cases, but now anyone can use services such as those provided by Amazon or Microsoft.   Knowing the basics of <span class="emph">parallelization</span>, the cluster computing environment, and related tools will be necessary in such cases.  However, even your own computer comes with multiple cores that you can take advantage, so you should be able to use the tools of your language to do that.  *Any* iterative process in which the iterations are independent can potentially benefit from parallelization.
+
+When speed becomes an issue, you'll want to also be familiar with code <span class="emph">profiling</span>.  Profiling allows you to assess where in your code bottlenecks occur, which you may then rework to produce faster results.  However, this comes with the following caveat: premature optimization is the root of all evil.  Code can be relatively slow but still good enough, and it's important to balance computing vs. programming time.
+
 
 ## Visualization
 

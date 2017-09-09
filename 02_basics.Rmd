@@ -101,7 +101,7 @@ Even if you don't think you'll use it for your current work you'll come across p
 
 ### Unsupervised Methods
 
-Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could do that too).  Probably the most common among these are PCA, factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, standard linear discriminant analysis, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
+Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could do that too).  Probably the most common among these are principal components analysis (PCA), factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, standard linear discriminant analysis, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
 
 
 ### Loss functions and maximum likelihood estimation
@@ -254,21 +254,7 @@ My own opinion is that a generalized additive model should be the default model 
 The issues around over- and underfitting can be somewhat subtle, but they are pervasive.  In general I think underfitting is more the problem in the stuff I see, and with penalized regression approaches (see the next sections), one can incorporate more complex models while still guarding against overfitting.  Interpretation of more complex models may become more difficult, but also more rich, and more fun in my opinion.
  
 
-### The Bayes Way
 
-Bayesian analysis is commonplace, and requires no more justification than standard techniques. If you don't see it regularly applied in your field, it is your discipline that hasn't been keeping up with things. *You*, on the other hand, should feel comfortable using it in lieu of any other analysis you would, starting with regression.  A Bayesian regression requires no more effort to explain than a standard regression, *because it is just a standard regression*, albeit estimated differently.  
-
-The benefits of the Bayesian approach are many.  To begin, you get probabilities and intervals that make sense, and don't require some notion of 'infinitely repeated experiments' and backward logic.  Any statistic you can calculate from a model will automatically have an interval estimate. For example, in a standard regression you'd not only get an 'adjusted' R^2^ by default[^bayesianr2], you'd also have an interval estimate for it.  The Bayesian approach works well in cases where you have small samples, possessing built-in <span class="emph">regularization</span> to guard against overfitting, allowing you to explore more fully your data even when you don't have much of it.  For more complicated models, the p-values and intervals are no more difficult to acquire than usual, unlike the traditional setting where it seems that for many models beyond the GLM setting approximations are required (e.g. mixed models, generalized additive models).
-
-In general the Bayesian approach will give you more flexibility and better assessment of uncertainty, and can definitely be your default modeling approach. For an introduction to Bayesian analysis, see my introduction [here](https://m-clark.github.io/docs/bayesian_book).
-
-
-
-### Machine Learning Basics
-
-Any applied discipline that teaches a semester course in statistical analysis should have a week of it devoted to an overview of machine learning.  The only reason you may not see it practiced much in your discipline is due to 1. your discipline never teaches it, or 2. people outside of your discipline are doing the interesting things for your discipline, and publishing elsewhere.  I can tell you however, that it is useful, you may need to employ it some day, or at the very least, you shouldn't ignore articles using it because you don't know what they're talking about conceptually.
-
-Data can be big, complex, or both, and there are techniques to handle it if so.  If you don't know about them, you may be inclined to do some very silly things to coerce the situation to one you know, which is precisely the wrong thing to do.  If your discipline doesn't cover it in any fashion, do a workshop, look online for some exercises, or simply schedule some time to chat with someone who does know about them.  With tools like R and Python, the difficulty will *not* be running the models.
 
 
 ### Visualization
