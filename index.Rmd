@@ -57,7 +57,9 @@ knitr::include_graphics('img/nineteeneightyR.png', dpi = NA)
 
 # Preface
 
-I see you. I see a lot of you. Almost every day. You want to do quality research using sound statistical and other practices, but your training is minimal, and it might have even been a couple years since you last did anything substantial.  And while you want to do good analysis, any decent statistical effort will require a notable amount of programming, and you may have little to no programming experience. Furthermore, you may have been taught by people with no formal statistical, programming, data or other relevant training, which only compounds the problem.  So you don't know what you're doing, but you don't want anyone to notice.  In fact, you'd like to bluff your way to the point of giving presentations, publishing papers etc., all with the polish of a master.  
+I see you. I recognize you. I acknowledge your existence. Let's talk...
+
+You want to do quality research using sound statistical and other practices, but your training is minimal, and it might have even been a couple years since you last did anything substantial.  And while you want to do good analysis, any decent statistical effort will require a notable amount of programming, and you may have little to no programming experience. Furthermore, you may have been taught by people with no formal statistical, programming, data or other relevant training, which only compounds the problem.  So you don't know what you're doing, but you don't want anyone to notice.  In fact, you'd like to bluff your way to the point of giving presentations, publishing papers etc., all with the polish of a master.  
 
 It's okay. Most of the others are in the same boat.
 

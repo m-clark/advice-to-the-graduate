@@ -259,15 +259,65 @@ The issues around over- and underfitting can be somewhat subtle, but they are pe
 
 ### Visualization
 
-There are two important things to know when you begin learning about visualization.  The first is, your intuition is wrong.  You don't know how to visualize well because most visualization is done poorly if not terribly, so going by what you see will simply perpetuate bad approaches.  For example, no one should be doing bar plots with error bars on the top of them[^barplots], yet these are still regularly displayed in journals. On top of this, I've never even heard of an applied stats course where actual time was spent teaching the basics of visualization.  I don't mean producing plots, at least they usually do that, but actually thinking about the means of conveying scientific information visually.
+There are a couple important things to know when you begin learning about visualization in the scientific context.  One of the more essential things to learn right off the bat is that your intuition is almost certainly wrong.  You likely don't know how to visualize well because most visualization is done poorly if not terribly, so going by what you see will simply perpetuate bad approaches.  For example, no one should be doing 3d pie charts, bar plots with error bars on the top of them[^barplots], or plots with unusually scaled axes, yet these are still regularly displayed in journals. On top of this, an applied stats course likely will not spend much time, if any, teaching the basics of visualization.  I don't mean producing plots, at least they usually do that, but actually thinking about the means of conveying scientific information visually.
 
-Second, depending on the tool used, default settings may be just as bad as what you would choose with no information.  For example in terms of color, whatever you'd pick on your own is not going to do well, but unless the package developer put actual effort into it, you might end up with red-green or other problematic combos[^jetcolor]. Lines may be too thin, gridlines may overwhelm the actual plot content, and so forth. With color, issues of emphasis, colorblindness, etc. come in to play, and unless you put some thought into it, your visualization will have problems.
+Second, depending on the tool used, default settings may be just as bad as what you would choose with no information.  For example in terms of color, whatever you'd pick on your own is not going to do well, but unless the package developer put actual effort into it, you might end up with red-green or other problematic combos[^jetcolor]. Lines may be too thin, gridlines may overwhelm the actual plot content, and so forth. With color, issues of emphasis, colorblindness, etc., come in to play, and unless you put some thought into it, your visualization will have problems.
 
-A good visualization will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  When thinking of a visualization, the goal is to take a complex story and make it easier to understand.  Showing the difference in group means is not complex, so a visualization is just going to create a bunch of whitespace to tell you what a single sentence could. When displaying information for others to consume, think multivariately.  2d plots such as simple bar and scatter plots are generally a waste of time, and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have five pieces of information (including the basic x and y dimensions) represented in the same graph.
+A good visualization in a research context will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  So when thinking of a visualization, the goal is going to typically be to work with some complex, but interesting, data story and attempt present it in a way that tells that narrative in a clear fashion.  For example, showing the difference in group means is not complex, so a visualization is just going to create a bunch of whitespace to tell you what a single sentence could. 
+
+```{r iris, echo=FALSE}
+iris_plot_bad = iris %>% 
+  mutate(Mean = predict(lm(Sepal.Width~Species)),
+         se = round(predict(lm(Sepal.Width~Species), se=T)$se, 3)) %>% 
+  distinct(Species, Mean, se) %>% 
+  ggplot(aes(x=Species, y=Mean, color=Species)) +
+  geom_pointrange(aes(ymin=Mean-2*se, ymax=Mean+2*se), size=1) +
+  scale_color_manual(values=c( 'Green','Red', 'Yellow')) +
+  ylab('Sepal Width') +
+  theme_bw() +
+  theme(panel.grid.major.y=element_line('black', .5),
+        panel.grid.major.x=element_blank())
+iris_plot_bad
+```
+
+The above has multiple problems, some of which include that the differences are perceptually exagerated, most of the plotting area isn't useful, the colors chosen are poor and draw the eye to versicolor more than the others, the colors add no information, it has a completely unnecesary gridlines, and the only 'story' here is simply that 'Setosa > rest'.
+
+When displaying information for others to consume, always think beyond two dimensions.  2d plots such as simple bar and scatter plots are generally a waste of time, beyond initial data exploration (i.e. before modeling), and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have five pieces of information (including the basic x and y dimensions) represented in the same graph.  
+
+
+The following represents all the information in the iris data set[^iris] (hovering will show the other variable values), including some summary information (means for x, y axes), and it utilizes all of the plot space. It doesn't distort the relationship of group means, because we have the context of the all the observations, and the colors chosen don't draw the eye to one group any more than another.  So it takes the previous 2d plot and adds various other information, but without being overwhelming.
+
+
+```{r iris_2, echo=FALSE}
+iris_plot_better = iris %>% 
+  mutate(MeanSW = predict(lm(Sepal.Width~Species)),
+         MeanSL = predict(lm(Sepal.Length~Species))) %>%
+  group_by(Species) %>% 
+  ggplot(aes(label=Petal.Width, label2=Petal.Length, color=Species)) +
+  geom_point(aes(x=MeanSW, y=MeanSL), size=5, show.legend=F)+
+  geom_point(aes(x=Sepal.Width, y=Sepal.Length), alpha=.35) +
+  # viridis::scale_color_viridis(discrete=T) +
+  labs(x='Sepal Width', y = 'Sepal Length')
+ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>% 
+  lazerhawk::theme_plotly() 
+
+# iris_plot_better = mtcars %>% 
+#   mutate(MeanMPG = predict(lm(mpg~cyl)),
+#          MeanWt = predict(lm(wt~cyl)),
+#          cyl = factor(cyl)) %>%
+#   group_by(cyl) %>% 
+#   ggplot(aes(label=hp, label2=carb, color=cyl)) +
+#   geom_point(aes(x=MeanWt, y=MeanMPG), size=5, show.legend=F)+
+#   geom_point(aes(x=wt, y=mpg), alpha=.35) +
+#   # viridis::scale_color_viridis(discrete=T) +
+#   labs(x='Weight', y = 'Miles per Gallon')
+# ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>% 
+#   lazerhawk::theme_plotly() 
+```
 
 It has gotten easier over time to pick some decent colors.  For example, <span class="pack">ggplot2</span> in R will default to evenly spaced colors, and the <span class="pack">viridis</span> module in Python and R package will provide evenly spaced, colorblind-, and print-friendly palettes.  [Colorbrewer.org](https://colorbrewer2.org/) and the <span class="pack">RColorBrewer</span> package is another useful tool.
 
-Also note that for scientific communication, [infovis](https://en.wikipedia.org/wiki/Information_visualization) is not an option.  This isn't advertising, and what may look cool may not be very useful for scientific presentation.  Take for example, word clouds. People seem to love them, but they are almost useless.
+Also note that for scientific communication, [infovis](https://en.wikipedia.org/wiki/Information_visualization) is not an option.  This isn't advertising, and what may 'look cool' may not be very useful for scientific presentation.  Take for example, word clouds. People seem to love them, but they are almost useless.
 
 As mentioned in the first part, your audience will be fine with something more than a bar plot. I have been told multiple times that the reason for not doing a particular style of plot is because the audience of Ph.D.s, M.D.s and graduate students won't be able to figure it out.  This is an utterly ridiculous notion with no proof whatsoever.  Unless you are thinking interactively first, you probably aren't even producing a visualization that is as complex (and commonplace) as those commonly seen in news outlets like the New York Times.  If someone is actually interested in your work, they will read the caption or associated text and have the cognitive capability to sort out what you're showing.
 
@@ -708,3 +758,5 @@ In other words, you don't have to be a strong programmer, though you will have t
 [^notme]: Sadly I largely lost most of the arguments on the visuals.
 
 [^jn]: I don't see many bells and whistles with what people do with Jupyter Notebook - practically all the ones I come across look like the default - which makes me think it isn't easy to go into deep customization, though I don't really know (I've only dabbled with it myself, so I'm speaking from a place of ignorance).  However notebooks in general, including R notebooks generated by RStudio or Jupyter, are very much geared toward interactive coding rather than creating a more or less static scientific document.  Though things may change in the future, that has less a role in typical scientific communication, where you wouldn't want code interfering with the data story you're trying to convey. It will be interesting to see where [Jupyter Lab](https://jupyterlab.github.io/jupyterlab/) goes in furthering the development.
+
+[^iris]: This is the last time I use this terrible data set.  
