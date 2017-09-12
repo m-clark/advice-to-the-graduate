@@ -44,7 +44,7 @@ knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eva
 ```
 
 ```{r load_common_packages, echo=FALSE, cache=FALSE, eval=TRUE}
-library(plotly); library(tidyverse); library(htmltools); library(tufte); library(lazerhawk); library(lubridate)
+library(plotly); library(tidyverse); library(htmltools); library(lazerhawk); library(lubridate)
 ```
 
 #
