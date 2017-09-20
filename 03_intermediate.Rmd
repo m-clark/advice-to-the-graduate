@@ -39,11 +39,15 @@ Data can be big, complex, or both, and there are techniques to handle it if so. 
 
 ## Programming
 
-You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase,  etc.
+You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase, etc.
+
+### Keyboard
+
+There are things you can do.  And there are things you can do because you finished that other stuff an hour ago.  One of the main benefits of an IDE are all the keyboard shortcuts that can save you a lot of time compared to point and clicking.  Unfortunately, keyboards on many laptops don't have the type of keyboard those shortcuts assume.
 
 ### Writing functions
 
-One of the first things you can do to take your programming further is to write your own functions.  One of the tenets of programming is <span class="emph">DRY</span>, or *don't repeat yourself*.  Writing functions can be extremely simple.  For example, the following takes two variables, divides one by the other and multiplies by 100 (i.e. creates a percentage).
+One of the first things you can do to take your programming further is to write your own functions.  One of the tenets of programming is <span class="emph">DRY</span>, or *don't repeat yourself*. Anytime you're copying what is essentially the same code violates that principle.  Writing your own functions can help you avoid doing so, and can be extremely simple.  For example, the following takes two variables, divides one by the other and multiplies by 100 (i.e. creates a percentage).
 
 R
 
@@ -61,7 +65,7 @@ def percent(x, y):
 ```
 
 
-If you want, you can now add additional complexity to make it do more (e.g. add  rounding, formatting).  Furthermore, you can reuse the function anywhere you like.
+If you want, you can now add additional complexity to make it do more (e.g. add rounding, formatting).  Furthermore, you can reuse the function anywhere you like.
 
 Once you get the hang of writing functions, you'll find yourself doing so regularly, because it simply makes things easier.  In addition, you may find other functions available in packages do *almost* everything you want, and you'll be able to tweak their code to do *exactly* what you want.
 
@@ -95,20 +99,22 @@ For those that really want to go down the rabbit hole regarding visualization, t
 
 ## Other
 
-- Engaging the web
+# Engaging the web
+
+If you do enough data analysis you'll eventually need to acquire some data directly from the web.  Whether this will be easy or difficult in general unfortunately will not be up to you. However, you can make it easier on yourself by knowing some basic HTML and other aspects of server-client communication.  Your browser even comes with tools to help you.  I'd tell you which function key to hit to open up the developer tool on your browser, but you probably don't have one. 
     - web scraping
 
-- Version control revisited
+# Version control revisited
     - Git and related
 
-- Publishing
+# Publishing
     - Markdown, css, html etc.
     
-- Collaboration
+# Collaboration
     - Notebooks
     - GitHub
     
-- Sharing
+# Sharing
   - Packages
   - Notebooks
   
