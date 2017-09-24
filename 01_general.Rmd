@@ -10,7 +10,7 @@ You have chosen to get, or have obtained, an advanced degree in a discipline tha
 $$Y = f(X) + \epsilon$$
 may just mean something like life satisfaction ($Y$) is related to some set of other things like health, education, income, (i.e. all the stuff in $X$), but not exactly ($\epsilon$).
 
-How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, it would be nice if you didn't waste the time and resources of faculty, students, and others who do want to engage in in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
+How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, it would be nice if you didn't waste the time and resources of faculty, students, and others who do want to engage in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
 
 
 One more thing to plan on - everything, I mean *everything*, will take longer than you expect.  That may even include your time-in-training.  You may, for example, plan on 4-5 years for a Ph.D., or, as faculty, 1 year to complete data collection and submit an article, but, as the old saying goes, shit happens.  You'll have to learn to deal with it.
@@ -56,15 +56,15 @@ On the programming side, the other nice thing about projects is that whenever yo
 
 The  researchers in the academic world who have kept up with the times generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work, and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether. Even if their primary tools are proprietary, they're using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc.
 
-At least one reason for this is because open source means the code is available to be inspected, the licenses for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is financially well off enough to throw thousands of dollars at software that doesn't do anything special.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS etc.[^freesas] 
+At least one reason for this is because open source means the code is available to be inspected, the licenses for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is financially well off enough to throw thousands of dollars at software that doesn't do anything special.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS, etc.[^freesas] 
 
-On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. They just released version 8, five years after version 7 and a year and a half since the last point release (7.4).  This in and of itself is no big deal, given that the new features are few.  However, one of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist at least for over a year, and we don't know if they existed prior to that as well.  
+On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. At the time I started writing this, they just released version 8, five years after version 7 and a year and a half since the last point release (7.4).  This in and of itself is no big deal, given that the new features are few.  However, one of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist at least for over a year, and we don't know if they existed prior to that as well.  
 
-Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10. Nonetheless, they expect you and or your organization to pay for it each and every year. This sort of approach to software development is not acceptable in `r year(today())`, especially when comparable or even better tools are available to do the same task[^propsoft]. 
+Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10. Nonetheless, they expect you and or your organization to pay for it each and every year. This sort of approach to software development is not acceptable in this day and age, especially when comparable or even better tools are available to do the same task[^propsoft]. 
 
-Before I go on a rant, practically speaking, the best statistical and related tools are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite commonly used and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
+Before I go on a rant, practically speaking, the best statistical and related tools currently are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite commonly used and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
 
-I'm not saying you have to go as far as Richard Stallman (the guy pictured).  But you have already long used and benefited from open source software, so all I'm saying is continue doing so in your own research. 
+I'm not saying you have to go as far as Richard Stallman, the guy pictured, who *only* uses free, as in both beer and speech, software.  But you have already long used and benefited from open source software, so all I'm saying is continue doing so in your own research. 
 
 
 
@@ -95,7 +95,7 @@ Your code can generally follow the plan you had for analysis, but it can easily 
 
 One might think that having a lot of scripts would be a problem, but generally, and if you're just starting out, the converse will be far more of an issue.  You can always create a master file that will call the scripts in a desired order. I have a not-so-hard-and-fast rule of thumb that if I get to 100 lines, I should have some justification for not breaking some of it out into a more manageable chunk[^notsoftware].  
 
-This will also apply to functions for those that get further into programming.  Having one massive function that does everything is a PITA to debug, or have users inspect.  Having smaller functions allow one to isolate problems and make for more rapid debugging.
+This will also apply to functions for those that get further into programming.  Having one massive function that does everything is a PITA to debug, or have users inspect.  Having smaller functions allows one to isolate problems and make for more rapid debugging.
 
 ### Other
 
@@ -103,7 +103,7 @@ The idea of compartmentalization applies to other endeavors as well. For example
 
 ## Reproducibility
 
-<img src="img/reproducible.jpg" style="display:block; margin: 0 auto;" width=300px title='I don't think this study is reproducible Dr. Venkman.'><br>
+<img src="img/reproducible.jpg" style="display:block; margin: 0 auto;" width=300px title="I don't think this study is reproducible Dr. Venkman."><br>
 <br>
 
 Assume that at some point you'll have to leave your analysis, code, document etc. behind. Perhaps another project comes to forefront, maybe it's just time off, maybe it's a health issue, who knows?  But think about when you come back and have to complete your mission.  Will you know what you've done?
@@ -129,14 +129,14 @@ Practically speaking, just thinking about this topic will likely make you take s
 <img src="img/book.png" style="display:block; margin: 0 auto;" width=20% title='Mostly harmless.'>
 <br>
 
-If you decide on a particular analytical route for your thesis or dissertation, get a book on it[^bookbycover], or at least one that covers the topic extensively. Buy it, check it out, whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
+If you decide on a particular analytical route for your thesis, dissertation, or paper, get a book on the technique[^bookbycover], or at least one that covers the topic extensively. Buy it, check it out, whatever you need to, but have a handy reference for the thing you're about to spend an inordinate time on, possibly with not having ever dealt with it before.  It just makes sense.  Even if it's a little more technical, remember that you're about to spend a lot of time in this area, and that's the sort of thing you'll need.
 
 The one thing you don't want to do is wing it based on what other applied researchers in your field are doing in the articles you're reading.  They may very well know what they're doing, but *you* may not have the skill set to distinguish that.  You can train a dog to bark when p < .05.
 
 
 ## Complexify later
 
-<img src="img/complexity2.jpg" style="display:block; margin: 0 auto;" width=300px>
+<img src="img/complexity2.jpg" style="display:block; margin: 0 auto;" width=300px title='complexity'>
 <br>
 
 
@@ -147,7 +147,7 @@ A very old approach that has withstood the test of time in many domains- start w
 
 This really comes into play with analysis- *always* start with simpler models.  I personally use some of the simplest models for debugging purposes, because some data issues are difficult to discover until the implementation of analysis.  But even before modeling, you should be doing basic data checks and descriptives.  
 
-The following provides an example where the final model is a mixed model with random intercepts 
+The following provides an example where the final model is a mixed model with some other complexities added.
 
 - Basic data descriptives. Know the range for numeric variables, and general frequency distribution for categorical, of all the variables going into your model.  Mean center or scale numeric variables. Possibly collapse very infrequent categories (if there is an issue).
 - Run a regression. Check some diagnostics.
@@ -168,14 +168,14 @@ It's okay to write some code that simply works, and add details and generalizati
 
 ## Much of your brain is devoted to visual processing
 
-<img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=300px>
+<img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=300px title='Brain is for thinking'>
 <br>
 
-First, assume others' brains are not so different from yours, then take advantage of it.  One of the more annoying things I hear is the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text and sound, but that is secondary.
+First, assume others' brains are not so different from yours, then take advantage of it.  One of my pet peeves is when I hear the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text and sound, but that is secondary.
 
 The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the black and white, print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
-Too many people I consult/work with literally tell me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Utterly ridiculous.  Maybe you will need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.  If they were that dumb, which I refuse to believe, why exactly would you care if they even read your article? Are you anxious to be cited by nincompoops?
+With regard to interesting visualization, too many people I consult/work with have literally told me the equivalent of "All these Ph.D.s and M.D.s that read my article or see my presentation won't be able to understand it."  Utterly ridiculous.  Maybe you will need to work on explaining the visualization to make it easier to digest, but I can assure you that folks in academia, as well as those beyond, can handle it.  If they were that dumb, which I refuse to believe, why exactly would you care if they even read your article? Are you anxious to be cited by nincompoops?
 
 Some other things to note:
 
@@ -185,7 +185,6 @@ Some other things to note:
 - Most cartograms are about as useful as bar plots.
 - If your map could be interpreted as reflecting little more than population, you should try something else, regardless of how cool it looks.
 - Infographics have little if any role to play in an academic setting. Do not waste people's time.
-- Use SEM style graphics in lieu of biplots.
 - Try to convert your categorical information to quantitative so that you'll have more options to play with.
 
 Use data visualizations from 1936 and the 1800s as inspiration[^noflo]:
@@ -201,13 +200,13 @@ Use data visualizations from 1936 and the 1800s as inspiration[^noflo]:
 <br>
 
 
-A lot of people living today think their opinion is valid merely by having it. This is not true, no matter what their parents told them, nor what all politicians seem to believe. You do not fly to a destination thinking it would be just as viable to flap your arms or click your heels together.  You don't cross the street thinking that the theory that 'all cars will stop for you, just for you' is a viable one.  Try telling your neighbor that the sky at noon is chartreuse.  I'm sure they'll look at you funny.
+A lot of people living today think their opinion is valid merely by having it. This is not true, no matter what their parents told them, nor what all politicians seem to believe. You do not fly to a destination thinking it would be just as viable to flap your arms or click your heels together.  You don't cross the street thinking that the theory that 'all cars will stop for you, just for you' is a viable one.  Try telling your neighbor that the clear sky at noon is chartreuse.  I'm sure they'll look at you funny.
 
-I could go on, but even a moment of reflection suggests that every ounce of human behavior goes against the idea that all ideas are equally valid. Evidence not only matters, it is what we live by as a species, and what got us this far.  There are definitely areas where it is difficult to tell whether one theory is better than another, especially in interesting and new areas of research, but this does not mean the evidence is rubbish, or may not be used to suggest one path or another.  Evidence often may even lean very strongly in one particular direction, so much that one would be hard-pressed to even try to suggest an alternative.  It may also be found decades later to be utterly false. That's okay too[^laudan].
+I could go on, but even a moment of reflection suggests that every ounce of human behavior goes against the idea that all ideas are equally valid. Evidence not only matters, it is what we live by as a species, and what got us this far.  There are definitely areas where it is difficult to tell whether one theory is better than another, especially in interesting and new areas of research, but this does not mean the evidence is rubbish, nor that it may not be used to suggest one path over another.  Evidence often may even lean very strongly in one particular direction, so much that one would be hard-pressed to even try to suggest an alternative.  It may also be found decades later to be utterly false. That's okay too[^laudan].
 
-Your theory, whatever you're researching, resides somewhere between completely false to mostly correct. Regardless, it is incomplete, and possibly grossly inaccurate in places, but without the progress of science we'll never know.  This is why, despite journal reviewers' comments, null results are not only useful, they are interesting in and of themselves, and as vital as any 'statistically significant' result. We need to know that a treatment doesn't work, that one social group is not terribly different than another on some matter, that temperatures in the 'x' range will result in a cascading series of events ultimately leading to the space craft tearing itself apart before it breaks atmosphere.
+Your theory, whatever you're researching, resides somewhere between completely false to mostly correct given current knowledge. Regardless, it is incomplete, and possibly grossly inaccurate in places, and without the progress of science we'll never know.  This is why, despite journal reviewers' comments, null results are not only useful, they are interesting in and of themselves, and as vital as any 'statistically significant' result. We need to know that a treatment doesn't work, that one social group is not terribly different than another on some matter, that temperatures in the 'x' range will result in a cascading series of events ultimately leading to the space craft tearing itself apart before it breaks atmosphere.
 
-Things like interval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty, and that reduction is usually from a whole lot to very slightly less so.  If you're not okay with the fuzzy, science, is probably not for you.
+Things like interval estimates and prediction error give us a sense of how much work we have left to do. Rely on them heavily.  The goal of research is not to give a definitive answer, but to reduce uncertainty, and that reduction is usually from a whole lot to very slightly less so.  If you're not okay with the fuzzy, science is probably not for you.
 
 
 ## Flexibility
@@ -233,7 +232,7 @@ Everything.  You should never lose more than a day's work under the worst of cir
 
 ## Know the basics of how computers/OS work
 
-<img src="img/computer.jpg" style="display:block; margin: 0 auto;" width=300px>
+<img src="img/computer_2.jpg" style="display:block; margin: 0 auto;" width=300px title="I don't know what to do">
 <br>
 
 
@@ -268,12 +267,12 @@ Research takes a lot of effort. It does *not* happen by magic.  If some aspect a
 
 Assuming the data has been prepared, running a Bayesian quantile regression with a complicated random effects structure takes one line of code in R, same as a t-test.  For most applied researchers, the former would be magic, and that's okay, if they don't intend to use it.  Despite what many seem to think though, you simply cannot correctly interpret a magical result.  As mentioned previously, you can train a dog to bark when p < .05.  Likewise researchers can mimic language they see in journal articles, sufficiently passing off what seems to be knowledge of the techniques employed.  This is part of what has contributed to numerous issues, retractions, etc. currently on display in various disciplines.
 
-The time will come when you'll need to move beyond the basic stats you were formally taught, and you'll have to teach yourself and/or get some help to learn these new techniques, or they will remain magic to you.  However, learning new things is part of the definition of being an academic (and human for that matter).  You don't necessarily have to be an expert, but saying something is statistically significant is not enough to demonstrate knowledge of a technique.  Be prepared to do some work.
+The time will come when you'll need to move beyond the basic stats you were formally taught, and you'll have to teach yourself and/or get some help to learn these new techniques, or they will remain magic to you.  However, learning new things is part of the definition of being an academic (and human for that matter)[^new].  You don't necessarily have to be an expert, but saying something is statistically significant is not enough to demonstrate knowledge of a technique.  Be prepared to do some work.
 
 
 ### Programming
 
-In programming, sharing and reusing code is simply the way things are done. And that's a good thing.  However if you're copying and pasting others' work and don't know what some parts of it are doing, or why it's written one way and not another, then that part of the code is indistinguishable from magic to you.  It may be that in order for that part to work properly, your data will need to be prepped a certain way.  It may also be that the code doesn't apply to your situation, and using it will produce problematic results. Magical code is also often behind errors that are uninterpretable to the researcher. As elsewhere, know what's going on in your research, and you'll avoid any number of problems.
+In programming, sharing and reusing code is simply the way things are done. And that's a good thing.  However, if you're copying and pasting others' work and don't know what some parts of it are doing, or why it's written one way and not another, then that part of the code is indistinguishable from magic to you.  It may be that in order for that part to work properly, your data will need to be prepped a certain way.  It may also be that the code doesn't apply to your situation, and using it will produce problematic results. Magical code is also often behind errors that are uninterpretable to the researcher. As elsewhere, know what's going on in your research, and you'll avoid any number of problems.
 
 
 
@@ -284,7 +283,7 @@ In programming, sharing and reusing code is simply the way things are done. And 
 
 [^complexify]: Complexify is not a word, but I like it better than complicate.  Complexity may be good, not sure about complication.
 
-[^folderstr]: Most of the folks I've come across that suggest ways to organize your folders typically call for a structure that would be notable overkill for applied researchers.  A lot of people could probably get away with just a couple folders.
+[^folderstr]: Most of the folks I've come across that suggest ways to organize your directory typically call for a structure that would be notable overkill for applied researchers.  A lot of people could probably get away with just a couple folders.
 
 [^setwd]: The first line of a programming script shouldn't have to be to set the working directory.
 
@@ -307,3 +306,5 @@ In programming, sharing and reusing code is simply the way things are done. And 
 [^leevoice]: This document is written in alternating voices of the narrator of the Hitchhiker's Guide to the Galaxy and Bruce Lee in that clip.
 
 [^impermanence]: I personally don't adhere to this as strongly as you should because I don't have deadlines/graduation looming, and I am fond of the Buddhist notion of impermanence.  I won't go so far as blowing my awesome sand mandala away as soon as I've created it, but I often don't mind starting over.
+
+[^new]: I have actually heard the words come out of the mouth of one person as follows: "I'm faculty, I don't want to learn anything new!".  This person also never learned that he was a joke that no one, not even in his own department, took seriously, nor found all that funny.  There are people in academia that have a goal of getting tenure and doing the bare minimum from there on out.  They should be avoided at all costs.

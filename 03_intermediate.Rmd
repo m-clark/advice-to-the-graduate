@@ -99,22 +99,22 @@ For those that really want to go down the rabbit hole regarding visualization, t
 
 ## Other
 
-# Engaging the web
+## Engaging the web
 
 If you do enough data analysis you'll eventually need to acquire some data directly from the web.  Whether this will be easy or difficult in general unfortunately will not be up to you. However, you can make it easier on yourself by knowing some basic HTML and other aspects of server-client communication.  Your browser even comes with tools to help you.  I'd tell you which function key to hit to open up the developer tool on your browser, but you probably don't have one. 
     - web scraping
 
-# Version control revisited
+## Version control revisited
     - Git and related
 
-# Publishing
+## Publishing
     - Markdown, css, html etc.
     
-# Collaboration
+## Collaboration
     - Notebooks
     - GitHub
     
-# Sharing
+## Sharing
   - Packages
   - Notebooks
   

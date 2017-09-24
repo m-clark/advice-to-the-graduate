@@ -8,10 +8,10 @@ output:
     css: [css/standard_html.css, css/book.css]
     hightlight: pygments
     number_sections: false
-    toc_depth: 2
     # split_by: section
     config:
       toc:
+        depth: 2
         collapse: section
         scroll_highlight: yes
         before: null
@@ -39,7 +39,7 @@ favicon: img/R.ico
 
 
 ```{r setup, include=FALSE, eval=TRUE}
-knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eval=T, cache.rebuild=T, cache=T,
+knitr::opts_chunk$set(echo = T, message=F, warning=F, comment=NA, autodep=F, eval=T, cache.rebuild=F, cache=T,
                       R.options=list(width=120), fig.width=8, fig.align = 'center')
 ```
 
