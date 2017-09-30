@@ -26,11 +26,11 @@ Once you get good at some things, you'll still hit roadblocks, be surprised, or 
 
 <h6> *A narrative of startling interest!!* </h6>
 
-One way to look at the analytical endeavor is in terms of two goals, not mutually exclusive.  On the one hand we are interested in theory confirmation and comparison. Theory suggests certain variables have relations to other variables.  We set up mathematical models that convey the theory in a testable form, and collect data corresponding to those variables. Via a a particular framework, e.g. null hypothesis testing or Bayesian, we can say something about the statistical notability of those relationships.  The ultimate goal is to tell a story about the results and their relation to the theory, possibly suggesting exceptions and modifications.  In this approach, <span class="emph">explanation</span> is the focus.
+One way to look at the analytical endeavor is in terms of two goals, not mutually exclusive.  On the one hand we are interested in theory confirmation and comparison. Theory suggests certain constructs have relations to other constructs  We set up mathematical models that convey the theory in a testable form, and collect data corresponding to those variables. Via a a particular framework, e.g. null hypothesis testing or Bayesian, we can say something about the statistical notability of those relationships.  The ultimate goal is to tell a story about the results and their relation to the theory, possibly suggesting exceptions and modifications.  In this approach, <span class="emph">explanation</span> is the focus.
 
 On the other side, we need something that is practically viable.  The goal is not so much to tell a story as it is to get the best possible <span class="emph">prediction</span> from our models.  Techniques may be used that will tell us little about which predictors are best, why some predictors work better, or what is even the primary feature of the data being learned.  However, not only does the result work well, such approaches almost always outperform the far more explanatory ones in practice. 
 
-To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical significance, interval estimates, etc.  It is extremely easy to tell a story with the results. With deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  However, assuming it's applied appropriately[^deeplearnworks], it works extremely well!
+To make things a little more concrete, we can consider linear regression vs. deep learning.  With the former we can obtain highly interpretable coefficients, statistical probabilities, interval estimates, etc.  It is extremely easy to tell a story with the results. With deep learning on the other hand, it's difficult to tell what's being learned, or what features are being latched on to.  However, assuming it's applied appropriately[^deeplearnworks], it works extremely well!
 
 
 Most applied disciplines seem to focus exclusively on explanation in their statistical education.  You might think this is not too big of an issue, but to see the consequences of this, one only has to look at the current 'replication crisis'[^repcrisis].  You've now had nearly a century of results interpreted solely in terms of statistical significance in the null hypothesis testing framework, with typically little to no focus on whether the damn model even works.  As a specific example, you can have statistically significant predictors in a linear regression and an adjusted R^2^, which would tell you how much variance in the outcome you can explain with the predictors, of *negative value*!  The following demonstrates this.  I construct completely random data, i.e. none of the $X$ has any relation to $y$, and use it in the model.
@@ -54,9 +54,9 @@ The key idea is <span class="emph">balance</span>. For most applied disciplines 
 
 #### A Word about Effect Size
 
-Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but also are regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  For example, one of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. control vs. treatment).  It's applicable in cases where the primary goal is a single group comparison, e.g. via a t-test.  However, if you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are some of the issues.
+Some disciplines, e.g. psychology, try to get their adherents to focus on effect size.  Reviewers regularly request it, but also are regularly non-specific about the metric, or if they do mention it, make clear they have no idea what they're talking about.  For example, one of the more popular effect sizes is <span class="emph">Cohen's d</span>, which is a standardized difference in two group means (e.g. control vs. treatment).  It's applicable in cases where the primary goal is a single group comparison, e.g. via a t-test.  However, if you are doing a t-test as your primary model and haven't gone back in time, then I can assure you no one is going to be citing your work regardless of your effect size.  Here are just some of the issues.
 
-- Without a corresponding interval estimate the effect size is of little value.  That's right, the effect size has associated uncertainty with it just like everything else.
+- Without a corresponding interval estimate the effect size is of little value.  That's right, the effect size has associated uncertainty with it, just like everything else.
 - As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard or possibly even a viable way to define it.
 - Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample. In fact, your first move after seeing a large effect in a small sample should probably be to go back to the data processing stage to make sure no errors were introduced.
 
@@ -94,25 +94,25 @@ If you don't understand standard regression, you'll be hard pressed to understan
 
 The second most commonly used model after the standard linear model is probably <span class="emph">logistic regression</span>, where one predicts a binary target (e.g. yes-no).  Standard logistic regression, like the standard linear model, is a special case of the <span class="emph">generalized linear model</span>.  
 
-This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span>. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, and specificity. Most only look at accuracy which is not a good way to do things. Actually, many don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.
+This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span> estimation explicitly. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, and specificity. Most only look at accuracy, which is not a good way to do things in many scenarios. Actually, many don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.  Again, there is explanation and then there is prediction.
 
 
 Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.  If you do use it, consider interpreting it in terms of actual predictions at key values of the predictors[^margins] rather than statistical significance and odds ratios.  Not only are predicted probabilities easy to interpret, it's pretty much the only way to interpret interactions and other nonlinear effects that might be included in the model.
 
 ### Unsupervised Methods
 
-Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised methods</span>.  Here, we are exploring structure more than predicting outcomes (though we could do that too).  Probably the most common among these are principal components analysis (PCA), factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes often include things like MANOVA, standard linear discriminant analysis, canonical correlation and others that have no place in modern methodology. However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
+Along with basic regression and logistic regression, you'll need some conceptual understanding of what are typically referred to as <span class="emph">unsupervised learning</span>, <span class="emph">dimension reduction</span>, or <span class="emph">matrix factorization</span>.  Here, we are exploring structure more than predicting outcomes (though we could do that too).  Probably the most common among these are principal components analysis (PCA), factor analysis, and k-means cluster analysis.  I would suggest just getting a handle on why you'd use them, and be prepared for needing to implement them or similar variants for your work, because they are used a lot. Some of these are taught in classes on <span class="emph">multivariate analysis</span>, which is an utterly useless name, but those classes also often include things like MANOVA, standard linear discriminant analysis, canonical correlation and others that have little place in modern methodology[^cancor].  Don't waste your time with those.
 
 
 ### Loss functions and maximum likelihood estimation
 
-In statistical modeling we are interested in estimated parameters. For example, these might be regression coefficients or variances. But how do we do it?  We certainly don't just guess, and we definitely don't use magic, so where do the numbers come from?
+In statistical modeling we are interested in estimated parameters. For example, these might be regression coefficients or variances. But how do we do it?  We certainly don't just guess, and despite what the press would have you believe about AI we definitely don't use magic, so where do the numbers come from?
 
 The answer is that we pick values that bring about the best result.  But how do we define *best*? Well there is no one way to do it, and how you might do it depends on the situation.  However, there are a couple common approaches you should understand conceptually very well.
 
-Let's begin with ordinary least squares. If this is our optimizing approach, then we are trying to minimize the squared residuals in prediction.  For classification, it could simply be that we want to minimize *mis*-classification errors.
+Let's begin with ordinary least squares (OLS). If this is our optimizing approach, then we are trying to minimize the squared residuals, or errors, in prediction.  For classification, it could simply be that we want to minimize *mis*-classification errors.
 
-Probably the most common method goes the other way.  Instead of minimizing errors in prediction, we seek parameters that maximize the likelihood of seeing the observed data.  This method, <span class="emph">maximum likelihood estimation</span>, is the most common way we estimate parameters in statistical modeling, and has equal importance in the Bayesian framework too.  Sometimes the estimates that might minimize the loss function may also be the maximum likelihood estimate. This is the case in standard linear regression, but it would not be in other settings.  The primary point is, knowing the <span class="emph">objective function</span> for your analysis will help it not seem so mysterious. There are many optimization algorithms, and while you don't need to know the details of them, do know that you may get errors because their default settings don't work for your analytical situation.
+Probably the most common method in standard statistical analysis goes the other way.  Instead of minimizing errors in prediction, we seek parameters that maximize the likelihood of seeing the observed data.  This method, <span class="emph">maximum likelihood estimation</span>, is the most common way we estimate parameters in statistical modeling, and has equal importance in the Bayesian framework too.  Sometimes the estimates that might minimize the loss function may also be the maximum likelihood estimate. This is the case in standard linear regression, but it would not be in other settings.  The primary point is, knowing the <span class="emph">objective function</span> for your analysis will help it not seem so mysterious. There are many optimization algorithms, and while you don't need to know the details of them, do know that you may get errors because their default settings don't work for your analytical situation.
 
 Many applied statistical courses will spend time almost exclusively on ordinary least squares techniques, for which they might not even talk about estimation at all, leaving the students to basically believe in magic when they do statistical analysis. Some will even report that they used maximum likelihood, but this is only because they know that is the default.  For your own sake, don't bluff this.
 
@@ -134,9 +134,9 @@ Assuming you're even using the approach correctly (almost never the case in appl
 
 "Are the effects of A and B different? They are always different, for some decimal place." Tukey **1991**
 
-That first one is an article title, but otherwise those are some very old quotes, indicating just how long this has been a problem.  NHST as a *scientific* paradigm, in which evidence is weighed to assess a theory's real-world effectiveness, for a variety of reasons, doesn't work in practice.  It is difficult to say whether it ever did. Many disciplines are possibly decades behind in their science both because of missed opportunities, and because of trudging through weak results that didn't hold up, but were adhered to merely because of statistical significance.
+That first one is an article title, but otherwise those are some very old quotes, indicating just how long this has been a problem.  NHST as a *scientific* paradigm, in which evidence is weighed to assess a theory's real-world effectiveness, for a variety of reasons, doesn't work in practice[^nhstpractice].  It is difficult to say whether it ever did. Many disciplines are possibly decades behind in their science both because of missed opportunities, and because of trudging through weak results that didn't hold up, but were adhered to merely because of statistical significance.
 
-Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  The goal in statistical approaches to science is not to say whether a predictor is important or not, but rather whether the data is consistent with a given theory *in general*, and whether viable predictions can be made with a given theory. Go in with competing models, e.g. simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do you'll regularly have something interesting to talk about regardless of any p-value.
+Statistical analysis will not provide you a hard answer or truth, and claiming something is 'significant' doesn't make it so.  The goal in statistical approaches to science is not to say whether a predictor is important or not, but rather whether the data is consistent with a given theory *in general*, and whether viable predictions can be made with a given theory. Go in with competing models, e.g. simpler ones vs. more complex, or theory-driven vs. purely exploratory.  Spend time expressing your data visually.  If you do, you'll regularly have something interesting to talk about regardless of any p-value.
 
 ### Under and Overfitting
 
@@ -249,9 +249,9 @@ d_450 %>%
 
 ```
 
-My own opinion is that a generalized additive model should be the default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition interactions, spatial effects, random effects and myriad approaches are avaible to add to it.  For more on these models, see my intros [here](https://m-clark.github.io/docs/GAM.html) and [here](https://m-clark.github.io/workshops/stars/).
+My own opinion is that a generalized additive model would be a better default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition, interactions, spatial effects, random effects and myriad approaches are avaible to add to it.  For more on these models, see my intros [here](https://m-clark.github.io/docs/GAM.html) and [here](https://m-clark.github.io/workshops/stars/).
 
-The issues around over- and underfitting can be somewhat subtle, but they are pervasive.  In general I think underfitting is more the problem in the stuff I see, and with penalized regression approaches (see the next sections), one can incorporate more complex models while still guarding against overfitting.  Interpretation of more complex models may become more difficult, but also more rich, and more fun in my opinion.
+The issues around over- and underfitting can be somewhat subtle, but they are pervasive.  In general, I think underfitting is perhaps more the problem in the things I see, and with penalized regression approaches, one can incorporate more complex models while still guarding against overfitting.  Interpretation of more complex models may become more difficult, but also more rich, and more fun in my opinion.
  
 
 
@@ -315,7 +315,9 @@ ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>%
 #   lazerhawk::theme_plotly() 
 ```
 
-It has gotten easier over time to pick some decent colors.  For example, <span class="pack">ggplot2</span> in R will default to evenly spaced colors, and the <span class="pack">viridis</span> module in Python and R package will provide evenly spaced, colorblind-, and print-friendly palettes.  [Colorbrewer.org](https://colorbrewer2.org/) and the <span class="pack">RColorBrewer</span> package is another useful tool.
+<br>
+
+It has gotten easier over time to pick some decent colors.  For example, <span class="pack">ggplot2</span> in R will default to evenly spaced colors, and the <span class="pack">viridis</span> module in Python and R will provide evenly spaced, colorblind-, and print-friendly palettes.  [Colorbrewer.org](https://colorbrewer2.org/) and the <span class="pack">RColorBrewer</span> package is another useful tool.
 
 Also note that for scientific communication, [infovis](https://en.wikipedia.org/wiki/Information_visualization) is not an option.  This isn't advertising, and what may 'look cool' may not be very useful for scientific presentation.  Take for example, word clouds. People seem to love them, but they are almost useless.
 
@@ -327,7 +329,7 @@ As mentioned in the first part, your audience will be fine with something more t
 
 ### Variable transformations
 
-There are some good reasons to transform a variable. For example, mean centering (subtracting the mean), or additionally scaling numerical variables both makes a value of 0 practically meaningful (i.e. it is the mean), and can go a long way toward making the estimation process easier for many algorithms.  Some techniques are not even useful unless the variables are similarly scaled.  There are also times, especially in the case of categorical outcomes and predictors, when the need arises to collapse categories which have very few observations.  Otherwise they can lead a model to fail.  Finally, some, especially econometricians, prefer to speak in terms of <span class="emph">elasticities</span>, and so will take the log of a numeric variable to do so.  That's pretty much it as far as the reasons to transform a variable, easier estimation or theoretical interpretiability.
+There are some good reasons to transform a variable. For example, mean centering (subtracting the mean), or additionally scaling numerical variables both makes a value of 0 practically meaningful (i.e. it is the mean), and can go a long way toward making the estimation process easier for many algorithms.  Some techniques are not even useful unless the variables are similarly scaled.  There are also times, especially in the case of categorical outcomes and predictors, when the need arises to collapse categories which have very few observations.  Otherwise they can lead a model to fail.  Finally, some, especially econometricians, prefer to speak in terms of <span class="emph">elasticities</span>, and so will take the log of a numeric variable to do so.  That's pretty much it as far as the reasons to transform a variable- easier estimation or theoretical interpretiability.
 
 Here are couple things not to do.  If you have a numeric variable, there simply is no justification for discretizing it.  You are just making it a less reliable and expressive measure, and there is no benefit to that.  In addition, transforming a variable 'due to normality' is translated as 'I don't actually know what the normality assumption is'.  Case in point, the following is a perfectly reasonable target variable that would meet the normality assumption for regression.
 
@@ -385,15 +387,15 @@ One of the first things to note with statistical programming is, that once thing
 
 ```
 Click File
-Open
-hunt for file on computer
-wait a few seconds for SPSS to open its own file type
+Click Open
+-- hunt for file on computer
+-- wait a few seconds for SPSS to open its own file type
 Click Analyze
 Click/hover Regression
 Click Linear Regression
 Search for and Click your dependent variable (or click, start typing the name, and hope)
 Search for and Click each 'independent' variable
-Click on various options.
+Click on various options
 Click ok
 ```
 
@@ -446,10 +448,10 @@ Excel is not an option for scientific work, ever.  I would say you could use it 
 
 If you don't want to take my word for it here are some other things to peruse.
 
-- [Link 1](http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages)
-- [Link 2](https://www.tiobe.com/tiobe-index/)
-- [Link 3](http://r4stats.com/articles/popularity/)
-- [Link 4](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
+- [Link 1](http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages) spectrum.ieee.org
+- [Link 2](https://www.tiobe.com/tiobe-index/) tiobe.com
+- [Link 3](http://r4stats.com/articles/popularity/) r4stats.com
+- [Link 4](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html) kdnuggets.com
 
 ### IDEs
 
@@ -460,12 +462,12 @@ You want to use what's called an <span class="emph">integreted development envir
 What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, autospacing, interactivity... this is only the beginning.  I've written this document and many other things *entirely* with RStudio.  A good IDE is essential.
 
 
-#### customize it
+#### Customize it
 
 After you initially start to get the hang of your IDE, customize it. I'm always struck by the fact that people don't change the basic settings in their software, which are often chosen by people who should not have any say in design whatsoever[^baddesign].
 
 
-### coding <span class="font-variant:small-caps; font-family:'Dancing Script'">style</span>
+### Coding <span class="font-variant:small-caps; font-family:'Dancing Script'">style</span>
 
 
 
@@ -484,7 +486,7 @@ Coding style matters, but perhaps not in the way that many think.
 
 Wickham is right on the first part, but I'm not so much in agreeement with the second.  No one writes perfect code, *no one*.  It takes effort just to write halfway decent code.  That's fine.  As you start out, you won't be writing good code for quite some time. That's okay too.
 
-However, assuming you want others to be able to use your code, you should feel bad giving them shitty code, because you'll be wasting their time.  Going back to one of our initial suggestions, *Don't be a jerk*. Write better code, always. Time and other resources will always be working against you, but do the best you can.
+However, assuming you want others, including yourself at a future date, to be able to use your code, you should feel bad giving them shitty code, because you'll be wasting their time.  Going back to one of our initial suggestions, *Don't be a jerk*. Write better code, always. Time and other resources will always be working against you, but do the best you can.
 
 The first step is to start with a coding style.  For example, both [Google](https://google.github.io/styleguide/Rguide.xml) and [Hadley](http://adv-r.had.co.nz/Style.html) have provided an R coding style for others to follow, and there is [PEP8](https://www.python.org/dev/peps/pep-0008/) for Python.  If you only followed those, your code will be great relative to what you would have done.  But realize they are only suggestions, some are based on decades of coding practice, others are based on whim, and they don't tell you which.
 
@@ -725,13 +727,18 @@ In other words, you don't have to be a strong programmer, though you will have t
 
 [^margins]: Sometimes called marginal effects.
 
+[^cancor]: However, I can say I do like name dropping canonical correlation, which MANOVA, LDA, and standard regression are special cases of, every once in a while just to befuddle people.
+
 [^notstartrek]: At least until the ideas of Star Trek become a reality.  And don't let the folks in the Bay Area fool you, it's still a very long way off.  For some perspective, at the turn of the 20^th^ century, there were no cars as we now know them other than demonstrations and prototypes. By World War I, less than 20 years later, cars were a common sight in cities, and airplanes were being used in combat. We've now had more than four decades of combined internet and personal computing capabilities, and probably the biggest difference between now and then is that people spend a lot of time staring at tiny screens in their hand.  Most of the stuff we're just now getting to was promised to be right around the corner during the space age of the 1950s and 60s.  The point is, a lot of this stuff will come, but don't hold your breath.
 
-[^baddesign]: Just look at gmail, Facebook, Amazon.  They are essentially the anti-Tron of user esteem.  Amazon in particular seems to simply vomit out the return of a search that mildly references some of the letters you actually typed into its engine, if they used Google translate on the query first, while assuming the native language was an interpretive dance in Kabuki theater.  The 'art' of basic drilldown is a completely lost enterprise.  Using that website almost makes you want to ask Alexa for the best form of suicide.
+[^baddesign]: Just look at Google's gmail, Facebook, Amazon.  They are essentially the anti-Tron of user esteem.  Amazon in particular seems to simply vomit out the return of a search that mildly references some of the letters you actually typed into its engine, if they used Google translate on the query first, while assuming the native language was an interpretive dance in Kabuki theater.  The 'art' of basic drilldown is a completely lost enterprise.  Using that website almost makes you want to ask Alexa for the best form of suicide.
 
 [^github]: My main motivation for getting on GitHub was making my code better.  If the only reason you use it is that the thought of others looking at your code will make you write better code, then definitely do so.
 
 [^bestquote]: You may try, but you will never, *ever* find a better quote in all of statistics.  Also, it's generally expected that when uttered, those in earshot must snap at least twice and say 'Right on, daddy-o'.
+
+
+[^nhstpractice]: The reason many sciences *have* progressed is because they don't use NHST correctly.
 
 [^pyspss]: I was going to do a Python example too, but I couldn't find an example that wouldn't take 5 or more lines not counting the import lines, which would be several more.  
 
@@ -743,7 +750,7 @@ In other words, you don't have to be a strong programmer, though you will have t
 
 [^barplots]: Or barplots at all in my opinion.
 
-[^jetcolor]: Matlab ignored for years calls to get rid of its default 'jet' colorscheme.  They finally did, and laughably have tried to make their new choice, *which is still problematic* proprietary.
+[^jetcolor]: Matlab ignored for years calls to get rid of its default 'jet' colorscheme.  They finally did, and laughably have tried to make their new choice, *which is still problematic*, proprietary.
 
 [^stattransfer]: Some of you may still come across a tool like StatTransfer to go from say, SPSS to Stata. This completely unnecessary.
 
