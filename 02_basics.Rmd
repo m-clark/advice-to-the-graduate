@@ -94,7 +94,7 @@ If you don't understand standard regression, you'll be hard pressed to understan
 
 The second most commonly used model after the standard linear model is probably <span class="emph">logistic regression</span>, where one predicts a binary target (e.g. yes-no).  Standard logistic regression, like the standard linear model, is a special case of the <span class="emph">generalized linear model</span>.  
 
-This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span> estimation explicitly. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, and specificity. Most only look at accuracy, which is not a good way to do things in many scenarios. Actually, many don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.  Again, there is explanation and then there is prediction.
+This gets you beyond <span class="emph">ordinary least squares methods</span> and into <span class="emph">maximum likelihood</span> estimation explicitly. We'll return to this later.  In addition to standard fare like coefficients and their standard errors, you'll get two types of predictions, probability of being in one of the categories, or the actual classification of being in one category or the other.  One can look at many metrics of performance with logistic regression, for example, accuracy, sensitivity, and specificity. Most only look at accuracy, which is not a good way to do things in many scenarios. Actually, many don't even do that. You'll often see papers going on and on about the statistical significance of predictors even though their actual prediction is no better than guessing the most common category.  Again, there is explanation and then there is prediction.
 
 
 Even if you don't think you'll use it for your current work you'll come across papers that use it, and you will use it at some point if you do enough statistical modeling.  Furthermore, getting used to logistic regression can serve as a first step to other GLM models (e.g. <span class="emph">poisson regression</span>), and other categorical models, e.g. ordinal and multinomial.  If you do use it, consider interpreting it in terms of actual predictions at key values of the predictors[^margins] rather than statistical significance and odds ratios.  Not only are predicted probabilities easy to interpret, it's pretty much the only way to interpret interactions and other nonlinear effects that might be included in the model.
@@ -216,7 +216,7 @@ For more on overfitting, see [this discussion](http://andrewgelman.com/2017/07/1
 
 A converse problem is perhaps just as ubiquitous or even more prevalent in some fields, and that is not incorporating sufficiently complex models, or <span class="emph">underfitting</span>.  Take for example, the fact that standard linear regression, with no interactions or nonlinear effects, is still the most commonly employed model.  It seems suspect that a straight line would be 'good enough' to explain most relationships in nature.  In many cases the simplification may be worth it, but we are well beyond the time where that should be a so widely used as a default.
 
-Consider an generalized additive model (GAM) fit to the previous data. It initially won't fit as well as the overparameterized model. But it certainly does better than a straight line would.
+Consider a generalized additive model (GAM) fit to the previous data. It initially won't fit as well as the overparameterized model. But it certainly does better than a straight line would.
 
 
 ```{r underfitting0, echo=FALSE}
@@ -232,7 +232,7 @@ d_50 %>%
   theme_plotly()
 ```
 
-
+<br>
 When it comes to new data, it performs the best (MAE = `r round(mae(predict(model_justright, newdata=d_450)- d_450$y), 1)`).
 
 ```{r underfitting1, echo=FALSE}
@@ -249,7 +249,7 @@ d_450 %>%
 
 ```
 
-My own opinion is that a generalized additive model would be a better default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition, interactions, spatial effects, random effects and myriad approaches are avaible to add to it.  For more on these models, see my intros [here](https://m-clark.github.io/docs/GAM.html) and [here](https://m-clark.github.io/workshops/stars/).
+My own opinion is that a generalized additive model would be a better default model rather than the standard regression model. It penalizes complexity so that if a linear fit is better, that will likely be the result. In addition, interactions, spatial effects, random effects and myriad approaches are available to add to it.  For more on these models, see my intros [here](https://m-clark.github.io/docs/GAM.html) and [here](https://m-clark.github.io/workshops/stars/).
 
 The issues around over- and underfitting can be somewhat subtle, but they are pervasive.  In general, I think underfitting is perhaps more the problem in the things I see, and with penalized regression approaches, one can incorporate more complex models while still guarding against overfitting.  Interpretation of more complex models may become more difficult, but also more rich, and more fun in my opinion.
  
@@ -279,6 +279,8 @@ iris_plot_bad = iris %>%
         panel.grid.major.x=element_blank())
 iris_plot_bad
 ```
+
+<br>
 
 The above has multiple problems, some of which include that the differences are perceptually exagerated, most of the plotting area isn't useful, the colors chosen are poor and draw the eye to versicolor more than the others, the colors add no information, it has a completely unnecesary gridlines, and the only 'story' here is simply that 'Setosa > rest'.
 
@@ -716,14 +718,10 @@ In other words, you don't have to be a strong programmer, though you will have t
 
 
 
-[^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
-
-[^phack]: I'm not even going into the fact that they probably finagled the data 20 different ways with umpteen models to get that p-value slightly less than .05, a practice called <span class="emph">p-hacking</span>.  People who do this engage in the worst type of anti-science.
-
-[^bob]: Should you need assistance with knowing whether you have leveled up or not, there is someone in the IT department at LSU named Robert Gill III Esq. that can help you.  You cannot provide specifics, only ask, 'Have I leveled?'. He will then respond with a series of questions that will, in one way or another, probe the essence of your being, and provide the only answer you will ever need. Sprinkled with quotes from Buckaroo Bonzai, Goonies, and for matters of import, Forrest Gump.
 
 
-[^simplerelative]: If you're just starting out, it probably isn't to you, but we're talking *relatively*. It'll be old hat to you as well at some point.
+
+[^simplerelative]: If you're just starting out, it probably isn't simple to you, but we're talking *relatively*. It'll be old hat to you as well at some point.
 
 [^margins]: Sometimes called marginal effects.
 
@@ -767,3 +765,9 @@ In other words, you don't have to be a strong programmer, though you will have t
 [^jn]: I don't see many bells and whistles with what people do with Jupyter Notebook - practically all the ones I come across look like the default - which makes me think it isn't easy to go into deep customization, though I don't really know (I've only dabbled with it myself, so I'm speaking from a place of ignorance).  However notebooks in general, including R notebooks generated by RStudio or Jupyter, are very much geared toward interactive coding rather than creating a more or less static scientific document.  Though things may change in the future, that has less a role in typical scientific communication, where you wouldn't want code interfering with the data story you're trying to convey. It will be interesting to see where [Jupyter Lab](https://jupyterlab.github.io/jupyterlab/) goes in furthering the development.
 
 [^iris]: This is the last time I use this terrible data set.  
+
+[^deeplearnworks]: In other words, a ridiculous amount of data, with 'clean' data, and a whole host of other things in place.
+
+[^phack]: I'm not even going into the fact that they probably finagled the data 20 different ways with umpteen models to get that p-value slightly less than .05, a practice called <span class="emph">p-hacking</span>.  People who do this engage in the worst type of anti-science.
+
+[^bob]: Should you need assistance with knowing whether you have leveled up or not, there is someone in the IT department at LSU named Robert Gill III Esq. that can help you.  You cannot provide specifics, only ask, 'Have I leveled?'. He will then respond with a series of questions that will, in one way or another, probe the essence of your being, and provide the only answer you will ever need. Sprinkled with quotes from Buckaroo Bonzai, Goonies, and for matters of import, Forrest Gump.
