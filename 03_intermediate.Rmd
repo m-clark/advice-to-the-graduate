@@ -2,8 +2,8 @@
 
 This section is for those who get the bug, and actually find they enjoy programming and analysis, or simply want to continue expanding their toolbox to do better analysis.  It'll outline some good things to be aware of, or skills to start obtaining.
 
-## Analytical
 
+## Analytical
 
 ### Beyond GLM 
 
@@ -24,7 +24,7 @@ Bayesian analysis is commonplace, and requires no more justification than standa
 
 The benefits of the Bayesian approach are many.  To begin, you get probabilities and intervals that make sense, and don't require some notion of 'infinitely repeated experiments' and backward logic.  Any statistic you can calculate from a model will automatically have an interval estimate. For example, in a standard regression you'd not only get an 'adjusted' R^2^ by default[^bayesianr2], you'd also have an interval estimate for it.  The Bayesian approach works well in cases where you have small samples, possessing built-in <span class="emph">regularization</span> to guard against overfitting, allowing you to explore more fully your data even when you don't have much of it.  For more complicated models, the p-values and intervals are no more difficult to acquire than usual, unlike the traditional setting where it seems that for many models beyond the GLM setting approximations are required (e.g. mixed models, generalized additive models).
 
-In general the Bayesian approach will give you more flexibility and better assessment of uncertainty, and can definitely be your default modeling approach. For an introduction to Bayesian analysis, see my document [here](https://m-clark.github.io/docs/bayesian_book).
+In general the Bayesian approach will give you more flexibility and better assessment of uncertainty, and can definitely be your default modeling approach. For an introduction to Bayesian analysis, see my document [here](https://m-clark.github.io/bayesian-basics).
 
 
 
@@ -39,11 +39,11 @@ Data can be big, complex, or both, and there are techniques to handle it if so. 
 
 ## Programming
 
-You'll always be able to go further in programming, if for no other reason than the fact that you weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase, etc.
+You'll always be able to go further in programming, if for no other reason than the fact that you likely weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase, etc.
 
 ### Keyboard
 
-There are things you can do.  And there are things you can do because you finished that other stuff an hour ago.  One of the main benefits of an IDE are all the keyboard shortcuts that can save you a lot of time compared to point and clicking.  Unfortunately, keyboards on many laptops don't have the type of keyboard those shortcuts assume.
+There are things you can do.  And there are things you can do because you finished that other stuff an hour ago.  One of the main benefits of an IDE are all the keyboard shortcuts that can save you a lot of time compared to point and clicking.  Unfortunately, keyboards on many laptops don't have the type of keyboard those shortcuts assume, and some operatings systems seem to not be aware that keyboards can have over 100 keys.
 
 ### Writing functions
 
@@ -67,20 +67,20 @@ def percent(x, y):
 
 If you want, you can now add additional complexity to make it do more (e.g. add rounding, formatting).  Furthermore, you can reuse the function anywhere you like.
 
-Once you get the hang of writing functions, you'll find yourself doing so regularly, because it simply makes things easier.  In addition, you may find other functions available in packages do *almost* everything you want, and you'll be able to tweak their code to do *exactly* what you want.
+Once you get the hang of writing functions, you'll find yourself doing so regularly, because it simply makes things much easier than constantly repeating yourself.  In addition, you may find other functions available in packages do *almost* everything you want, and you'll be able to tweak their code to create a function that does *exactly* what you want.
 
 
 ### Debugging
 
 <span class="emph">Debugging</span> is the process of finding errors or issues in code.  If you are writing your own functions, debugging will allow you to course through the function line by line, inspecting the output created, and fix any errors.  Even if it's not your own function, debugging can allow you to find out why some function is spitting an esoteric error message at you.
 
-More generally, the *concept* of debugging is essential to scientific endeavor.  Data, models, and theories come with bugs too, and you should have a similar mindset when approaching them as you do problematic code, inspecting them piece by piece and improving them whenever the opportunity arises.
+More generally, the *concept* of debugging is essential to scientific endeavor.  Data, models, and theories come with bugs too, and you should have a similar mindset when approaching them as you would problematic code, inspecting them piece by piece and improving them whenever the opportunity arises.
 
 ### Iterative Programming & Vectorization
 
-One of the more popular blogs on Rbloggers was 'Writing your first <span class="emph">for loop</span>'.  The reason is that iterative programming is core programming technique, particularly in data science.  It is so common that you'll want to apply some function to every row or column, that not knowing how to do so in an efficient fashion will severly hamper your coding practice.
+One of the more popular blogs on Rbloggers for a long time was 'Writing your first <span class="emph">for loop</span>'.  The reason is that iterative programming is a core programming technique, particularly in data science.  It is so common that you'll want to apply some function to, for example, every row or column, that not knowing how to do so in an efficient fashion will severly hamper your coding practice.
 
-Some programming languages have even more efficiency to be gained through <span class="emph">vectorization</span>, where operations are done on vectors rather than proceeding element by element.   For example, in R, between core functions being vectorized, matrix operations, the <span class="func">apply</span> family of functions, and packages like <span class="pack">purr</span> I almost never have to write an explicit loop, and code runs much faster.  With some languages you may find some that suggest vectorization will not produce much speed gain.  They are wrong, if only because it will take you less time to write the code.  Cleaner and clearer code is always desirable too.
+Some programming languages have even more efficiency to be gained through <span class="emph">vectorization</span>, where operations are done on vectors rather than proceeding element by element.   For example, in R, between core functions being vectorized, matrix operations, the <span class="func">apply</span> family of functions, and packages like <span class="pack">purrr</span>, I almost never have to write an explicit loop, and code runs much faster.  With some languages you may find some that suggest vectorization will not produce much speed gain.  They are wrong, if only because it will take you less time to write the code.  Cleaner and clearer code is always desirable too.
 
 
 ### High Performance Computing
@@ -92,31 +92,34 @@ When speed becomes an issue, you'll want to also be familiar with code <span cla
 
 ## Visualization & Presentation
 
-In a [previous section][visualization], we talked about how a good visualization will take complex relationships and make them easier to understand, and in general will require some effort to pull off a good one.  Beyond that, you also want to think interactively.  Interactivity is key to visualization in this day and age, and should be a fundamental part of your visualization arsenal, especially since interactive forms of traditional plots are as easy to produce as the traditional ones. It probably won't be long before it's an expected part of scientific visualization, assuming the journals get out of the way.  The nice thing is, you can always start with an interactive plot, and take a snapshot for the publication, keeping the interactive plot as supplementary material. Adding interactivity can add even more dimensions to a single visualization.
+In a [previous section][visualization], we talked about how a good visualization will take complex relationships and make them easier to understand, and in general, it will require some effort to pull off a good one.  Beyond that, you also want to think interactively.  Interactivity is key to visualization in this day and age, and should be a fundamental part of your visualization arsenal, especially since interactive forms of traditional plots are as easy to produce as the traditional ones. It probably won't be long before it's an expected part of scientific visualization, assuming the journals get out of the way.  The nice thing is, you can always start with an interactive plot, and take a snapshot for the publication, keeping the interactive plot as supplementary material. Adding interactivity can add even more dimensions to a single visualization.
 
 
-For those that really want to go down the rabbit hole regarding visualization, there's always more to consider, and this document can perhaps serve as a starting point. The text that is of a contrast ratio relative to the background that would satisfy some of the more strict [web accessibility standards](http://www.webaxe.org/color-contrast-tools/).  This includes the color coded text, though those are not quite as stringent. I use my own css files to implement these throughout the document.  In addition, the colors in the plots are evenly spaced and would be distinguishable for those with even rare forms of color-blindness.  You'll also notice there are no gridlines, which are completely unnecessary when you can obtain the specific values by hovering over the plot[^gridlines].
+For those that really want to go down the rabbit hole regarding visualization, there's always more to consider, and this document can perhaps serve as a starting point. The text is of a contrast ratio relative to the background that would satisfy some of the more strict [web accessibility standards](http://www.webaxe.org/color-contrast-tools/).  This includes the color coded text, though those are not quite as stringent. I use my own css files to implement these throughout the document.  In addition, the colors in the plots are evenly spaced and would be distinguishable for those with even rare forms of color-blindness.  You'll also notice there are no gridlines, which are completely unnecessary when you can obtain the specific values by hovering over the plot[^gridlines].
 
 ## Other
 
-## Engaging the web
+### Engaging the web
 
-If you do enough data analysis you'll eventually need to acquire some data directly from the web.  Whether this will be easy or difficult in general unfortunately will not be up to you. However, you can make it easier on yourself by knowing some basic HTML and other aspects of server-client communication.  Your browser even comes with tools to help you.  I'd tell you which function key to hit to open up the developer tool on your browser, but you probably don't have one. 
-    - web scraping
+If you do enough data analysis you'll eventually need to acquire some data directly from the web, possibly in some raw form (e.g. text) that will require additional processing.  Whether this will be easy or difficult unfortunately will not be up to you, but rather to those developing the website(s) that house the data, and many actively make the data difficult to obtain[^webdev]. However, you can make it easier on yourself by knowing some basic HTML and other aspects of server-client communication, which will also help your web-based presentations.  Your browser even comes with tools to help you.  
 
-## Version control revisited
+Scraping the web will involve using tools in ways you never have, and thus often take a lot of effort. However, the payoff is often worth it, especially when you obtain a unique data set that no one previously had access to.
+
+### Version control revisited
     - Git and related
 
-## Publishing
+### Publishing
     - Markdown, css, html etc.
     
-## Collaboration
+### Collaboration
     - Notebooks
     - GitHub
     
-## Sharing
+### Sharing
   - Packages
   - Notebooks
   
   
 [^gridlines]: Gridlines are unnecessary anyway in my opinion. First, can you really not tell roughly where the values are without them?  Second, they often convey a level of precision that is not inherent in the data.  Third, and most important, they're ugly.  This goes for their use in tables as well.
+
+[^webdev]: By intention or incompetence.

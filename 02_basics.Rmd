@@ -151,6 +151,11 @@ A common problem in standard statistical modeling and machine learning includes 
 
 Take for example the following plot of data.
 
+```{r load_model_packages, echo=FALSE, cache=FALSE}
+library(modelr); library(mgcv)
+```
+
+
 ```{r overfitting0, echo=FALSE}
 virpal = viridis::plasma(4)
 adj_rsq = function(rsq, p, n) {rsq - (1-rsq)*(p/(n-p-1))}
@@ -161,7 +166,7 @@ mae = function(res){
   mean(abs(res))
 }
 set.seed(1234)
-library(mgcv)
+
 d = gamSim(1, n=500, verbose=F)
 idx = sample(1:500, 50)
 d_50 = d[idx,]
@@ -176,8 +181,6 @@ d_50 %>%
 A sufficiently complex model might obtain the following fit.
 
 ```{r overfitting1, echo=FALSE}
-library(modelr)
-
 model_justright = gam(y ~ s(x2, bs='gp'), data=d_50)
 model_overfit = loess(y ~ x2, span=.15, data=d_50, surface='direct')
 model_underfit = lm(y ~ poly(x2, 2), data=d_50)
@@ -595,6 +598,13 @@ for (i in 1:10) {
 The above would calculate the mean of the first 10 columns of some matrix/dataframe x. When you look at the column_means object after running the loop, it will have 10 elements, each being the mean of the associated column in x.
 
 It is *extremely important* to know how to use loops very early on in your programming, or you will be wasting enormous amounts of time, because it *always* comes up.  Once you get the basic idea down, know that it will be conceptually identical and often even look the same in almost every programming language.  Here is the same loop in Python, using the <span class="pack">numpy</span> module (as `np`).
+
+<!-- ```{python, eval=FALSE, echo=FALSE} -->
+<!-- # because knitr doesn't know what the eval argument is when it's a python chunk anymore apparently. -->
+<!-- import numpy as np -->
+<!-- x = np.array(np.random.uniform(size=100)).reshape(10,10) -->
+<!-- ``` -->
+
 
 ```{python pyloop, eval=FALSE}
 column_means = []

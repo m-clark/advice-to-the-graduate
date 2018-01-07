@@ -1,7 +1,7 @@
 # Part I: Universal Truths & Cycles
 
 
-This first part will cover some basic things  that can apply to statistics, programming, and possibly well beyond.  None of the following really requires any specific background or experience to understand and begin implementing. 
+This first part will cover some basic things that can apply to statistics, programming, and possibly well beyond.  None of the following really requires any specific background or experience to understand and begin implementing. 
 
 ## Face the facts and accept them
 
@@ -10,7 +10,7 @@ You have chosen to get, or have obtained, an advanced degree in a discipline tha
 $$Y = f(X) + \epsilon$$
 may just mean something like life satisfaction ($Y$) is related to some set of other things like health, education, income, (i.e. all the stuff in $X$), but not exactly ($\epsilon$).
 
-How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, it would be nice if you didn't waste the time and resources of faculty, students, and others who do want to engage in those activities, not to mention taxpayer money.  Seriously, don't be a jerk.
+How you choose to investigate your theories will depend on your discipline, for better or worse. Practically speaking, it means you will have to do things like statistical analysis, collect data, do some programming, perhaps engage in a lot of writing, etc.  If this isn't for you, that's perfectly fine, it means you're *normal*, or at least among the vast majority of humanity.  And if it isn't your bag, it would be nice if you didn't waste the time and resources of faculty, students, and others who do want to engage in those activities, not to mention taxpayer money that's used to fund such pursuits.  Seriously, don't be a jerk.
 
 
 One more thing to plan on - everything, I mean *everything*, will take longer than you expect.  That may even include your time-in-training.  You may, for example, plan on 4-5 years for a Ph.D., or, as faculty, 1 year to complete data collection and submit an article, but, as the old saying goes, shit happens.  You'll have to learn to deal with it.
@@ -21,7 +21,7 @@ One more thing to plan on - everything, I mean *everything*, will take longer th
 <img src="img/doc.jpg" style="display:block; margin: 0 auto;" width=300px title="Deloreans are awesome!">
 <br>
 
-The movies would like you to believe that science is just a series of eureka moments had by oddball geniuses who can't seem to do anything right most of the time, but will intuit the perfect solution to any problem with just a moment's reflection.  As anyone who's actually engaged in scientific research knows, this is a bunch of BS.  On the contrary, if you're doing good science it's going to take a lot of hard work.  However, a few simple steps can be taken, but which will avoid a lot of wasted time.  There are a few things you can control in your research efforts, and being organized is one of them, so do it.
+The movies would like you to believe that science is just a series of eureka moments had by oddball geniuses who can't seem to do anything right most of the time, but will intuit the perfect solution to any problem with just a moment's reflection.  As anyone who's actually engaged in scientific research knows, this is a bunch of BS.  On the contrary, if you're doing good science it's going to take a lot of hard work.  However, a few simple steps can be taken that will avoid a lot of wasted time.  There are a few things you can control in your research efforts, and being organized is one of them, so do it.
 
 For starters, a very simple way to get organized is to create a project folder.  Many IDEs (e.g. Spyder for Python, RStudio for R) seem to do this now, which makes it easy.  But for any project you have, make a project folder that will be the home for what you're working on, e.g. a specific article or dissertation. This will serve as the working directory for that project[^setwd].  
 
@@ -54,19 +54,17 @@ On the programming side, the other nice thing about projects is that whenever yo
 <img src="img/free.jpg" style="display:block; margin: 0 auto;" width=300px title='Richard Stallman likes parrots'>
 <br>
 
-The  researchers in the academic world who have kept up with the times generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work, and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether. Even if their primary tools are proprietary, they're using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc.
+The  researchers in the academic world who have kept up with the times generally are not using things like SPSS, MS Excel and MS Word to do their work.  They are also publishing in open outlets that allow for rapid dissemination and easy access to their work, and some are even [boycotting traditional outlets](https://en.wikipedia.org/wiki/Elsevier#Boycotts) altogether. Even if their primary tools are proprietary, such tools are using something open and/or free under the hood.  In fact, many of the most common tools of the trade are open source and/or freely available, e.g. C++, Python, R, $\LaTeX$, Markdown, etc.
 
-At least one reason for this is because open source means the code is available to be inspected, the licenses for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is financially well off enough to throw thousands of dollars at software that doesn't do anything special.  This is why R, Python and similar rapidly gained and took over ground after decades of domination by SAS, SPSS, etc.[^freesas] 
+At least one reason for this is because open source means the code is available to be inspected, the licenses for the code, if they apply, are far less restrictive[^license], and often anyone could potentially contribute to the development process.  This in turn produces more rapid development and extension. Furthermore, not everywhere in the world where people might want to do science is financially well off enough to throw thousands of dollars at software that doesn't do anything special.  This is why R, Python and similar rapidly gained and took over ground after years of dominance by SAS, SPSS, and similar[^freesas].
 
 On the proprietary side, take for example, <span class="pack">Mplus</span>, a widely used software for structural equation modeling. At the time I started writing this, they just released version 8, five years after version 7 and a year and a half since the last point release (7.4).  This in and of itself is no big deal, given that the new features are few.  However, one of the things they mentioned were 'corrections to minor problems that have been found'.  They don't mention what the bugs were, but evidently they were allowed to exist at least for over a year, and we don't know if they existed prior to that as well.  
 
 Other statistical software, like SPSS, have a 'full release' every year, but one would be hard pressed to know what's changed over the past 10. Nonetheless, they expect you and or your organization to pay for it each and every year. This sort of approach to software development in science is not acceptable in this day and age, especially when comparable or even better tools are available to do the same task[^propsoft]. 
 
-Before I go on a rant, practically speaking, the best statistical, data science, and related tools currently are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (even if you use Python, but feel free to try Jupyter), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite commonly used and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
+Before I go on a rant, practically speaking, the best statistical, data science, and related tools currently are found with R and Python. For writing, it's far easier to use Rmarkdown for scientific publishing (*even if you use Python*, but feel free to try Jupyter), and if you really must have MS Word, it will generate a `.docx` document for you.  Otherwise, $\LaTeX$ is still quite commonly used and will produce a much better document than MS Word, especially if using mathematical formulas, tables, graphics etc.
 
 I'm not saying you have to go as far as Richard Stallman, the guy pictured, who *only* uses free, as in both beer and speech, software.  But you have already long used and benefited from open source software, so all I'm saying is to continue doing so in your own research. 
-
-
 
 
 
