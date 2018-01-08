@@ -7,22 +7,25 @@ The following resources should be seen not as definitive, but merely potential s
 
 ### MOOCs
 
-MOOCs can be hit or miss. I've done a few, and some were more about fighting the system than learning programming or analytical methods.  For example, you can having working, even efficient, code that produces the correct answer, but still have it rejected for completely inconsequential reasons, or have to wait inordinate time to have it run and checked on the servers etc.  Some methods-based courses were more about having to learn more about a programming language than learning techniques.  Some assume notably more background knowledge than described, or are taught by people who really aren't good educators, or aren't adequately tested/piloted.
+MOOCs can be hit or miss. I've done a few, and some were more about fighting the system than learning programming or analytical methods.  For example, you can having working, even efficient, code that produces the correct answer, but still have it rejected for completely inconsequential reasons, or have to wait an inordinate time to have it run and checked on the servers etc.  Some methods-based courses were more about having to learn more about a programming language than learning techniques.  Some assume notably more background knowledge than described, or are taught by people who really aren't good educators, or aren't adequately tested/piloted.
 
 On the other hand, a good one can be a great way to get a solid background in some topic relatively quickly.  If you're still struggling after the first few topics, don't continue to waste your time.  You can always come back to it, or another might come along that's a better match for you.  Also, don't pay for them.  The odds of it being worth it are slim and none.  If you're willing to pay, you should just take a university course or workshop and get personal attention.
 
-### Stackexchange & Stackoverflow
+### Stack Exchange & Stack Overflow
 
+<span class="emph">Stack Exchange</span> is a network of question and answer sites covering a ridiculous number of topics, and with a rating system so that you don't have to waste time with answers written by people who don't know what they're talking about.  For example, <span class="emph">Stack Overflow</span> is specifically about coding, and you'll find practically all your questions answered there. Remember, while things are new to you, they aren't in general.  I can only assume it may have something to do with a filter bubble or something, but many still aren't aware of this resource or don't use it nearly as much as they should.  <span class="emph">Cross Validated</span> is where people ask statistical questions, and is another place you'll likely spend some time.
 
 
 
 ### Github
 
+[Quick start guide](https://rogerdudler.github.io/git-guide/)
+- For R users [Happy Git with R](http://happygitwithr.com/) by Jenny Bryan
+
 
 
 
 ## Texts
-
 
 ### Standard modeling and beyond
 

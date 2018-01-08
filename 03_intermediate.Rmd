@@ -35,15 +35,13 @@ In this day and age, any applied discipline that teaches a semester course in st
 Data can be big, complex, or both, and there are techniques to handle it if so.  If you don't know about them, you may be inclined to do some very silly things to coerce the situation to one you know, which is precisely the wrong thing to do.  If your discipline doesn't cover it in any fashion, do a workshop, look online for some exercises, or simply schedule some time to chat with someone who does know about them.  With tools like R and Python, the difficulty will *not* be running the models.
 
 
-
-
 ## Programming
 
 You'll always be able to go further in programming, if for no other reason than the fact that you likely weren't taught basic programming skills in the first place.  The more you know, the easier things will continue to come, the more data you can explore, the better visualizations you can produce, the speed at which you can do practically everything will increase, etc.
 
 ### Keyboard
 
-There are things you can do.  And there are things you can do because you finished that other stuff an hour ago.  One of the main benefits of an IDE are all the keyboard shortcuts that can save you a lot of time compared to point and clicking.  Unfortunately, keyboards on many laptops don't have the type of keyboard those shortcuts assume, and some operatings systems seem to not be aware that keyboards can have over 100 keys.
+There are things you can do.  And there are things you can do because you finished that other stuff an hour ago.  One of the main benefits of an IDE are all the keyboard shortcuts that can save you a lot of time compared to point and clicking.  Unfortunately, keyboards on many laptops don't have the type of keyboard those shortcuts assume, and some operating systems seem to not be aware that keyboards can have over 100 keys.
 
 ### Writing functions
 
@@ -78,7 +76,7 @@ More generally, the *concept* of debugging is essential to scientific endeavor. 
 
 ### Iterative Programming & Vectorization
 
-One of the more popular blogs on Rbloggers for a long time was 'Writing your first <span class="emph">for loop</span>'.  The reason is that iterative programming is a core programming technique, particularly in data science.  It is so common that you'll want to apply some function to, for example, every row or column, that not knowing how to do so in an efficient fashion will severly hamper your coding practice.
+One of the more popular blogs on R-Bloggers for a long time was 'Writing your first <span class="emph">for loop</span>'.  The reason is that iterative programming is a core programming technique, particularly in data science.  It is so common that you'll want to apply some function to, for example, every row or column, that not knowing how to do so in an efficient fashion will severely hamper your coding practice.
 
 Some programming languages have even more efficiency to be gained through <span class="emph">vectorization</span>, where operations are done on vectors rather than proceeding element by element.   For example, in R, between core functions being vectorized, matrix operations, the <span class="func">apply</span> family of functions, and packages like <span class="pack">purrr</span>, I almost never have to write an explicit loop, and code runs much faster.  With some languages you may find some that suggest vectorization will not produce much speed gain.  They are wrong, if only because it will take you less time to write the code.  Cleaner and clearer code is always desirable too.
 
@@ -90,36 +88,102 @@ At some point your data or models may require more resources than your computer 
 When speed becomes an issue, you'll want to also be familiar with code <span class="emph">profiling</span>.  Profiling allows you to assess where in your code bottlenecks occur, which you may then rework to produce faster results.  However, this comes with the following caveat: premature optimization is the root of all evil.  Code can be relatively slow but still good enough, and it's important to balance computing vs. programming time.
 
 
-## Visualization & Presentation
+
+## Other
+
+### Visualization & Presentation
 
 In a [previous section][visualization], we talked about how a good visualization will take complex relationships and make them easier to understand, and in general, it will require some effort to pull off a good one.  Beyond that, you also want to think interactively.  Interactivity is key to visualization in this day and age, and should be a fundamental part of your visualization arsenal, especially since interactive forms of traditional plots are as easy to produce as the traditional ones. It probably won't be long before it's an expected part of scientific visualization, assuming the journals get out of the way.  The nice thing is, you can always start with an interactive plot, and take a snapshot for the publication, keeping the interactive plot as supplementary material. Adding interactivity can add even more dimensions to a single visualization.
 
 
-For those that really want to go down the rabbit hole regarding visualization, there's always more to consider, and this document can perhaps serve as a starting point. The text is of a contrast ratio relative to the background that would satisfy some of the more strict [web accessibility standards](http://www.webaxe.org/color-contrast-tools/).  This includes the color coded text, though those are not quite as stringent. I use my own css files to implement these throughout the document.  In addition, the colors in the plots are evenly spaced and would be distinguishable for those with even rare forms of color-blindness.  You'll also notice there are no gridlines, which are completely unnecessary when you can obtain the specific values by hovering over the plot[^gridlines].
+For those that really want to go down the rabbit hole regarding visualization, there's always more to consider, and this document can perhaps serve as a starting point. The text is of a contrast ratio relative to the background that would satisfy some of the more strict [web accessibility standards](http://www.webaxe.org/color-contrast-tools/).  This includes the color coded text, though those are not quite as stringent. I use my own CSS files to implement these throughout the document.  In addition, the colors in the plots are evenly spaced and would be distinguishable for those with even rare forms of color-blindness.  You'll also notice there are no gridlines, which are completely unnecessary when you can obtain the specific values by hovering over the plot[^gridlines].
 
-## Other
 
 ### Engaging the web
 
 If you do enough data analysis you'll eventually need to acquire some data directly from the web, possibly in some raw form (e.g. text) that will require additional processing.  Whether this will be easy or difficult unfortunately will not be up to you, but rather to those developing the website(s) that house the data, and many actively make the data difficult to obtain[^webdev]. However, you can make it easier on yourself by knowing some basic HTML and other aspects of server-client communication, which will also help your web-based presentations.  Your browser even comes with tools to help you.  
 
-Scraping the web will involve using tools in ways you never have, and thus often take a lot of effort. However, the payoff is often worth it, especially when you obtain a unique data set that no one previously had access to.
+Scraping the web will involve using tools in ways you never have, and thus often take a lot of effort, especially the first attempt. However, the payoff is often worth it, especially when you can create a unique data set that no one previously had access to.
 
-### Version control revisited
-    - Git and related
+###
+
+### Version control basics
+
+<img src="img/octocat.png" style="display:block; margin: 0 auto;" width=35%>
+
+<span class="emph">Version control</span> is something you should be aware of even if you don't use it beyond the things like Box drive.  For decades now there have been what are called version control systems (VCS) for software development.  And even if you don't use formal a formal VCS, the concept of thinking of your <span class="emph">science as software development</span> will go a long way toward improving your scientific method.
+
+Tools like [Git](https://git-scm.com/) and [Mercurial](https://www.mercurial-scm.org/) allow for complex development involving many developers and iterations of applications to come together in a way that allows one to more rapidly correct mistakes, branch off into exploratory endeavors, add new people to the project, etc.  But you're not a software developer you say.  I say so what.
+
+Consider a faculty member with several grad students working on different phases of multiple projects.  These tools would potentially allow for much more seemless collaboration, where, for example on one project a student could be working on the visualization 'branch', another on the conference presentation, another may be correcting some data, and while the faculty is working on the write-up, and eventually all these pieces can be merged into a final product.  If there is any issue found later, it is easy to revert back to the correct state and continue from that point.  VCS are also typically hosted remotely, e.g. at [GitHub](https://github.com/), and so automatic backup is in place, and it also provides a potential way to have your work exposed to even more people. The latter is especially nice for students, who will usually want to be marketing themselves and their skills as much as possible.  However the real benefit to using something like Git and GitHub, is that if you know others are going to see your code, you *will* write better code.
+
+
+To get started with version control, I'd suggest creating an account on GitHub and going through the steps to create your first <span class="emph">repository</span>. A repository (repo) is merely a collection of scripts and files associated with a specific endeavor.  For example, many R packages and Python modules can be found as a repo on GitHub.  Your first repository can be used for anything, but at least one of your first should be used just to learn how to use Git.  Don't worry, you won't be able to break anything.
+
+The basic idea is that you will write some code, then <span class="emph">push</span> what you have to the repo on the web server (e.g. GitHub).  Likewise, if you don't have the latest update, you can <span class="emph">pull</span> whatever is on the repository to your local machine.  In its most basic form where there is only one contributor to a repo, i.e. *you*, using Git can be very easy, especially with an IDE like RStudio that allows you to, once Git is installed, use version control via a couple clicks.  Other tools, e.g. GitKraken, can make the process more visual and efficient. In my opinion, one of the key benefits to using a public storehouse for your code is that someone else might see it.  For me, this meant writing better code, and that alone is beneficial.  For private endeavors there is BitBucket and GitLab, which work very similarly to GitHub.  However, note that while they are not public, that doesn't mean they are secure enough for your data purposes (e.g. HIPAA compliant).  However, you can still do the work and just ignore files that are data as far as what you send to the repo.
+
+
+The additional benefits to version control are peace of mind, knowing that you can always and easily revert to a previous state if needed, and the discipline of the practice itself. It requires requires a bit of a different mindset to think of your research projects in a similar way as one would with software development, but is extremely useful in terms of reproducibility.  When you start thinking of your science and modeling as software development, one that goes through a potentially continual (and public) process of improvement, you'll almost automatically avoid many of the problems associated with the so-called 'crisis' of reproducibility.  People engaged in this aren't having any crisis at all, their methods are open, their documents are infused with data.  Journal outlets, as they are now, are impediments, not facilitators.  'Articles', if the term should even apply, should come with titles plus a version number, ready to be extended, improved, or *merely* replicated.
+
 
 ### Publishing
-    - Markdown, css, html etc.
-    
-### Collaboration
-    - Notebooks
-    - GitHub
-    
-### Sharing
-  - Packages
-  - Notebooks
+
+Assuming you have given up using MS Word and are actually interested in doing reproducible research, the next steps are getting used to using Markdown, CSS, and even basic HTML.
+
+Markdown is actually easier to use than MS Word, as you don't have to hunt for what to click to make something a header, or italics.  For example:
+
+```{markdown mddemo, eval=F}
+# Header
+## Sub-header
+
+*italics*
   
+- item 1
+- item 2
+```
+
+Sprinkled throughout are chunks of code.
+
+```{r rchunk, echo=FALSE}
+cat("```{r myrchunk, echo=FALSE}
+x = rnorm(100)
+```")
+```
+
+This is just simple R code, and the option `echo=FALSE` means it won't be visible in the document.  However, I can then use the object <span class="objclass">x</span> anywhere else in the document.  
+
+The point is not to make a markdown document, but to ultimately convert it to HTML, PDF, or even MS Word (if you must).  With RStudio this takes no effort on your part. There are tools for Jupyter notebooks also, and even Stata has finally started down this path. Now consider a code chunk that runs a regression model and a function that will convert the results to nice table. No copy-paste nonsense required, and likely no formatting even.  Data changes? So will your table of results. Same goes for visualizations. There, I just saved you hours on your next write-up.
+
+Beyond markdown, knowing a bit of CSS will allow you to customize your work. Learning CSS is trivial, the hard part is knowing what to change.  For example, if you know a modicum of HTML, you'd know that headers are denoted with H, followed by a level.  For example `h1` is a top-level header.  In CSS, if we want to change something about those we'd do the following in a *.css file.
+
+```{css cssdemo, eval=F}
+h1, h2, h3, h4 {
+  color: red;
+  font-family: Helvetica;
+}
+```
+
+The above would change both the color and font of the first four levels of headers[^cssrmark].  Very easy.  The issue is knowing what the names of things are, and what options you can tweak.  This will come with time, but as a first step, simply use the web developer tools in your browser to inspect webpages.  This will show you what both the tags are and what options are applied to them.
+
+Once you get the hang of it, writing a good looking and reproducible documents will be your default. In addition, your document write-up can be part of your project/GitHub repo. You'll be a better researcher, and those that know you're using such tools will put greater trust in your results.  
+    
+### Collaboration & Sharing
+
+Once your work gets going there are lots of ways to share it with your research group and beyond.  R, Python, and others allow one to create interactive <span class="emph">notebooks</span>.  The idea here is that someone else can run the code you give them and see the results within the document itself, and while you can do this with any script, it also is in the same markdown format, so could potentially be published to HTML or other format.  In my opinion, these are most useful for instruction, otherwise one can use the standard markdown-esque approach.
+
+Git and related tools were created specifically for teams working collaboratively on software projects.  However, it's not restricted to software.  Research teams can use the same approach.  For example, one could be working on descriptive statistics and writing up the methods section (mostly text, some stats), another working on the intro (only text), and another on the results (mostly stats), and do so all at the same time.  At any point any of the individuals could compile the most recent version of the document without affecting others[^gitprobs].
+
+If you really get good at programming, you may want to make your own package that covers some functionality not readily available or just does something differently.  You can then share this with the world so that they can use the tool you've created as well.  This has become so easy, the current proliferation of packages, especially in the R world, just continues to skyrocket.
+
+However, you may want to create a package for your project/team.  It'd contain useful functions and documentation, adding to the reproducibility and reusability of your work.  This might seem tedious, but the time saved on revise and resubmits alone would probably make up for it.
+
+## Summary of Part III
+
   
 [^gridlines]: Gridlines are unnecessary anyway in my opinion. First, can you really not tell roughly where the values are without them?  Second, they often convey a level of precision that is not inherent in the data.  Third, and most important, they're ugly.  This goes for their use in tables as well.
 
 [^webdev]: By intention or incompetence.
+
+[^cssrmark]: In writing that bit of CSS, I discovered that you can actually implement CSS via a CSS chunk in Rmarkdown.  So I guess you could create a CSS chunk at the beginning of a document rather than having a separate file.  I find that sub-optimal though, and have no idea what other consequences there may be.
+
+[^gitprobs]: In theory.  In my experience you'd want separate files for each section of the paper for this to work smoothly.

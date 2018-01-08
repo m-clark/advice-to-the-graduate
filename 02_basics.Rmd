@@ -60,7 +60,7 @@ Some disciplines, e.g. psychology, try to get their adherents to focus on effect
 - As soon as you get into any complication, e.g. repeated measures, interactions, etc., there is little standard or possibly even a viable way to define it.
 - Small data and large effects mean nothing other than that you need more data.  It is *definitely not* the case that the effect is 'more real' because you happened to see it with such a small sample. In fact, your first move after seeing a large effect in a small sample should probably be to go back to the data processing stage to make sure no errors were introduced.
 
-Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make comparable categorical effects vs. numeric ones. And as soon as you move beyond the standard linear model, which is where most models should be these days, it's pretty much not defined.  For example, what's the effect size here?
+Another common 'effect size' is the standardized regression coefficient.  You don't see this much outside of disciplines where SPSS is used a lot. However, even in the only setting where it's easily calculated, it still doesn't make effects of categorical vs. effects of numeric predictors easily comparable. And as soon as you move beyond the standard linear model, which is where most models should be these days, it's pretty much not defined.  For example, what's the effect size here?
 
 ```{r effectgam, echo=FALSE}
 library(mgcv)
@@ -106,7 +106,7 @@ Along with basic regression and logistic regression, you'll need some conceptual
 
 ### Loss functions and maximum likelihood estimation
 
-In statistical modeling we are interested in estimated parameters. For example, these might be regression coefficients or variances. But how do we do it?  We certainly don't just guess, and despite what the press would have you believe about AI we definitely don't use magic, so where do the numbers come from?
+In statistical modeling we are interested in estimated parameters. For example, these might be regression coefficients or variances. But how do we do it?  We certainly don't just guess, and despite what the press would have you believe about AI, we definitely don't use magic. So where do the numbers come from?
 
 The answer is that we pick values that bring about the best result.  But how do we define *best*? Well there is no one way to do it, and how you might do it depends on the situation.  However, there are a couple common approaches you should understand conceptually very well.
 
@@ -260,74 +260,6 @@ The issues around over- and underfitting can be somewhat subtle, but they are pe
 
 
 
-### Visualization
-
-There are a couple important things to know when you begin learning about visualization in the scientific context.  One of the more essential things to learn right off the bat is that your intuition is almost certainly wrong.  You likely don't know how to visualize well because most visualization is done poorly if not terribly, so going by what you see will simply perpetuate bad approaches.  For example, no one should be doing 3d pie charts, bar plots with error bars on the top of them[^barplots], or plots with unusually scaled axes, yet these are still regularly displayed in journals. On top of this, an applied stats course likely will not spend much time, if any, teaching the basics of visualization.  I don't mean producing plots, at least they usually do that, but actually thinking about the means of conveying scientific information visually.
-
-Second, depending on the tool used, default settings may be just as bad as what you would choose with no information.  For example in terms of color, whatever you'd pick on your own is not going to do well, but unless the package developer put actual effort into it, you might end up with red-green or other problematic combos[^jetcolor]. Lines may be too thin, gridlines may overwhelm the actual plot content, and so forth. With color, issues of emphasis, colorblindness, etc., come in to play, and unless you put some thought into it, your visualization will have problems.
-
-A good visualization in a research context will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  So when thinking of a visualization, the goal is going to typically be to work with some complex, but interesting, data story and attempt present it in a way that tells that narrative in a clear fashion.  For example, showing the difference in group means is not complex, so a visualization is just going to create a bunch of whitespace to tell you what a single sentence could. 
-
-```{r iris, echo=FALSE}
-iris_plot_bad = iris %>% 
-  mutate(Mean = predict(lm(Sepal.Width~Species)),
-         se = round(predict(lm(Sepal.Width~Species), se=T)$se, 3)) %>% 
-  distinct(Species, Mean, se) %>% 
-  ggplot(aes(x=Species, y=Mean, color=Species)) +
-  geom_pointrange(aes(ymin=Mean-2*se, ymax=Mean+2*se), size=1) +
-  scale_color_manual(values=c( 'Green','Red', 'Yellow')) +
-  ylab('Sepal Width') +
-  theme_bw() +
-  theme(panel.grid.major.y=element_line('black', .5),
-        panel.grid.major.x=element_blank())
-iris_plot_bad
-```
-
-<br>
-
-The above has multiple problems, some of which include that the differences are perceptually exagerated, most of the plotting area isn't useful, the colors chosen are poor and draw the eye to versicolor more than the others, the colors add no information, it has a completely unnecesary gridlines, and the only 'story' here is simply that 'Setosa > rest'.
-
-When displaying information for others to consume, always think beyond two dimensions.  2d plots such as simple bar and scatter plots are generally a waste of time, beyond initial data exploration (i.e. before modeling), and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have five pieces of information (including the basic x and y dimensions) represented in the same graph.  
-
-
-The following represents all the information in the iris data set[^iris] (hovering will show the other variable values), including some summary information (means for x, y axes), and it utilizes all of the plot space. It doesn't distort the relationship of group means, because we have the context of the all the observations, and the colors chosen don't draw the eye to one group any more than another.  So it takes the previous 2d plot and adds various other information, but without being overwhelming.
-
-
-```{r iris_2, echo=FALSE}
-iris_plot_better = iris %>% 
-  mutate(MeanSW = predict(lm(Sepal.Width~Species)),
-         MeanSL = predict(lm(Sepal.Length~Species))) %>%
-  group_by(Species) %>% 
-  ggplot(aes(label=Petal.Width, label2=Petal.Length, color=Species)) +
-  geom_point(aes(x=MeanSW, y=MeanSL), size=5, show.legend=F)+
-  geom_point(aes(x=Sepal.Width, y=Sepal.Length), alpha=.35) +
-  # viridis::scale_color_viridis(discrete=T) +
-  labs(x='Sepal Width', y = 'Sepal Length')
-ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>% 
-  lazerhawk::theme_plotly() 
-
-# iris_plot_better = mtcars %>% 
-#   mutate(MeanMPG = predict(lm(mpg~cyl)),
-#          MeanWt = predict(lm(wt~cyl)),
-#          cyl = factor(cyl)) %>%
-#   group_by(cyl) %>% 
-#   ggplot(aes(label=hp, label2=carb, color=cyl)) +
-#   geom_point(aes(x=MeanWt, y=MeanMPG), size=5, show.legend=F)+
-#   geom_point(aes(x=wt, y=mpg), alpha=.35) +
-#   # viridis::scale_color_viridis(discrete=T) +
-#   labs(x='Weight', y = 'Miles per Gallon')
-# ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>% 
-#   lazerhawk::theme_plotly() 
-```
-
-<br>
-
-It has gotten easier over time to pick some decent colors.  For example, <span class="pack">ggplot2</span> in R will default to evenly spaced colors, and the <span class="pack">viridis</span> module in Python and R will provide evenly spaced, colorblind-, and print-friendly palettes.  [Colorbrewer.org](https://colorbrewer2.org/) and the <span class="pack">RColorBrewer</span> package is another useful tool.
-
-Also note that for scientific communication, [infovis](https://en.wikipedia.org/wiki/Information_visualization) is not an option.  This isn't advertising, and what may 'look cool' may not be very useful for scientific presentation.  Take for example, word clouds. People seem to love them, but they are almost useless.
-
-As mentioned in the first part, your audience will be fine with something more than a bar plot. I have been told multiple times that the reason for not doing a particular style of plot is because the audience of Ph.D.s, M.D.s and graduate students won't be able to figure it out.  This is an utterly ridiculous notion with no proof whatsoever.  Unless you are thinking interactively first, you probably aren't even producing a visualization that is as complex (and commonplace) as those commonly seen in news outlets like the New York Times.  If someone is actually interested in your work, they will read the caption or associated text and have the cognitive capability to sort out what you're showing.
-
 
 
 
@@ -464,7 +396,7 @@ After installing the basic components for R or Python, you can use them straight
 
 You want to use what's called an <span class="emph">integreted development environment</span>, or IDE.  For R, the far and away most popular one is RStudio. For Python, I would suggest Anaconda/Spyder for scientific work.  There are others, but unless you have a lot more experience, I'd suggest sticking with those[^atom].
 
-What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, autospacing, interactivity... this is only the beginning.  I've written this document and many other things *entirely* with RStudio.  A good IDE is essential.
+What these do, practically speaking, is make your coding efforts a lot more easy and efficient. Syntax highlighting, code completion, autospacing, interactivity... this is only the beginning.  I've written this document, workshops, published articles, and many other things *entirely* with RStudio.  A good IDE is essential.
 
 
 #### Customize it
@@ -525,7 +457,7 @@ One of the first things you want to learn in scientific programming is how to ge
 There are object types that are common to practically all programming languages, and you should be familiar with them.
 
 - <span class="objclass">boolean</span>: a binary 0-1, or TRUE/FALSE. These are especially important to be familiar with for [indexing][indexing] purposes.
-- <span class="objclass">numeric</span> of a kind: specifically 'floats' or 'integers' but for practical reasons can be anything that isn't a string variable (and may include boolean)
+- <span class="objclass">numeric</span> of a kind: specifically 'floats' or 'integers' but for practical reasons can be anything that isn't a string variable (and may include boolean).
 - <span class="objclass">string</span>: text based represenation. For example, a variable may be a boolean called `Male`, which would indicate that values of 1 or TRUE would indicate an observation is a male, or the variable might be a string called `Sex` with values of 'Male' or 'Female'.
 
 Beyond that, statistically oriented programming environments typically distinguish categorical variables, called <span class="objclass">factors</span>. You can think of them as labeled integers.  For example, we might have a variable called `Sex` that has values of 1 and 2 but with labels 'Male' and 'Female'.  The distinction between factors and strings is less an issue these days, but depending on the package you're using or analysis being conducted, you may need one or the other.
@@ -556,7 +488,7 @@ However, base R indexing for data frames is largely a good way to write ugly and
 
 > <span class="" style="font-size:500%">Avoid magic numbers.</span>
 
-Indexing by numbers goes against reproducibility, because row and columns can change quite dramatically both in data collection and data object creation. The `Age` column might be the fifth one now, but it may not be later. If you want the `Age` column, reference it by name.
+Indexing by numbers goes against reproducibility, because row and columns can change quite dramatically both in data collection and data object creation. The `Age` column might be the fifth one now, but it may not be later. If you want the `Age` column, reference it by name. Likewise, for Python dataframes your default should be `loc` rather than `iloc`, and similar.
 
 The <span class="pack">tidyverse</span> approach in R enhances reproducibility by making it easier to use names and by using functions that make it clear what's going on.  Take the following for example.
 
@@ -565,7 +497,7 @@ mydata %>%
   select(Age, contains('blue'), starts_with('A'))
 ```
 
-You might not have ever worked with the <span class="pack">dplyr</span> package, but I'll be you know what that's doing.  Furthermore, if it's your code, you'll know what it means six months from now.
+You might not have ever worked with the <span class="pack">dplyr</span> package, but I'll be you know what that's doing.  Furthermore, if it's your code, you'll know what it means six months from now. Python dataframes have similar functionality[^mydpvizdoc].
 
 The gist is, you need to get familiar with how to slice and dice your data structures, and the quicker you will be able to process the data and get to the interesting aspects of it.
 
@@ -633,11 +565,83 @@ Again, you need the concept first, so start by doing explicit loops, then see ho
 
 ### Programming summary
 
-Programming is a fundamental part of modern science, and I personally would go so far to say that if you aren't doing any programming, you aren't doing science. It formalizes the analytical approach, makes all your data processing efforts more efficient, and tends the entire endeavor toward a more reproducible setting.  The better you become at it, the more time you can spend on the other things.
+Programming is a fundamental part of modern science, and I personally would go so far to say that if you aren't doing any programming at some point in your data processing and analysis, you aren't doing science. It formalizes the analytical approach, makes all your data processing efforts more efficient, and tends the entire endeavor toward a more reproducible setting.  The better you become at it, the more time you can spend on the other things.
 
-## Reproducibility revisited
 
-### Data 
+## Other
+### Visualization
+
+There are a couple important things to know when you begin learning about visualization in the scientific context.  One of the more essential things to learn right off the bat is that your intuition is almost certainly wrong.  You likely don't know how to visualize well because most visualization in scientific/academic reporting is done poorly, if not terribly, so going by what you see will simply perpetuate bad approaches.  For example, no one should be doing 3d pie charts, bar plots with error bars on the top of them[^barplots], or plots with unusually scaled axes, yet these are still regularly displayed in journals. On top of this, an applied stats course likely will not spend much time, if any, teaching the basics of visualization.  I don't mean producing plots, at least they usually do that, but actually thinking about the means of conveying scientific information visually.
+
+Second, depending on the tool used, default settings may be just as bad as what you would choose with no information.  For example in terms of color, whatever you'd pick on your own is not going to do well, but unless the package developer put actual effort into it, you might end up with red-green or other problematic combos[^jetcolor]. Lines may be too thin, gridlines may overwhelm the actual plot content, and so forth. With color, issues of emphasis, colorblindness, etc., come in to play, and unless you put some thought into it, your visualization will have problems.
+
+A good visualization in a research context will take complex relationships and make them easier to understand, *even if it takes some effort on the part of the viewer*.  So when thinking of a visualization, the goal is going to typically be to work with some complex, but interesting, data story and attempt present it in a way that tells that narrative in a clear fashion.  For example, showing the difference in group means is not complex, so a visualization is just going to create a bunch of whitespace to tell you what a single sentence could. 
+
+```{r iris, echo=FALSE}
+iris_plot_bad = iris %>% 
+  mutate(Mean = predict(lm(Sepal.Width~Species)),
+         se = round(predict(lm(Sepal.Width~Species), se=T)$se, 3)) %>% 
+  distinct(Species, Mean, se) %>% 
+  ggplot(aes(x=Species, y=Mean, color=Species)) +
+  geom_pointrange(aes(ymin=Mean-2*se, ymax=Mean+2*se), size=1) +
+  scale_color_manual(values=c( 'Green','Red', 'Yellow')) +
+  ylab('Sepal Width') +
+  theme_bw() +
+  theme(panel.grid.major.y=element_line('black', .5),
+        panel.grid.major.x=element_blank())
+iris_plot_bad
+```
+
+<br>
+
+The above has multiple problems, some of which include that the differences are perceptually exagerated, most of the plotting area isn't useful, the colors chosen are poor and draw the eye to versicolor more than the others, the colors add no information, it has a completely unnecesary gridlines, and the only 'story' here is simply that 'Setosa > rest'.
+
+When displaying information for others to consume, always think beyond two dimensions.  2d plots such as simple bar and scatter plots are generally a waste of time, beyond initial data exploration (i.e. before modeling), and it's simply too easy to add more information while still not being overwhelming.  For example, with a scatterplot one can use point size to represent another variable, color for some grouping, and transparency for yet another variable.  You now have five pieces of information (including the basic x and y dimensions) represented in the same graph.  
+
+
+The following represents all the information in the iris data set[^iris] (hovering will show the other variable values), including some summary information (means for x, y axes), and it utilizes all of the plot space. It doesn't distort the relationship of group means, because we have the context of the all the observations, and the colors chosen don't draw the eye to one group any more than another.  So it takes the previous 2d plot and adds various other information, but without being overwhelming.
+
+
+```{r iris_2, echo=FALSE}
+iris_plot_better = iris %>% 
+  mutate(MeanSW = predict(lm(Sepal.Width~Species)),
+         MeanSL = predict(lm(Sepal.Length~Species))) %>%
+  group_by(Species) %>% 
+  ggplot(aes(label=Petal.Width, label2=Petal.Length, color=Species)) +
+  geom_point(aes(x=MeanSW, y=MeanSL), size=5, show.legend=F)+
+  geom_point(aes(x=Sepal.Width, y=Sepal.Length), alpha=.35) +
+  # viridis::scale_color_viridis(discrete=T) +
+  labs(x='Sepal Width', y = 'Sepal Length')
+ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>% 
+  lazerhawk::theme_plotly() 
+
+# iris_plot_better = mtcars %>% 
+#   mutate(MeanMPG = predict(lm(mpg~cyl)),
+#          MeanWt = predict(lm(wt~cyl)),
+#          cyl = factor(cyl)) %>%
+#   group_by(cyl) %>% 
+#   ggplot(aes(label=hp, label2=carb, color=cyl)) +
+#   geom_point(aes(x=MeanWt, y=MeanMPG), size=5, show.legend=F)+
+#   geom_point(aes(x=wt, y=mpg), alpha=.35) +
+#   # viridis::scale_color_viridis(discrete=T) +
+#   labs(x='Weight', y = 'Miles per Gallon')
+# ggplotly(tooltip=c('colour', 'x', 'y', 'label', 'label2')) %>% 
+#   lazerhawk::theme_plotly() 
+```
+
+<br>
+
+It has gotten easier over time to pick some decent colors.  For example, <span class="pack">ggplot2</span> in R will default to evenly spaced colors, and the <span class="pack">viridis</span> module in Python and R will provide evenly spaced, colorblind-, and print-friendly palettes.  [Colorbrewer.org](https://colorbrewer2.org/) and the <span class="pack">RColorBrewer</span> package is another useful tool.
+
+Also note that for scientific communication, [infovis](https://en.wikipedia.org/wiki/Information_visualization) is not an option.  This isn't advertising, and what may 'look cool' may not be very useful for scientific presentation.  Take for example, word clouds. People seem to love them, but they are almost useless.
+
+As mentioned in the first part, your audience will be fine with something more than a bar plot. I have been told multiple times that the reason for not doing a particular style of plot is because the audience of Ph.D.s, M.D.s and graduate students won't be able to figure it out.  This is an utterly ridiculous notion with no proof whatsoever.  Unless you are thinking interactively first, you probably aren't even producing a visualization that is as complex (and commonplace) as those commonly seen in news outlets like the New York Times.  If someone is actually interested in your work, they will read the caption or associated text and have the cognitive capability to sort out what you're showing.
+
+
+
+### Reproducibility revisited
+
+#### Data 
 
 Before we get to analysis, one needs to understand that 
 
@@ -649,7 +653,7 @@ Collecting and processing the data is not as fun as analyzing it, but analyzing 
 
 
 
-### Analysis
+#### Analysis
 
 The first step in reproducibility is to be able to duplicate the results of an analysis.  We can refer to this as <span class="emph">reproducible data analysis</span>.  The key idea is whether you could start with the raw data and produce the same results as you publish.  In addition, you might apply the idea of <span class="emph">convergent validity</span> to the process. Similar analytical techniques should come to the same conclusions.  
 
@@ -661,30 +665,30 @@ There is actually no need to write 'scripts' anymore.  One can, with Rmarkdown, 
 
 
 
-### Programming
+#### Programming
 
 > There are only two hard things in Computer Science: cache invalidation, naming things, and off-by-one errors.
 
 
-#### Comments
+##### Comments
 
 A starting point for reproducibility in your programming is to comment everything.  The comments should not be about what the code is doing. This is because if you know the language at all you'll know what it's doing, or if you forget, it will be easy to look up what the function or command does.  Instead, comment about *why* you're doing it, or what the goal of the code execution is.  However comments aren't exactly necessary if your code is embedded in the research product, i.e. the document, itself, though they still might prove useful.
 
 
-#### Naming things
+##### Naming things
 
-Another thing to think about is naming things. If you are naming anything of importance as 'data', you deserve whatever happens.  Even more if you are naming things 'data3' or 'finaldata7'.  However, most of us aren't taught this, and so are guilty of it at some point or another.  But now you know. So don't.
+Another thing to think about is naming things. If you are naming anything of importance as 'data', you deserve whatever happens to you.  Even more if you are naming things 'data3' or 'finaldata7'.  However, most of us aren't taught this, and so are guilty of it at some point or another.  But now you know. So don't.
 
-This goes for files, objects, variables, *everything*. Name things as though you won't need it for a year, and yet a year later you'd know what it was.  With modern IDEs autocomplete means you can use long names and not even have to type but a couple letters. Take advantage of this.
+This goes for files, objects, variables, *everything*. Name things as though you won't need it for a year, and yet a year later you'd know what it was.  With modern IDEs, auto-complete means you can use long names and not even have to type but a couple letters. Take advantage of this. A good rule of thumb is to ask what would you look for six months from now?
 
 
-#### Projects
+##### Projects
 
 This was mentioned in the previous [getting organized section][get organized]. IDEs and even some statistical software allow for the creation of <span class="emph">projects</span>.  These become self-contained folders where all your scripts, documents, visuals, and so forth reside.  Basically, if you are hunting for files or have to set your working directory, you're not doing things in an efficient or reproducible fashion.  Creating projects is so simple, there is no reason not to.  For any distinct work you're doing, create an organized and self-contained folder that only pertains to the work done for that project.
     
 
 
-### Documents
+#### Documents
 
 <div class='col2'>
 <img src="img/RMarkdownOutputFormats.png" style="display:block; margin: 0 auto;" width='50%'>
@@ -695,7 +699,7 @@ This was mentioned in the previous [getting organized section][get organized]. I
    
 Writing up scientific results in something like Microsoft Word is a deplorable practice in terms of science.  Copying and pasting output from a statistical or  other programming environment into a Word document is practically the definition of irreproducibility, opens the door for numerous errors, and, on the practical side, is exceedingly tedious.  If any change has to be made to the data, e.g. an error is discovered, analyses re-run etc., one will potentially have to change every number and visualization associated with the document.  That alone should be reason enough not to want to engage in such a practice.
    
-Many disciplines have used <span class="emph">$\LaTeX$</span> as their approach and still do. Not only does it produce beautiful documents for print, it eventually became a means for <span class="emph">literate programming</span>, simultaneously embedding word and text and providing the means for more reproducible work.  Unfortunately, $\LaTeX$ is inherently a print medium, making it at best marginally useful these days.  If you've learned it, don't fret you can still use it, e.g. with math formulas, but everything you could have done with it you can now do via other means. Except you won't have to completely disrupt your train of thought and text messing with floats and tables.
+Many disciplines have used <span class="emph">$\LaTeX$</span> as their approach and still do. Not only does it produce beautiful documents for print, it eventually became a means for <span class="emph">literate programming</span>, simultaneously embedding code and text and providing the means for more reproducible work.  Unfortunately, $\LaTeX$ is inherently a print medium, making it marginally useful these days.  If you've learned it, don't fret, you can still use it, e.g. with math formulas, but everything you could have done with it you can now do via other means. Except you won't have to completely disrupt your train of thought and text messing with floats and tables.
    
 <span class="emph">Markdown</span> has displaced $\LaTeX$ for scientific publishing these days.  In the right environment, there is nothing you can't do with it that you couldn't do with $\LaTeX$, and if you think otherwise, it just means you haven't gotten used to it yet.  The issue is that, despite what many journals still seem to think, the web is the medium of scientific communication, just as it is with practically everything else.  If you're creating a scientific document with a print-first mentality, you are probably not interested in disseminating your work to the broadest possible audience, and you are going to continually handicap what you might have been able to show with your efforts.
 
@@ -704,17 +708,7 @@ Many disciplines have used <span class="emph">$\LaTeX$</span> as their approach 
 The gist is, your document first needs to be connected to the underlying data, and secondly needs to be ready for the web.  To get a sense how far one can go, I recently collaborated on a paper entirely in Rmarkdown, in which not a single digit in the final copy was actually typed.  All values, tables (which were also formatted via code), figures, and inline text was produced via underlying R code, and with the final output, as much as it pains me to admit, MS Word.  For those using R, [Rmarkdown](http://rmarkdown.rstudio.com/) makes it such that you don't even really have to write traditional scripts anymore, you can just use Rmarkdown and let your normal text take the place of comments.  For Python, you have [Jupyter Notebook](https://jupyter.org/) that appears to allow much of the same.
 
 
-### Version control basics
 
-<img src="img/octocat.png" style="display:block; margin: 0 auto;" width=35%>
-
-I'll talk more about version control in the next section, but it's something you should be aware of even if you don't use it beyond the versions in things like Box drive.  For decades now there have been what are called <span class="emph">version control systems</span> (VCS) for software development.  And even if you don't use formal a formal VCS, the concept of thinking of your <span class="emph">science as software development</span> will go a long way toward improving your scientific method.
-
-Tools like [Git](https://git-scm.com/) and [Mercurial](https://www.mercurial-scm.org/) allow for complex development involving many developers and iterations of applications to come together in a way that allows one to more rapidly correct mistakes, branch off into exploratory endeavors, add new people to the project, etc.  But you're not a software developer you say.  I say so what.
-
-Consider a faculty member with several grad students working on different phases of multiple projects.  These tools would potentially allow for much more seemless collaboration, where, for example on one project a student could be working on the visualization 'branch', another on the conference presentation, another may be correcting some data, and while the faculty is working on the write-up, and eventually all these pieces can be merged into a final product.  If there is any issue found later, it is easy to revert back to the correct state and continue from that point.  VCS are also typically hosted remotely, e.g. at [GitHub](https://github.com/), and so automatic backup is in place, and it also provides a potential way to have your work exposed to even more people. The latter is especially nice for students, who will usually want to be marketing themselves and their skills as much as possible.  However the real benefit to using something like Git and GitHub, is that if you know others are going to see your code, you *will* write better code.
-
-When you start thinking of your science and modeling as software development, one that goes through a potentially continual (and public) process of improvement, you'll almost automatically avoid many of the problems associated with the so-called 'crisis' of reproducibility.  People engaged in this aren't having any crisis at all, their methods are open, their documents are infused with data.  Journal outlets, as they are now, are impediments, not facilitators.  'Articles', if the term should even apply, should come with titles plus a version number, ready to be extended, improved, or *merely* replicated.
 
 
 ## Summary of Part II
@@ -760,7 +754,7 @@ In other words, you don't have to be a strong programmer, though you will have t
 
 [^jetcolor]: Matlab ignored for years calls to get rid of its default 'jet' colorscheme.  They finally did, and laughably have tried to make their new choice, *which is still problematic*, proprietary.
 
-[^stattransfer]: Some of you may still come across a tool like StatTransfer to go from say, SPSS to Stata. This completely unnecessary.
+[^stattransfer]: Some of you may still come across a tool like StatTransfer to go from say, SPSS to Stata. This is completely unnecessary and has been for some time.
 
 [^rdataframe]: Technically, R data.frames are lists.
 
@@ -781,3 +775,5 @@ In other words, you don't have to be a strong programmer, though you will have t
 [^phack]: I'm not even going into the fact that they probably finagled the data 20 different ways with umpteen models to get that p-value slightly less than .05, a practice called <span class="emph">p-hacking</span>.  People who do this engage in the worst type of anti-science.
 
 [^bob]: Should you need assistance with knowing whether you have leveled up or not, there is someone in the IT department at LSU named Robert Gill III Esq. that can help you.  You cannot provide specifics, only ask, 'Have I leveled?'. He will then respond with a series of questions that will, in one way or another, probe the essence of your being, and provide the only answer you will ever need. Sprinkled with quotes from Buckaroo Bonzai, Goonies, and for matters of import, Forrest Gump.
+
+[^mydpvizdoc]: My document on [data processing and visualization](https://m-clark.github.io/data-processing-and-visualization/) has examples in both R and Python.  The Python code is available at the repository.

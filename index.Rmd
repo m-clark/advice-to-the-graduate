@@ -1,5 +1,6 @@
 ---
-title: "Advice to the Graduate"
+title: "On the Last Day of Your Life, Don't Forget to Die"
+subtitle: "Some practical thoughts for those wanting to go further with their academic research"
 author: "Michael Clark"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -72,7 +73,7 @@ Note that the following is oriented toward the vast majority of those who do res
 
 ### General
 
-First we begin with some general things that can apply to statistics, programming, and possibly well beyond.  Concepts like compartmentalization, reproducibility, and so forth, many of which will not require any particular expertise, only practice.  Even so, their application can go a long way toward making research and statistical computing easier.
+First we begin with some general things that can apply to statistics, programming, and possibly well beyond.  Concepts will be introduced like compartmentalization, reproducibility, and so forth, many of which will not require any particular expertise, only practice.  Even so, their application can go a long way toward making research and statistical computing easier.
 
 ### Basic analysis and programming
 
@@ -80,8 +81,10 @@ After that we'll cover things that I think anyone doing research could benefit f
 
 ### Intermediate analysis and programming
 
-The last part will regard some suggestions for those that get a taste for things and want to go further.  This section will be for those that want to do even more advanced programming and statistics, as well as more to present themselves and their work to others.
+The last part will regard some suggestions for those that get a taste for analysis and computing and want to go further.  This section will be for those that want to do even more advanced programming and statistics, as well as more to present themselves and their work to others.
 
 
+## Goal
 
+The hope here is to basically inform about those things that you won't be told about or spend much time on in usual training circumstances.  You may get a sense of some of it, but, for example, probably most applied statistics courses don't even cover visualization, basic programming principles (i.e. beyond getting a statistical result), or how to organize one's approach.  This means that many dislike the enterprise, because so much time is wasted doing tedious things no one would like to do, instead of exploring ideas through data.  Incorporating just a few of these ideas and practices in your workflow can go a long way to make statistical computing a lot more fun.
 

@@ -169,7 +169,7 @@ It's okay to write some code that simply works, and add details and generalizati
 <img src="img/visbrain.svg" style="display:block; margin: 0 auto;" width=300px title='Brain is for thinking'>
 <br>
 
-First, assume others' brains are not so different from yours, then take advantage of it.  One of my pet peeves is when I hear the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can learn via other means, e.g. text and sound, but that is secondary.
+First, assume others' brains are not so different from yours, then take advantage of it.  One of my pet peeves is when I hear the phrase '*I'm a visual learner*.'  *Really*? So you have a brain? *Everyone* with working eyeballs is a visual learner.  Some can also learn via other means, e.g. text and sound, but that is secondary.
 
 The gist is that you should always be thinking how to display the products of your research visually, possibly even interactively. Unfortunately you will find that some journals are still acting as if it's 1950, and that people only peruse articles via print.  If you can believe it, they actually will charge *extra* for color[^toolong].  Journals that still have the black and white, print first mindset in this day and age should be avoided at all costs, unless you don't like people reading your research.
 
@@ -276,7 +276,7 @@ In programming, sharing and reusing code is simply the way things are done. And 
 
 ## Summary of Part I
 
-
+Suck it up, dive in, and don't waste your breath.
 
 
 [^complexify]: Complexify is not a word, but I like it better than complicate.  Complexity may be good, not sure about complication.
