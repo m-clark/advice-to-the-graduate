@@ -65,9 +65,11 @@ You want to do quality research using sound statistical and other practices, but
 
 It's okay. Most of the others are in the same boat.
 
-These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient, more in-depth, and in the end, hopefully more fun too. The suggestions will have a strong eye toward balance.  I realize that if you wanted to be a statistician or computer programmer, you wouldn't be getting a degree in sociology, chemistry, ecology or whatever.
+These are some thoughts, particularly for graduate students, but really any researcher in applied disciplines, on what they can do regarding statistical and programming basics to make their research efforts more efficient, more in-depth, and in the end, hopefully more fun too. The suggestions will have a strong eye toward balance.  I realize that if you wanted to be a statistician or computer programmer, you wouldn't be getting a degree in sociology, chemistry, ecology, or whatever.  I also know that many of you can go much further with statistical computing than you think.
 
-Note that the following is oriented toward the vast majority of those who do research that will involve some form of statistical analysis.  While I know for a fact that some of it could even help those doing other kinds of research, it will have less to say to them.
+Note that the following is oriented toward the vast majority of those who do research that will involve some form of statistical analysis.  While I know for a fact that some of it could even help those doing other kinds of research, it will have less to say to them.  These thoughts are based on the many issues I've seen among many graduate students, faculty, and staff across a wide range of disciplines, whom I've taught, consulted, and worked with.
+
+
 
 ## Outline
 
